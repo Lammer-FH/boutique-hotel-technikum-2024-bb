@@ -1,8 +1,13 @@
 package Model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity(name = "room_extra")
+@Getter @Setter @NoArgsConstructor
 public class RoomExtra {
     @Id
     @Column(name = "id")
@@ -10,31 +15,10 @@ public class RoomExtra {
     @Column(name = "room_id")
     private int room_id;
     @Column(name = "extra_id")
-    private String extra_id;
+    private int extra_id;
 
-    public RoomExtra(){}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getRoom_id() {
-        return room_id;
-    }
-
-    public void setRoom_id(int room_id) {
+    public RoomExtra(int room_id, int extra_id){
         this.room_id = room_id;
-    }
-
-    public String getExtra_id() {
-        return extra_id;
-    }
-
-    public void setExtra_id(String extra_id) {
         this.extra_id = extra_id;
     }
 }

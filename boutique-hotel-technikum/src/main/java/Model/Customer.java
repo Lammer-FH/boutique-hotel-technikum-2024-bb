@@ -1,8 +1,13 @@
 package Model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class Customer {
     @Id
     @Column(name = "id")
@@ -13,58 +18,16 @@ public class Customer {
     private String surname;
     @Column(name = "email")
     private String email;
-    @Column(name = "number")
-    private String number;
+    @Column(name = "phonenumber")
+    private String phonenumber;
     @Column(name = "address")
     private String address;
 
-    public Customer() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Customer(String name, String surname, String email, String phonenumber, String address) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+        this.phonenumber = phonenumber;
         this.address = address;
     }
 }

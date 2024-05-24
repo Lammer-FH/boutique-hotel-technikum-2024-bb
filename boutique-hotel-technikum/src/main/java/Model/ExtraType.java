@@ -1,8 +1,13 @@
 package Model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity(name = "extra_type")
+@Getter @Setter @NoArgsConstructor
 public class ExtraType {
     @Id
     @Column(name = "id")
@@ -12,29 +17,8 @@ public class ExtraType {
     @Column(name = "description")
     private String description;
 
-    public ExtraType() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public ExtraType(String title, String description) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 }
