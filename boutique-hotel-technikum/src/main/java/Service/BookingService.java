@@ -4,23 +4,24 @@ import Model.Booking;
 import Repository.BookingRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
     public Booking createBooking(Booking booking) {
-        booking = bookingRepository.save(booking);
-        return booking;
+        return bookingRepository.save(booking);
     }
 
     public Booking updateBooking(Booking booking) throws NotFoundException {
         Optional<Booking> optionalBooking = bookingRepository.findById(booking.getId());
         if(optionalBooking.isPresent()){
-            Booking existingBooking = bookingRepository.findById(booking.getId()).get();
+            Booking existingBooking = optionalBooking.get();
             existingBooking.setTitle(booking.getTitle());
             existingBooking.setAdditional_notes(booking.getAdditional_notes());
             existingBooking.setCustomer_id(booking.getCustomer_id());
@@ -37,14 +38,13 @@ public class BookingService {
         }
     }
 
-    public Booking getBookingById(int id) throws Exception {
-        Booking booking = bookingRepository.findById(id)
+    public Booking getBookingById(int id) throws NotFoundException {
+        return bookingRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Booking not found with id: " + id));
-        return booking;
     }
 
-    public List<Booking> getAllBookings() {
+    /*public List<Booking> getAllBookings() {
         List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
         return bookings;
-    }
+    }*/
 }

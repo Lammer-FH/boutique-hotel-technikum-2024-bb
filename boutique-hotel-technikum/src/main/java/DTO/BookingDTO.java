@@ -1,14 +1,15 @@
 package DTO;
 
-import Model.Booking;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDate;
 
 @Builder
+@Jacksonized
 @Value
 public class BookingDTO {
     @JsonProperty("id")
@@ -46,20 +47,4 @@ public class BookingDTO {
 
     @JsonProperty("cancelled")
     private boolean cancelled;
-
-    public static BookingDTO fromEntity(Booking booking) {
-        return BookingDTO.builder()
-                .id(booking.getId())
-                .title(booking.getTitle())
-                .additionalNotes(booking.getAdditional_notes())
-                .customerId(booking.getCustomer_id())
-                .roomId(booking.getRoom_id())
-                .createdAt(LocalDate.parse(booking.getCreated_at()))
-                .bookingStart(LocalDate.parse(booking.getBooking_start()))
-                .bookingEnd(LocalDate.parse(booking.getBooking_end()))
-                .breakfast(booking.isBreakfast())
-                .totalCost(booking.getTotal_cost())
-                .cancelled(booking.isCancelled())
-                .build();
-    }
 }

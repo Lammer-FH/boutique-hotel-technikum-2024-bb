@@ -3,34 +3,33 @@ package Controller;
 import DTO.BookingDTO;
 import Model.Booking;
 import Service.BookingService;
+import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/booking")
+@RequestMapping("/booking")
 public class BookingController {
     @Autowired
     private BookingService bookingService;
     @Autowired
     private ModelMapper modelMapper;
 
-    @PutMapping("/{bookingId}")
-    public Booking addBooking(@PathVariable int bookingId, @RequestBody BookingDTO bookingDTO) {
-        /* booking = bookingService.createBooking(this.modelMapper(bookingDTO, Booking.class));
-        return ResponseEntity.status(HttpStatus.CREATED).body(booking);*/
-    }
-
     @PostMapping
-    public Booking updateBooking(@RequestBody BookingDTO bookingDTO) {
-        // Booking updatedBooking = bookingService.updateBooking(bookingDTO);
+    public Booking addBooking(@RequestBody BookingDTO bookingDTO) {
+        Booking booking = modelMapper.map(bookingDTO, Booking.class);
+        return bookingService.createBooking(booking);
     }
 
     @GetMapping("/{bookingId}")
-    public Booking getBooking(@PathVariable int bookingId) throws Exception {
-        /* BookingDTO booking = BookingDTO.fromEntity(bookingService.getBookingById(bookingId));
-        return ResponseEntity.ok(booking).getBody(); */
+    public Booking getBooking(@PathVariable int bookingId) throws NotFoundException {
+        return bookingService.getBookingById(bookingId);
+    }
+
+    @PutMapping
+    public Booking updateBooking(@RequestBody BookingDTO bookingDTO) throws NotFoundException {
+        Booking booking = modelMapper.map(bookingDTO, Booking.class);
+        return bookingService.updateBooking(booking);
     }
 }
