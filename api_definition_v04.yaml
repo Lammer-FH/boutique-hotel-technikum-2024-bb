@@ -462,13 +462,13 @@ paths:
     get:
       tags:
         - extra_types
-      summary: Find extras for room by room ID
-      description: Returns multpile extras
-      operationId: getExtryById
+      summary: Find extra by ID
+      description: Returns a single extra
+      operationId: getExtraById
       parameters:
         - name: extraId
           in: path
-          description: ID of room for whiche extras to return
+          description: ID of extra to return
           required: true
           schema:
             type: integer
