@@ -4,14 +4,6 @@ spring:
   application:
     name: Boutique-Backend
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5434/news
+    url: jdbc:mysql://127.0.0.1:3306/hotel
     username: admin
     password: admin
-  liquibase:
-    change-log: db/changelog.xml
-  kafka:
-    bootstrap-servers: "localhost:9092"
-    streams:
-      bootstrap-servers: "localhost:9092"
-    producer:
-      bootstrap-servers: "localhost:9092"
