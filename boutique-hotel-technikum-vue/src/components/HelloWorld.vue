@@ -14,7 +14,7 @@
     </ul>
     <ul>
       <li v-for="(item, index) in items" :key="item.id">
-        {{ index }} - {{ item.message }}
+        {{ index }} - {{ item.message.toUpperCase() }}
       </li>
     </ul>
     <ul>
@@ -24,6 +24,10 @@
       </template>
     </ul>
     <input type="text" v-model="somevalue" >
+
+    <h2>{{count}}</h2>
+    <button v-on:click="countUp()">count up</button>
+    <button @click="countUp()">count up</button>
 
 
   </div>
@@ -41,7 +45,13 @@ export default {
       somevalue: "fooo",
       othervalue: "baaaa",
       awesome: true,
-      items: [{ message: 'Foo' }, { message: 'Bar' }]
+      items: [{ message: 'Foo' }, { message: 'Bar' }],
+      count: 0
+    }
+  },
+  methods: {
+    countUp() {
+      this.count++;
     }
   }
 }
