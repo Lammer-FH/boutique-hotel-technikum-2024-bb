@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Boutique-Backend
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5434/news
+    username: admin
+    password: admin
+  liquibase:
+    change-log: db/changelog.xml
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    streams:
+      bootstrap-servers: "localhost:9092"
+    producer:
+      bootstrap-servers: "localhost:9092"
