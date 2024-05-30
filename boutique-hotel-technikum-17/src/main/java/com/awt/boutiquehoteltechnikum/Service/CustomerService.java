@@ -3,7 +3,9 @@ package com.awt.boutiquehoteltechnikum.Service;
 import com.awt.boutiquehoteltechnikum.Model.Customer;
 import com.awt.boutiquehoteltechnikum.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -29,7 +31,8 @@ public class CustomerService {
        //}
     }
 
-    public Optional<Customer> getCustomerById(int id) {
-        return customerRepository.findById(id);
+    public Customer getCustomerById(int id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"customerId not found"));
     }
 }

@@ -17,20 +17,20 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
     @PostMapping
-    public Booking addBooking(@RequestBody BookingDTO bookingDTO) {
+    public BookingDTO addBooking(@RequestBody BookingDTO bookingDTO) {
         Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDTO);
-        return bookingService.createBooking(booking);
+        return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.createBooking(booking));
     }
 
     @GetMapping("/{bookingId}")
-    public Optional<Booking> getBooking(@PathVariable int bookingId) {
-        return bookingService.getBookingById(bookingId);
+    public BookingDTO getBooking(@PathVariable int bookingId) {
+        return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.getBookingById(bookingId));
     }
 
     @PutMapping
-    public Booking updateBooking(@RequestBody BookingDTO bookingDTO) {
+    public BookingDTO updateBooking(@RequestBody BookingDTO bookingDTO) {
         Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDTO);
-        return bookingService.updateBooking(booking);
+        return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.updateBooking(booking));
     }
 }
 

@@ -1,6 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
+import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
+import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
 import com.awt.boutiquehoteltechnikum.Model.ExtraType;
 import com.awt.boutiquehoteltechnikum.Model.RoomExtra;
@@ -23,8 +25,8 @@ public class RoomExtraController {
     }
 
     @GetMapping("/{roomId}")
-    public List<ExtraType> getAllRoomExtras(@PathVariable int roomId) {
-        return roomExtraService.getAllRoomExtrasByRoomId(roomId);
+    public List<ExtraTypeDTO> getAllRoomExtras(@PathVariable int roomId) {
+        return ExtraTypeMapper.INSTANCE.extraTypeListToExtraTypeDTOList(roomExtraService.getAllRoomExtrasByRoomId(roomId));
     }
 
     @PutMapping

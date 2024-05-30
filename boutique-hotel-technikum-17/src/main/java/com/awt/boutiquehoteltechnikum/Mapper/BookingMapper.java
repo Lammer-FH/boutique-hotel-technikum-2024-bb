@@ -14,5 +14,6 @@ public interface BookingMapper {
 
     BookingMapper INSTANCE = Mappers.getMapper(BookingMapper.class);
     Booking bookingDTOtoBooking(BookingDTO bookingDTO);
+    BookingDTO bookingToBookingDTO(Booking booking);
 
 }

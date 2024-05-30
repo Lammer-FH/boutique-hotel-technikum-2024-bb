@@ -16,17 +16,17 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping
-    public Customer createCustomer(@RequestBody CustomerDTO customerDTO) {
-        return customerService.createCustomer(CustomerMapper.INSTANCE.customerDTOtoCustomer(customerDTO));
+    public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {
+        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.createCustomer(CustomerMapper.INSTANCE.customerDTOtoCustomer(customerDTO)));
     }
 
     @GetMapping("/{customerId}")
-    public Optional<Customer> getCustomer(@PathVariable int customerId) {
-        return customerService.getCustomerById(customerId);
+    public CustomerDTO getCustomer(@PathVariable int customerId) {
+        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.getCustomerById(customerId));
     }
 
     @PutMapping
-    public Customer updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        return customerService.updateCustomer(CustomerMapper.INSTANCE.customerDTOtoCustomer(customerDTO));
+    public CustomerDTO updateCustomer(@RequestBody CustomerDTO customerDTO) {
+        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.updateCustomer(CustomerMapper.INSTANCE.customerDTOtoCustomer(customerDTO)));
     }
 }
