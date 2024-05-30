@@ -21,13 +21,13 @@ public class RoomDTO {
     @JsonProperty("price")
     double price;
 
-    @JsonProperty("room_type")
+    @JsonProperty("roomType")
     String roomType;
 
-    @JsonProperty("bed_type")
+    @JsonProperty("bedType")
     String bedType;
 
-    @JsonProperty("bed_count")
+    @JsonProperty("bedCount")
     int bedCount;
 
     @JsonProperty("image")

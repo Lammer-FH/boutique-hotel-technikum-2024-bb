@@ -27,9 +27,9 @@ public class RoomService {
             existingRoom.setTitle(room.getTitle());
             existingRoom.setDescription(room.getDescription());
             existingRoom.setPrice(room.getPrice());
-            existingRoom.setRoom_type(room.getRoom_type());
-            existingRoom.setBed_type(room.getBed_type());
-            existingRoom.setBed_count(room.getBed_count());
+            existingRoom.setRoomType(room.getRoomType());
+            existingRoom.setBedType(room.getBedType());
+            existingRoom.setBedCount(room.getBedCount());
             existingRoom.setImage(room.getImage());
             return roomRepository.save(existingRoom);
         }

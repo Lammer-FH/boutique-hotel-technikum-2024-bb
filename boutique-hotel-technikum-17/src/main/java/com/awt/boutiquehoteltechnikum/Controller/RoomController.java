@@ -20,7 +20,7 @@ public class RoomController {
     @PostMapping
     public RoomDTO createRoom(@RequestBody RoomDTO roomDTO) {
         Room room = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
-        return RoomMapper.INSTANCE.roomtoRoomDTO(room);
+        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(room));
     }
 
     @GetMapping("/{roomId}")

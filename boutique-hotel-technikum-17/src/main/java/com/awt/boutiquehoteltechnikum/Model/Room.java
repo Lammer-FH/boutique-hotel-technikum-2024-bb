@@ -21,11 +21,11 @@ public class Room {
     @Column(name = "price")
     private double price;
     @Column(name = "room_type")
-    private String room_type;
+    private String roomType;
     @Column(name = "bed_type")
-    private String bed_type;
+    private String bedType;
     @Column(name = "bed_count")
-    private int bed_count;
+    private int bedCount;
     @Column(name = "image")
     private String image;
 
@@ -33,9 +33,9 @@ public class Room {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.room_type = room_type;
-        this.bed_type = bed_type;
-        this.bed_count = bed_count;
+        this.roomType = room_type;
+        this.bedType = bed_type;
+        this.bedCount = bed_count;
         this.image = image;
     }
 }
