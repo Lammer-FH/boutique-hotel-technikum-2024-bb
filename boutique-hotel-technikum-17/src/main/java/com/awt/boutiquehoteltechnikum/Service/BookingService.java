@@ -22,14 +22,14 @@ public class BookingService {
         //if(optionalBooking.isPresent()){
             Booking existingBooking = optionalBooking.get();
             existingBooking.setTitle(booking.getTitle());
-            existingBooking.setAdditional_notes(booking.getAdditional_notes());
-            existingBooking.setCustomer_id(booking.getCustomer_id());
-            existingBooking.setRoom_id(booking.getRoom_id());
-            existingBooking.setCreated_at(booking.getCreated_at());
-            existingBooking.setBooking_start(booking.getBooking_start());
-            existingBooking.setBooking_end(booking.getBooking_end());
+            existingBooking.setAdditionalNotes(booking.getAdditionalNotes());
+            existingBooking.setCustomerId(booking.getCustomerId());
+            existingBooking.setRoomId(booking.getRoomId());
+            existingBooking.setCreatedAt(booking.getCreatedAt());
+            existingBooking.setBookingStart(booking.getBookingStart());
+            existingBooking.setBookingEnd(booking.getBookingEnd());
             existingBooking.setBreakfast(booking.isBreakfast());
-            existingBooking.setTotal_cost(booking.getTotal_cost());
+            existingBooking.setTotalCost(booking.getTotalCost());
             existingBooking.setCancelled(booking.isCancelled());
             return bookingRepository.save(existingBooking);
         //}
