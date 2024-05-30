@@ -18,7 +18,7 @@ public class BookingDTO {
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("additional_notes")
+    @JsonProperty("additionalNotes")
     private String additionalNotes;
 
     @JsonProperty("customerId")
