@@ -19,7 +19,7 @@ public class ExtraTypeController {
     @PostMapping
     public ExtraTypeDTO createExtraType(@RequestBody ExtraTypeDTO extraTypeDTO) {
         ExtraType extraType = ExtraTypeMapper.INSTANCE.extraTypeDTOtoExtraType(extraTypeDTO);
-        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraType);
+        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(extraType));
     }
 
     @GetMapping("/{extraId}")

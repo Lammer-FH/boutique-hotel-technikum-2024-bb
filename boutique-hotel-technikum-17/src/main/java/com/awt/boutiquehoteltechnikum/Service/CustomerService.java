@@ -21,6 +21,9 @@ public class CustomerService {
         //if(customerOptional.isPresent()){
             Customer existingCustomer = customerOptional.get();
             existingCustomer.setName(customer.getName());
+            existingCustomer.setSurname(customer.getSurname());
+            existingCustomer.setEmail(customer.getEmail());
+            existingCustomer.setPhonenumber(customer.getPhonenumber());
             existingCustomer.setAddress(customer.getAddress());
             return customerRepository.save(existingCustomer);
        //}
