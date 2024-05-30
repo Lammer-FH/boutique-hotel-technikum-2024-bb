@@ -17,10 +17,10 @@ public class RoomExtra {
     @Column(name = "room_id")
     private int roomId;
     @Column(name = "extra_id")
-    private int extra_id;
+    private int extraId;
 
     public RoomExtra(int room_id, int extra_id){
         this.roomId = room_id;
-        this.extra_id = extra_id;
+        this.extraId = extra_id;
     }
 }

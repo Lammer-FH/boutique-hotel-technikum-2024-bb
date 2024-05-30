@@ -27,7 +27,7 @@ public class RoomExtraService {
         Optional<RoomExtra> optionalRoomExtra = roomExtraRepository.findById(roomExtra.getId());
             RoomExtra existingRoomExtra = optionalRoomExtra.get();
             existingRoomExtra.setRoomId(roomExtra.getRoomId());
-            existingRoomExtra.setExtra_id(roomExtra.getExtra_id());
+            existingRoomExtra.setExtraId(roomExtra.getExtraId());
             return roomExtraRepository.save(existingRoomExtra);
     }
 
@@ -37,7 +37,7 @@ public class RoomExtraService {
         if (roomExtras != null) {
             extraTypes = new ArrayList<>();
             for (RoomExtra roomExtra : roomExtras) {
-                Optional<ExtraType> extraType = extraTypeRepository.findById(roomExtra.getExtra_id());
+                Optional<ExtraType> extraType = extraTypeRepository.findById(roomExtra.getExtraId());
                 extraType.ifPresent(extraTypes::add);
             }
         }

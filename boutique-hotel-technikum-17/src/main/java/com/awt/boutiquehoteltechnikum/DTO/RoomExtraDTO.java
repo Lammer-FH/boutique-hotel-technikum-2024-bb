@@ -12,9 +12,9 @@ public class RoomExtraDTO {
     @JsonProperty("id")
     int id;
 
-    @JsonProperty("room_id")
-    int room_Id;
+    @JsonProperty("roomId")
+    int roomId;
 
-    @JsonProperty("extra_id")
-    int extra_Id;
+    @JsonProperty("extraId")
+    int extraId;
 }
