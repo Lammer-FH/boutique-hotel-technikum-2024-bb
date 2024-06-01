@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <NavigationBar/>
+    <router-view/>
+  </div>
   <div class="bg-gray-600 text-white w-1/2 m-auto">
     <div class="text-center border-b-2 border-black py-4">
       <h1 class="text-3xl py-4">All Rooms</h1>
@@ -25,10 +29,12 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import RoomDetails from "@/components/RoomDetails.vue";
+import NavigationBar from "@/components/NavigationBar.vue";
 
 export default {
   name: 'App',
   components: {
+    NavigationBar,
     RoomDetails,
     HelloWorld
   },
@@ -43,7 +49,7 @@ export default {
         {id: 6, beds: 4, clicked: 0, selected: false},
         {id: 7, beds: 4, clicked: 0, selected: false},
       ],
-      customerName: ""
+      customerName: "",
     }
   }, methods: {
     toggleId(index) {
