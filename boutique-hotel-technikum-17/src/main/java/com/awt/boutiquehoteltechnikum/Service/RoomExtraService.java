@@ -13,16 +13,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RoomExtraService {
+public class RoomExtraService implements com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface {
     @Autowired
     private RoomExtraRepository roomExtraRepository;
     @Autowired
     private ExtraTypeRepository extraTypeRepository;
 
+    @Override
     public RoomExtra createRoomExtra(RoomExtra roomExtra) {
         return roomExtraRepository.save(roomExtra);
     }
 
+    @Override
     public RoomExtra updateRoomExtra(RoomExtra roomExtra) {
         Optional<RoomExtra> optionalRoomExtra = roomExtraRepository.findById(roomExtra.getId());
             RoomExtra existingRoomExtra = optionalRoomExtra.get();
@@ -31,6 +33,7 @@ public class RoomExtraService {
             return roomExtraRepository.save(existingRoomExtra);
     }
 
+    @Override
     public List<ExtraType> getAllRoomExtrasByRoomId(int room_Id) {
         List<RoomExtra> roomExtras = roomExtraRepository.findAllByRoomId(room_Id);
         List<ExtraType> extraTypes = null;

@@ -12,14 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RoomService {
+public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Override
     public Room createRoom(Room room) {
         return roomRepository.save(room);
     }
 
+    @Override
     public Room updateRoom(Room room)  {
         Optional<Room> optionalRoom = roomRepository.findById(room.getId());
         if (optionalRoom.isPresent()) {
@@ -38,11 +40,13 @@ public class RoomService {
         );
     }
 
+    @Override
     public Room getRoomById(int id) {
         return roomRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"roomId not found"));
     }
 
+    @Override
     public List<Room> getAllRooms() {
         return (List<Room>) roomRepository.findAll();
     }

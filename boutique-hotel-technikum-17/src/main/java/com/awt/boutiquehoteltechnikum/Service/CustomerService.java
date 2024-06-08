@@ -10,14 +10,16 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-public class CustomerService {
+public class CustomerService implements com.awt.boutiquehoteltechnikum.Interfaces.CustomerServiceInterface {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Override
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 
+    @Override
     public Customer updateCustomer(Customer customer) {
         Optional<Customer> customerOptional = customerRepository.findById(customer.getId());
         //if(customerOptional.isPresent()){
@@ -31,6 +33,7 @@ public class CustomerService {
        //}
     }
 
+    @Override
     public Customer getCustomerById(int id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"customerId not found"));

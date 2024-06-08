@@ -2,6 +2,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
+import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
 import com.awt.boutiquehoteltechnikum.Model.ExtraType;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/room_extras")
 public class RoomExtraController {
     @Autowired
-    private RoomExtraService roomExtraService;
+    private RoomExtraServiceInterface roomExtraService;
 
     @PostMapping
     public RoomExtraDTO createRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {

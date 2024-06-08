@@ -1,6 +1,7 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.CustomerDTO;
+import com.awt.boutiquehoteltechnikum.Interfaces.CustomerServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
 import com.awt.boutiquehoteltechnikum.Model.Customer;
 import com.awt.boutiquehoteltechnikum.Service.CustomerService;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceInterface customerService;
 
     @PostMapping
     public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {

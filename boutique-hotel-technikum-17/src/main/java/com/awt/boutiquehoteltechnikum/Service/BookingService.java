@@ -11,14 +11,16 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-public class BookingService {
+public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface {
     @Autowired
     private BookingRepository bookingRepository;
 
+    @Override
     public Booking createBooking(Booking booking) {
         return bookingRepository.save(booking);
     }
 
+    @Override
     public Booking updateBooking(Booking booking)   {
         Optional<Booking> optionalBooking = bookingRepository.findById(booking.getId());
         //if(optionalBooking.isPresent()){
@@ -38,6 +40,7 @@ public class BookingService {
         //return bookingRepository.save(optionalBooking);
     }
 
+    @Override
     public Booking getBookingById(int id) {
         return bookingRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"bookingId not found"));

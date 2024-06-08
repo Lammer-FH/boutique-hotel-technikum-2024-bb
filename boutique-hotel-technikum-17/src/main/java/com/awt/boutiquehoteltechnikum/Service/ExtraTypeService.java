@@ -11,14 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExtraTypeService {
+public class ExtraTypeService implements com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface {
     @Autowired
     private ExtraTypeRepository extraTypeRepository;
 
+    @Override
     public ExtraType createExtraType(ExtraType extraType) {
         return extraTypeRepository.save(extraType);
     }
 
+    @Override
     public ExtraType updateExtraType(ExtraType extraType)  {
         Optional<ExtraType> optionalExtraType = extraTypeRepository.findById(extraType.getId());
         if (optionalExtraType.isPresent()) {
@@ -30,12 +32,14 @@ public class ExtraTypeService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found not found");
     }
 
+    @Override
     public ExtraType getExtraTypeById(int id) {
 
         return extraTypeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found"));
     }
 
+    @Override
     public List<ExtraType> getAllExtraTypes() {
         return (List<ExtraType>) extraTypeRepository.findAll();
     }

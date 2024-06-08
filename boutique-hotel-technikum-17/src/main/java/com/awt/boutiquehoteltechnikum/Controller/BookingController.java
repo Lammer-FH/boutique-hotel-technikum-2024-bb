@@ -2,6 +2,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 
 import com.awt.boutiquehoteltechnikum.DTO.BookingDTO;
+import com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.BookingMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
 import com.awt.boutiquehoteltechnikum.Model.Booking;
@@ -15,7 +16,7 @@ import java.util.Optional;
 @RequestMapping("/booking")
 public class BookingController {
     @Autowired
-    private BookingService bookingService;
+    private BookingServiceInterface bookingService;
     @PostMapping
     public BookingDTO addBooking(@RequestBody BookingDTO bookingDTO) {
         Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDTO);
