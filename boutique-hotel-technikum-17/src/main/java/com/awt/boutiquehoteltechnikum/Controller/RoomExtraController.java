@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/room_extras")
+@RequestMapping("/api/hotel/v1/room_extras")
 public class RoomExtraController {
     @Autowired
     private RoomExtraServiceInterface roomExtraService;

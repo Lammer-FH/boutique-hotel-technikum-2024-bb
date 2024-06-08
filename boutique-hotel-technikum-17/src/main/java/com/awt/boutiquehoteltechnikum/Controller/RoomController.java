@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/hotel/v1/rooms")
 public class RoomController {
     @Autowired
     private RoomServiceInterface roomService;

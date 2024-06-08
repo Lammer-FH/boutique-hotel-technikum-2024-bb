@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/hotel/v1/customer")
 public class CustomerController {
     @Autowired
     private CustomerServiceInterface customerService;

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/extra_types")
+@RequestMapping("/api/hotel/v1/extra_types")
 public class ExtraTypeController {
     @Autowired
     private ExtraTypeServiceInterface extraTypeService;
