@@ -65,13 +65,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/booking'
+              $ref: '#/components/schemas/createBooking'
           application/xml:
             schema:
-              $ref: '#/components/schemas/booking'
+              $ref: '#/components/schemas/createBooking'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/booking'
+              $ref: '#/components/schemas/createBooking'
         required: true
       responses:
         '200':
@@ -173,13 +173,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/customer'
+              $ref: '#/components/schemas/createCustomer'
           application/xml:
             schema:
-              $ref: '#/components/schemas/customer'
+              $ref: '#/components/schemas/createCustomer'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/customer'
+              $ref: '#/components/schemas/createCustomer'
         required: true
       responses:
         '200':
@@ -333,13 +333,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/room'
+              $ref: '#/components/schemas/createRoom'
           application/xml:
             schema:
-              $ref: '#/components/schemas/room'
+              $ref: '#/components/schemas/createRoom'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/room'
+              $ref: '#/components/schemas/createRoom'
         required: true
       responses:
         '200':
@@ -430,13 +430,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/room_extra'
+              $ref: '#/components/schemas/createRoom_extra'
           application/xml:
             schema:
-              $ref: '#/components/schemas/room_extra'
+              $ref: '#/components/schemas/createRoom_extra'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/room_extra'
+              $ref: '#/components/schemas/createRoom_extra'
         required: true
       responses:
         '200':
@@ -547,13 +547,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/extra_type'
+              $ref: '#/components/schemas/createExtra_type'
           application/xml:
             schema:
-              $ref: '#/components/schemas/extra_type'
+              $ref: '#/components/schemas/createExtra_type'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/extra_type'
+              $ref: '#/components/schemas/createExtra_type'
         required: true
       responses:
         '200':
@@ -595,7 +595,72 @@ components:
           example: Max
       xml:
         name: customer
+    createCustomer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Muster
+        surname:
+          type: string
+          example: Max
+        email:
+          type: string
+          format: email
+          example: max.muster@gmail.com
+        phonenumber:
+          type: integer
+          format: int64
+          example: 10
+        address:
+          type: string
+          example: Max
+      xml:
+        name: createCustomer
     booking:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        title:
+          type: string
+          example: title
+        additional_notes:
+          type: string
+          example: notes
+        customer_id:
+          type: integer
+          format: int64
+          example: 10
+        room_id:
+          type: integer
+          format: int64
+          example: 10
+        created_at:
+          type: string
+          format: date-time
+          example: 2024-01-01T00:00:00.000Z
+        booking_start:
+          type: string
+          format: date-time
+          example: 2024-01-01T00:00:00.000Z
+        booking_end:
+          type: string
+          format: date-time
+          example: 2024-01-01T00:00:00.000Z
+        breakfast:
+          type: boolean
+        total_cost:
+          type: integer
+          format: int64
+          example: 10
+        cancelled:
+          type: boolean
+      xml:
+        name: booking
+    createBooking:
       type: object
       properties:
         title:
@@ -627,7 +692,7 @@ components:
           format: int64
           example: 10
       xml:
-        name: booking
+        name: createBooking
     room:
       type: object
       properties:
@@ -638,7 +703,7 @@ components:
         title:
           type: string
           example: title
-        dedscription:
+        description:
           type: string
           example: details
         price:
@@ -668,6 +733,42 @@ components:
           example: https://example.com/images/room.jpg
       xml:
         name: room
+    createRoom:
+      type: object
+      properties:
+        title:
+          type: string
+          example: title
+        description:
+          type: string
+          example: details
+        price:
+          type: integer
+          format: int64
+          example: 10
+        room_type:
+          type: string
+          example: single
+        bed_type:
+          type: string
+          example: single
+        bed_count:
+          type: integer
+          format: int64
+          example: 1
+        extras:
+          type: array
+          items:
+            type: string
+            example:
+              - wifi
+              - balcony
+              - air conditioning
+        image:
+          type: string
+          example: https://example.com/images/room.jpg
+      xml:
+        name: createRoom
     room_extra:
       type: object
       properties:
@@ -685,6 +786,19 @@ components:
           example: 10
       xml:
         name: room_extra
+    createRoom_extra:
+      type: object
+      properties:
+        room_id:
+          type: integer
+          format: int64
+          example: 10
+        exrta_id:
+          type: integer
+          format: int64
+          example: 10
+      xml:
+        name: createRoom_extra
     extra_type:
       type: object
       properties:
@@ -695,7 +809,18 @@ components:
         title:
           type: string
           example: title
-        dedscription:
+        description:
+          type: string
+          example: details
+      xml:
+        name: extra_type
+    createExtra_type:
+      type: object
+      properties:
+        title:
+          type: string
+          example: title
+        description:
           type: string
           example: details
       xml:
