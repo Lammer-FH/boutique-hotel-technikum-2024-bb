@@ -25,7 +25,7 @@ public class BookingController {
         return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.getBookingById(bookingId));
     }
 
-    @PutMapping("/{bookingId}")
+    @PutMapping
     public BookingDTO updateBooking(@RequestBody BookingDTO bookingDto) {
         BookingEntity bookingEntity = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDto);
         return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.updateBooking(bookingEntity));
