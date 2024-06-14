@@ -1,11 +1,11 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Entities.Customer;
+import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
 
 public interface CustomerServiceInterface {
-    Customer createCustomer(Customer customer);
+    CustomerEntity createCustomer(CustomerEntity customerEntity);
 
-    Customer updateCustomer(Customer customer);
+    CustomerEntity updateCustomer(CustomerEntity customerEntity);
 
-    Customer getCustomerById(int id);
+    CustomerEntity getCustomerById(int id);
 }

@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
 import com.awt.boutiquehoteltechnikum.Repository.ExtraTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,31 +16,31 @@ public class ExtraTypeService implements com.awt.boutiquehoteltechnikum.Interfac
     private ExtraTypeRepository extraTypeRepository;
 
     @Override
-    public ExtraType createExtraType(ExtraType extraType) {
-        return extraTypeRepository.save(extraType);
+    public ExtraTypeEntity createExtraType(ExtraTypeEntity extraTypeEntity) {
+        return extraTypeRepository.save(extraTypeEntity);
     }
 
     @Override
-    public ExtraType updateExtraType(ExtraType extraType)  {
-        Optional<ExtraType> optionalExtraType = extraTypeRepository.findById(extraType.getId());
+    public ExtraTypeEntity updateExtraType(ExtraTypeEntity extraTypeEntity)  {
+        Optional<ExtraTypeEntity> optionalExtraType = extraTypeRepository.findById(extraTypeEntity.getId());
         if (optionalExtraType.isPresent()) {
-            ExtraType existingExtraType = optionalExtraType.get();
-            existingExtraType.setTitle(extraType.getTitle());
-            existingExtraType.setDescription(extraType.getDescription());
-            return extraTypeRepository.save(existingExtraType);
+            ExtraTypeEntity existingExtraTypeEntity = optionalExtraType.get();
+            existingExtraTypeEntity.setTitle(extraTypeEntity.getTitle());
+            existingExtraTypeEntity.setDescription(extraTypeEntity.getDescription());
+            return extraTypeRepository.save(existingExtraTypeEntity);
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found not found");
     }
 
     @Override
-    public ExtraType getExtraTypeById(int id) {
+    public ExtraTypeEntity getExtraTypeById(int id) {
 
         return extraTypeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found"));
     }
 
     @Override
-    public List<ExtraType> getAllExtraTypes() {
-        return (List<ExtraType>) extraTypeRepository.findAll();
+    public List<ExtraTypeEntity> getAllExtraTypes() {
+        return (List<ExtraTypeEntity>) extraTypeRepository.findAll();
     }
 }

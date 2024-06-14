@@ -1,15 +1,15 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Entities.Room;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 
 import java.util.List;
 
 public interface RoomServiceInterface {
-    Room createRoom(Room room);
+    RoomEntity createRoom(RoomEntity roomEntity);
 
-    Room updateRoom(Room room);
+    RoomEntity updateRoom(RoomEntity roomEntity);
 
-    Room getRoomById(int id);
+    RoomEntity getRoomById(int id);
 
-    List<Room> getAllRooms();
+    List<RoomEntity> getAllRooms();
 }

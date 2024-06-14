@@ -4,7 +4,7 @@ import com.awt.boutiquehoteltechnikum.DTO.CustomerDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.CustomerRequestDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.CustomerServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
-import com.awt.boutiquehoteltechnikum.Entities.Customer;
+import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +16,8 @@ public class CustomerController {
 
     @PostMapping
     public CustomerDTO createCustomer(@RequestBody CustomerRequestDTO customerDTO) {
-        Customer customer = CustomerMapper.INSTANCE.customerRequestDTOtoCustomer(customerDTO);
-        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.createCustomer(customer));
+        CustomerEntity customerEntity = CustomerMapper.INSTANCE.customerRequestDTOtoCustomer(customerDTO);
+        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.createCustomer(customerEntity));
     }
 
     @GetMapping("/{customerId}")

@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Entities.Room;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,23 +16,23 @@ public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.Ro
     private RoomRepository roomRepository;
 
     @Override
-    public Room createRoom(Room room) {
-        return roomRepository.save(room);
+    public RoomEntity createRoom(RoomEntity roomEntity) {
+        return roomRepository.save(roomEntity);
     }
 
     @Override
-    public Room updateRoom(Room room)  {
-        Optional<Room> optionalRoom = roomRepository.findById(room.getId());
+    public RoomEntity updateRoom(RoomEntity roomEntity)  {
+        Optional<RoomEntity> optionalRoom = roomRepository.findById(roomEntity.getId());
         if (optionalRoom.isPresent()) {
-            Room existingRoom = optionalRoom.get();
-            existingRoom.setTitle(room.getTitle());
-            existingRoom.setDescription(room.getDescription());
-            existingRoom.setPrice(room.getPrice());
-            existingRoom.setRoomType(room.getRoomType());
-            existingRoom.setBedType(room.getBedType());
-            existingRoom.setBedCount(room.getBedCount());
-            existingRoom.setImage(room.getImage());
-            return roomRepository.save(existingRoom);
+            RoomEntity existingRoomEntity = optionalRoom.get();
+            existingRoomEntity.setTitle(roomEntity.getTitle());
+            existingRoomEntity.setDescription(roomEntity.getDescription());
+            existingRoomEntity.setPrice(roomEntity.getPrice());
+            existingRoomEntity.setRoomType(roomEntity.getRoomType());
+            existingRoomEntity.setBedType(roomEntity.getBedType());
+            existingRoomEntity.setBedCount(roomEntity.getBedCount());
+            existingRoomEntity.setImage(roomEntity.getImage());
+            return roomRepository.save(existingRoomEntity);
         }
         throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "roomId not found"
@@ -40,13 +40,13 @@ public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.Ro
     }
 
     @Override
-    public Room getRoomById(int id) {
+    public RoomEntity getRoomById(int id) {
         return roomRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"roomId not found"));
     }
 
     @Override
-    public List<Room> getAllRooms() {
-        return (List<Room>) roomRepository.findAll();
+    public List<RoomEntity> getAllRooms() {
+        return (List<RoomEntity>) roomRepository.findAll();
     }
 }

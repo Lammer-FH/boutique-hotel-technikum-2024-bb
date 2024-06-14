@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Entities.Customer;
+import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
 import com.awt.boutiquehoteltechnikum.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,26 +15,26 @@ public class CustomerService implements com.awt.boutiquehoteltechnikum.Interface
     private CustomerRepository customerRepository;
 
     @Override
-    public Customer createCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public CustomerEntity createCustomer(CustomerEntity customerEntity) {
+        return customerRepository.save(customerEntity);
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
-        Optional<Customer> customerOptional = customerRepository.findById(customer.getId());
+    public CustomerEntity updateCustomer(CustomerEntity customerEntity) {
+        Optional<CustomerEntity> customerOptional = customerRepository.findById(customerEntity.getId());
         //if(customerOptional.isPresent()){
-            Customer existingCustomer = customerOptional.get();
-            existingCustomer.setName(customer.getName());
-            existingCustomer.setSurname(customer.getSurname());
-            existingCustomer.setEmail(customer.getEmail());
-            existingCustomer.setPhonenumber(customer.getPhonenumber());
-            existingCustomer.setAddress(customer.getAddress());
-            return customerRepository.save(existingCustomer);
+            CustomerEntity existingCustomerEntity = customerOptional.get();
+            existingCustomerEntity.setName(customerEntity.getName());
+            existingCustomerEntity.setSurname(customerEntity.getSurname());
+            existingCustomerEntity.setEmail(customerEntity.getEmail());
+            existingCustomerEntity.setPhonenumber(customerEntity.getPhonenumber());
+            existingCustomerEntity.setAddress(customerEntity.getAddress());
+            return customerRepository.save(existingCustomerEntity);
        //}
     }
 
     @Override
-    public Customer getCustomerById(int id) {
+    public CustomerEntity getCustomerById(int id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"customerId not found"));
     }

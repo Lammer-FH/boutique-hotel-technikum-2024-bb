@@ -9,7 +9,7 @@ import lombok.Setter;
 @Table(name="customer")
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Customer {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,7 +25,7 @@ public class Customer {
     @Column(name = "address")
     private String address;
 
-    public Customer(String name, String surname, String email, String phonenumber, String address) {
+    public CustomerEntity(String name, String surname, String email, String phonenumber, String address) {
         this.name = name;
         this.surname = surname;
         this.email = email;

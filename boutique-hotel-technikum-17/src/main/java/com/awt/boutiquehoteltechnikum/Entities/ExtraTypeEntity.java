@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Entity(name = "extra_type")
 @Getter @Setter @NoArgsConstructor
-public class ExtraType {
+public class ExtraTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,7 +18,7 @@ public class ExtraType {
     @Column(name = "description")
     private String description;
 
-    public ExtraType(String title, String description) {
+    public ExtraTypeEntity(String title, String description) {
         this.title = title;
         this.description = description;
     }

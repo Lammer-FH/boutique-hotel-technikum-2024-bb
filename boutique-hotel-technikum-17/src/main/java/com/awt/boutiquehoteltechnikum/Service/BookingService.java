@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Entities.Booking;
+import com.awt.boutiquehoteltechnikum.Entities.BookingEntity;
 import com.awt.boutiquehoteltechnikum.Repository.BookingRepository;
 //import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +17,33 @@ public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces
     private BookingRepository bookingRepository;
 
     @Override
-    public Booking createBooking(Booking booking) {
-        booking.setCreatedAt(OffsetDateTime.now());
-        return bookingRepository.save(booking);
+    public BookingEntity createBooking(BookingEntity bookingEntity) {
+        bookingEntity.setCreatedAt(OffsetDateTime.now());
+        return bookingRepository.save(bookingEntity);
     }
 
     @Override
-    public Booking updateBooking(Booking booking)   {
-        Optional<Booking> optionalBooking = bookingRepository.findById(booking.getId());
+    public BookingEntity updateBooking(BookingEntity bookingEntity)   {
+        Optional<BookingEntity> optionalBooking = bookingRepository.findById(bookingEntity.getId());
         //if(optionalBooking.isPresent()){
-            Booking existingBooking = optionalBooking.get();
-            existingBooking.setTitle(booking.getTitle());
-            existingBooking.setAdditionalNotes(booking.getAdditionalNotes());
-            existingBooking.setCustomerId(booking.getCustomerId());
-            existingBooking.setRoomId(booking.getRoomId());
-            existingBooking.setCreatedAt(booking.getCreatedAt());
-            existingBooking.setBookingStart(booking.getBookingStart());
-            existingBooking.setBookingEnd(booking.getBookingEnd());
-            existingBooking.setBreakfast(booking.isBreakfast());
-            existingBooking.setTotalCost(booking.getTotalCost());
-            existingBooking.setCancelled(booking.isCancelled());
-            return bookingRepository.save(existingBooking);
+            BookingEntity existingBookingEntity = optionalBooking.get();
+            existingBookingEntity.setTitle(bookingEntity.getTitle());
+            existingBookingEntity.setAdditionalNotes(bookingEntity.getAdditionalNotes());
+            existingBookingEntity.setCustomerId(bookingEntity.getCustomerId());
+            existingBookingEntity.setRoomId(bookingEntity.getRoomId());
+            existingBookingEntity.setCreatedAt(bookingEntity.getCreatedAt());
+            existingBookingEntity.setBookingStart(bookingEntity.getBookingStart());
+            existingBookingEntity.setBookingEnd(bookingEntity.getBookingEnd());
+            existingBookingEntity.setBreakfast(bookingEntity.isBreakfast());
+            existingBookingEntity.setTotalCost(bookingEntity.getTotalCost());
+            existingBookingEntity.setCancelled(bookingEntity.isCancelled());
+            return bookingRepository.save(existingBookingEntity);
         //}
         //return bookingRepository.save(optionalBooking);
     }
 
     @Override
-    public Booking getBookingById(int id) {
+    public BookingEntity getBookingById(int id) {
         return bookingRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"bookingId not found"));
     }

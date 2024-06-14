@@ -1,14 +1,14 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
-import com.awt.boutiquehoteltechnikum.Entities.RoomExtra;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtraEntity;
 
 import java.util.List;
 
 public interface RoomExtraServiceInterface {
-    RoomExtra createRoomExtra(RoomExtra roomExtra);
+    RoomExtraEntity createRoomExtra(RoomExtraEntity roomExtraEntity);
 
-    RoomExtra updateRoomExtra(RoomExtra roomExtra);
+    RoomExtraEntity updateRoomExtra(RoomExtraEntity roomExtraEntity);
 
-    List<ExtraType> getAllRoomExtrasByRoomId(int room_Id);
+    List<ExtraTypeEntity> getAllRoomExtrasByRoomId(int room_Id);
 }

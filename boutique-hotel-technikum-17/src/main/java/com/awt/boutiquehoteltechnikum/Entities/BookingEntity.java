@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @Table(name="booking")
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Booking {
+public class BookingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -36,7 +36,7 @@ public class Booking {
     @Column(name = "cancelled")
     private boolean cancelled = false;
 
-    public Booking(String title, String additional_notes, int customer_id, String room_id, String booking_start, String booking_end, boolean breakfast, double total_cost){
+    public BookingEntity(String title, String additional_notes, int customer_id, String room_id, String booking_start, String booking_end, boolean breakfast, double total_cost){
         this.title = title;
         this.additionalNotes = additional_notes;
         this.customerId = customer_id;

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Entity(name = "room_extra")
 @Getter @Setter @NoArgsConstructor
-public class RoomExtra {
+public class RoomExtraEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,7 +18,7 @@ public class RoomExtra {
     @Column(name = "extra_id")
     private int extraId;
 
-    public RoomExtra(int room_id, int extra_id){
+    public RoomExtraEntity(int room_id, int extra_id){
         this.roomId = room_id;
         this.extraId = extra_id;
     }

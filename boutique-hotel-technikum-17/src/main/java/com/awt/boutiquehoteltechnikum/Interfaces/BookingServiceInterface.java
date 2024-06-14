@@ -1,11 +1,11 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Entities.Booking;
+import com.awt.boutiquehoteltechnikum.Entities.BookingEntity;
 
 public interface BookingServiceInterface {
-    Booking createBooking(Booking booking);
+    BookingEntity createBooking(BookingEntity bookingEntity);
 
-    Booking updateBooking(Booking booking);
+    BookingEntity updateBooking(BookingEntity bookingEntity);
 
-    Booking getBookingById(int id);
+    BookingEntity getBookingById(int id);
 }

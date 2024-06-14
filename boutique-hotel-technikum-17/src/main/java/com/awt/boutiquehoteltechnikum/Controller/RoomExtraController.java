@@ -6,7 +6,7 @@ import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
-import com.awt.boutiquehoteltechnikum.Entities.RoomExtra;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtraEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +20,8 @@ public class RoomExtraController {
 
     @PostMapping
     public RoomExtraDTO createRoomExtra(@RequestBody RoomExtraRequestDTO roomExtraDTO) {
-        RoomExtra roomExtra = RoomExtraMapper.INSTANCE.roomExtraRequestDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtra));
+        RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraRequestDTOtoRoomExtra(roomExtraDTO);
+        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtraEntity));
     }
 
     @GetMapping("/{roomId}")
@@ -31,7 +31,7 @@ public class RoomExtraController {
 
     @PutMapping
     public RoomExtraDTO updateRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {
-        RoomExtra roomExtra = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtra));
+        RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
+        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtraEntity));
     }
 }

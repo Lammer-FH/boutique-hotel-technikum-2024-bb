@@ -1,15 +1,15 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
 
 import java.util.List;
 
 public interface ExtraTypeServiceInterface {
-    ExtraType createExtraType(ExtraType extraType);
+    ExtraTypeEntity createExtraType(ExtraTypeEntity extraTypeEntity);
 
-    ExtraType updateExtraType(ExtraType extraType);
+    ExtraTypeEntity updateExtraType(ExtraTypeEntity extraTypeEntity);
 
-    ExtraType getExtraTypeById(int id);
+    ExtraTypeEntity getExtraTypeById(int id);
 
-    List<ExtraType> getAllExtraTypes();
+    List<ExtraTypeEntity> getAllExtraTypes();
 }

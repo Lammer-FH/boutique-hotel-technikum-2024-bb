@@ -1,8 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
 
-import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
-import com.awt.boutiquehoteltechnikum.Entities.RoomExtra;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtraEntity;
 import com.awt.boutiquehoteltechnikum.Repository.ExtraTypeRepository;
 import com.awt.boutiquehoteltechnikum.Repository.RoomExtraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +20,30 @@ public class RoomExtraService implements com.awt.boutiquehoteltechnikum.Interfac
     private ExtraTypeRepository extraTypeRepository;
 
     @Override
-    public RoomExtra createRoomExtra(RoomExtra roomExtra) {
-        return roomExtraRepository.save(roomExtra);
+    public RoomExtraEntity createRoomExtra(RoomExtraEntity roomExtraEntity) {
+        return roomExtraRepository.save(roomExtraEntity);
     }
 
     @Override
-    public RoomExtra updateRoomExtra(RoomExtra roomExtra) {
-        Optional<RoomExtra> optionalRoomExtra = roomExtraRepository.findById(roomExtra.getId());
-            RoomExtra existingRoomExtra = optionalRoomExtra.get();
-            existingRoomExtra.setRoomId(roomExtra.getRoomId());
-            existingRoomExtra.setExtraId(roomExtra.getExtraId());
-            return roomExtraRepository.save(existingRoomExtra);
+    public RoomExtraEntity updateRoomExtra(RoomExtraEntity roomExtraEntity) {
+        Optional<RoomExtraEntity> optionalRoomExtra = roomExtraRepository.findById(roomExtraEntity.getId());
+            RoomExtraEntity existingRoomExtraEntity = optionalRoomExtra.get();
+            existingRoomExtraEntity.setRoomId(roomExtraEntity.getRoomId());
+            existingRoomExtraEntity.setExtraId(roomExtraEntity.getExtraId());
+            return roomExtraRepository.save(existingRoomExtraEntity);
     }
 
     @Override
-    public List<ExtraType> getAllRoomExtrasByRoomId(int room_Id) {
-        List<RoomExtra> roomExtras = roomExtraRepository.findAllByRoomId(room_Id);
-        List<ExtraType> extraTypes = null;
-        if (roomExtras != null) {
-            extraTypes = new ArrayList<>();
-            for (RoomExtra roomExtra : roomExtras) {
-                Optional<ExtraType> extraType = extraTypeRepository.findById(roomExtra.getExtraId());
-                extraType.ifPresent(extraTypes::add);
+    public List<ExtraTypeEntity> getAllRoomExtrasByRoomId(int room_Id) {
+        List<RoomExtraEntity> roomExtraEntities = roomExtraRepository.findAllByRoomId(room_Id);
+        List<ExtraTypeEntity> extraTypeEntities = null;
+        if (roomExtraEntities != null) {
+            extraTypeEntities = new ArrayList<>();
+            for (RoomExtraEntity roomExtraEntity : roomExtraEntities) {
+                Optional<ExtraTypeEntity> extraType = extraTypeRepository.findById(roomExtraEntity.getExtraId());
+                extraType.ifPresent(extraTypeEntities::add);
             }
         }
-        return extraTypes;
+        return extraTypeEntities;
     }
 }
