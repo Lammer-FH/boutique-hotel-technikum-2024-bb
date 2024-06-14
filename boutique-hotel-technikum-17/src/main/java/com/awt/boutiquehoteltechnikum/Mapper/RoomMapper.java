@@ -2,7 +2,7 @@ package com.awt.boutiquehoteltechnikum.Mapper;
 
 import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
-import com.awt.boutiquehoteltechnikum.Model.Room;
+import com.awt.boutiquehoteltechnikum.Entities.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

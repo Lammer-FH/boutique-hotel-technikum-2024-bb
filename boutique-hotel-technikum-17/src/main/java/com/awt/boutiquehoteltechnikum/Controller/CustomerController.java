@@ -4,12 +4,9 @@ import com.awt.boutiquehoteltechnikum.DTO.CustomerDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.CustomerRequestDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.CustomerServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
-import com.awt.boutiquehoteltechnikum.Model.Customer;
-import com.awt.boutiquehoteltechnikum.Service.CustomerService;
+import com.awt.boutiquehoteltechnikum.Entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/hotel/v1/customer")

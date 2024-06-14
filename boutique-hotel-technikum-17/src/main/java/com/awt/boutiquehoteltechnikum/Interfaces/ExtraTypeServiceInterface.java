@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
 
 import java.util.List;
 

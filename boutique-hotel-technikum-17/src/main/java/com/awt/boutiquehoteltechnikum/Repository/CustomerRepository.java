@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Repository;
 
-import com.awt.boutiquehoteltechnikum.Model.Customer;
+import com.awt.boutiquehoteltechnikum.Entities.Customer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

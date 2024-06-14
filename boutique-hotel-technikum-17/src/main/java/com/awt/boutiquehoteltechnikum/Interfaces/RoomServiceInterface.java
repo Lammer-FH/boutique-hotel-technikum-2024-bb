@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Model.Room;
+import com.awt.boutiquehoteltechnikum.Entities.Room;
 
 import java.util.List;
 

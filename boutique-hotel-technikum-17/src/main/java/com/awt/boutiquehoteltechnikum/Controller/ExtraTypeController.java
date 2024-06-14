@@ -4,8 +4,7 @@ import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.ExtraTypeRequestDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
-import com.awt.boutiquehoteltechnikum.Service.ExtraTypeService;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

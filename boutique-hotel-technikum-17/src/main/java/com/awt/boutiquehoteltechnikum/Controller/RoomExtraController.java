@@ -6,9 +6,7 @@ import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
-import com.awt.boutiquehoteltechnikum.Model.RoomExtra;
-import com.awt.boutiquehoteltechnikum.Service.RoomExtraService;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

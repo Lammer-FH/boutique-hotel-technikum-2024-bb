@@ -5,8 +5,7 @@ import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
-import com.awt.boutiquehoteltechnikum.Model.Room;
-import com.awt.boutiquehoteltechnikum.Service.RoomService;
+import com.awt.boutiquehoteltechnikum.Entities.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

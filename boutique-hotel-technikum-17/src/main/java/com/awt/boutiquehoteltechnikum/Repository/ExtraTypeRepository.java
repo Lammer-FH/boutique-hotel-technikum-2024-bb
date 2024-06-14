@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Repository;
 
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

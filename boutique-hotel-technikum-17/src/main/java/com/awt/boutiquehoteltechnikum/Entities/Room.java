@@ -1,4 +1,4 @@
-package com.awt.boutiquehoteltechnikum.Model;
+package com.awt.boutiquehoteltechnikum.Entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

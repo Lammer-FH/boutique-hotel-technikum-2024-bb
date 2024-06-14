@@ -5,11 +5,9 @@ import com.awt.boutiquehoteltechnikum.DTO.BookingDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.BookingRequestDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.BookingMapper;
-import com.awt.boutiquehoteltechnikum.Model.Booking;
+import com.awt.boutiquehoteltechnikum.Entities.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/hotel/v1/booking")

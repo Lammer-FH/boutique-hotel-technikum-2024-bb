@@ -1,7 +1,7 @@
 package com.awt.boutiquehoteltechnikum.Interfaces;
 
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
-import com.awt.boutiquehoteltechnikum.Model.RoomExtra;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraType;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtra;
 
 import java.util.List;
 

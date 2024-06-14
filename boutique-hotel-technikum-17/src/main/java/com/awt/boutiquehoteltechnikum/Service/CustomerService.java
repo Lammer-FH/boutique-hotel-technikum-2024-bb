@@ -1,6 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Model.Customer;
+import com.awt.boutiquehoteltechnikum.Entities.Customer;
 import com.awt.boutiquehoteltechnikum.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
