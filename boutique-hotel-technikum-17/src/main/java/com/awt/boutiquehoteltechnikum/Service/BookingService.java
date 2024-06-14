@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 @Service
@@ -17,6 +20,7 @@ public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces
 
     @Override
     public Booking createBooking(Booking booking) {
+        booking.setCreatedAt(OffsetDateTime.now());
         return bookingRepository.save(booking);
     }
 

@@ -1,18 +1,18 @@
 package com.awt.boutiquehoteltechnikum.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.OffsetDateTime;
 
 @Table(name="booking")
 @Entity
 @Getter @Setter @NoArgsConstructor
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "title")
@@ -24,7 +24,7 @@ public class Booking {
     @Column(name = "room_id")
     private String roomId;
     @Column(name = "created_at")
-    private String createdAt;
+    private OffsetDateTime createdAt = OffsetDateTime.now();
     @Column(name = "booking_start")
     private String bookingStart;
     @Column(name = "booking_end")
@@ -34,18 +34,16 @@ public class Booking {
     @Column(name = "total_cost")
     private double totalCost;
     @Column(name = "cancelled")
-    private boolean cancelled;
+    private boolean cancelled = false;
 
-    public Booking(String title, String additional_notes, int customer_id, String room_id, String created_at, String booking_start, String booking_end, boolean breakfast, double total_cost, boolean cancelled){
+    public Booking(String title, String additional_notes, int customer_id, String room_id, String booking_start, String booking_end, boolean breakfast, double total_cost){
         this.title = title;
         this.additionalNotes = additional_notes;
         this.customerId = customer_id;
         this.roomId = room_id;
-        this.createdAt = created_at;
         this.bookingStart = booking_start;
         this.bookingEnd = booking_end;
         this.breakfast = breakfast;
         this.totalCost = total_cost;
-        this.cancelled = cancelled;
     }
 }

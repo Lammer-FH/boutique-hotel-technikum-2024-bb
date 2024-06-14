@@ -598,10 +598,6 @@ components:
     booking:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
         title:
           type: string
           example: title
@@ -616,10 +612,6 @@ components:
           type: integer
           format: int64
           example: 10
-        created_at:
-          type: string
-          format: date-time
-          example: 2024-01-01T00:00:00.000Z
         booking_start:
           type: string
           format: date-time
@@ -634,8 +626,6 @@ components:
           type: integer
           format: int64
           example: 10
-        cancelled:
-          type: boolean
       xml:
         name: booking
     room:

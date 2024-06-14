@@ -2,11 +2,10 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 
 import com.awt.boutiquehoteltechnikum.DTO.BookingDTO;
+import com.awt.boutiquehoteltechnikum.DTO.Request.BookingRequestDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.BookingMapper;
-import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
 import com.awt.boutiquehoteltechnikum.Model.Booking;
-import com.awt.boutiquehoteltechnikum.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,8 @@ public class BookingController {
     @Autowired
     private BookingServiceInterface bookingService;
     @PostMapping
-    public BookingDTO addBooking(@RequestBody BookingDTO bookingDTO) {
-        Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDTO);
+    public BookingDTO addBooking(@RequestBody BookingRequestDTO bookingRequestDTO) {
+        Booking booking = BookingMapper.INSTANCE.bookingRequestDTOtoBooking(bookingRequestDTO);
         return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.createBooking(booking));
     }
 
@@ -28,9 +27,9 @@ public class BookingController {
         return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.getBookingById(bookingId));
     }
 
-    @PutMapping
-    public BookingDTO updateBooking(@RequestBody BookingDTO bookingDTO) {
-        Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDTO);
+    @PutMapping("/{bookingId}")
+    public BookingDTO updateBooking(@RequestBody BookingDTO bookingDto) {
+        Booking booking = BookingMapper.INSTANCE.bookingDTOtoBooking(bookingDto);
         return BookingMapper.INSTANCE.bookingToBookingDTO(bookingService.updateBooking(booking));
     }
 }
