@@ -1,6 +1,7 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
 
+import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
@@ -19,8 +20,8 @@ public class RoomController {
     private RoomServiceInterface roomService;
 
     @PostMapping
-    public RoomDTO createRoom(@RequestBody RoomDTO roomDTO) {
-        Room room = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
+    public RoomDTO createRoom(@RequestBody RoomRequestDTO roomDTO) {
+        Room room = RoomMapper.INSTANCE.roomReqestDTOtoRoom(roomDTO);
         return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(room));
     }
 
