@@ -1,5 +1,6 @@
 package com.awt.boutiquehoteltechnikum.Mapper;
 
+import com.awt.boutiquehoteltechnikum.DTO.Request.RoomExtraRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
 import com.awt.boutiquehoteltechnikum.Model.Room;
@@ -12,6 +13,7 @@ public interface RoomExtraMapper {
 
     RoomExtraMapper INSTANCE = Mappers.getMapper(RoomExtraMapper.class);
     RoomExtra roomExtraDTOtoRoomExtra(RoomExtraDTO roomExtraDTO);
-    RoomExtraDTO roomExtraDTOtoRoomExtra(RoomExtra roomExtra);
+    RoomExtra roomExtraRequestDTOtoRoomExtra(RoomExtraRequestDTO roomExtraDTO);
+    RoomExtraDTO roomExtratoRoomExtraDTO(RoomExtra roomExtra);
 
 }
