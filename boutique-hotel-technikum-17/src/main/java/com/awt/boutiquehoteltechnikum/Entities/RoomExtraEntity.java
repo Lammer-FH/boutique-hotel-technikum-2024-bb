@@ -13,13 +13,15 @@ public class RoomExtraEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "room_id")
-    private int roomId;
-    @Column(name = "extra_id")
-    private int extraId;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private RoomEntity roomEntity;
+    @ManyToOne
+    @JoinColumn(name = "extra_id")
+    private ExtraTypeEntity extraTypeEntity;
 
-    public RoomExtraEntity(int room_id, int extra_id){
-        this.roomId = room_id;
-        this.extraId = extra_id;
+    public RoomExtraEntity(RoomEntity room_id, ExtraTypeEntity extra_id){
+        this.roomEntity = room_id;
+        this.extraTypeEntity = extra_id;
     }
 }

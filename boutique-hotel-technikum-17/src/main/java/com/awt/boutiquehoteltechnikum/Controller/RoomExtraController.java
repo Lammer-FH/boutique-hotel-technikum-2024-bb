@@ -3,6 +3,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.RoomExtraRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomExtraCommand;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
@@ -20,8 +21,8 @@ public class RoomExtraController {
 
     @PostMapping
     public RoomExtraDTO createRoomExtra(@RequestBody RoomExtraRequestDTO roomExtraDTO) {
-        RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraRequestDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtraEntity));
+        CreateRoomExtraCommand roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraRequesteDTOtoCreateRoomExtraCommand(roomExtraDTO);
+        return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtraEntity));
     }
 
     @GetMapping("/{roomId}")
@@ -32,6 +33,6 @@ public class RoomExtraController {
     @PutMapping
     public RoomExtraDTO updateRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {
         RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtratoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtraEntity));
+        return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtraEntity));
     }
 }
