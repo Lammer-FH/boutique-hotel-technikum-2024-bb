@@ -3,6 +3,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
 import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
@@ -20,8 +21,8 @@ public class RoomController {
 
     @PostMapping
     public RoomDTO createRoom(@RequestBody RoomRequestDTO roomDTO) {
-        RoomEntity roomEntity = RoomMapper.INSTANCE.roomReqestDTOtoRoom(roomDTO);
-        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(roomEntity));
+        CreateRoomCommand createRoomCommand = RoomMapper.INSTANCE.roomReqestDTOtoCreateRoomCommand(roomDTO);
+        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(createRoomCommand));
     }
 
     @GetMapping("/{roomId}")

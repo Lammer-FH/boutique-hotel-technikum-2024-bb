@@ -1,6 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
 import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
+import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
 import com.awt.boutiquehoteltechnikum.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,8 @@ public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.Ro
     private RoomRepository roomRepository;
 
     @Override
-    public RoomEntity createRoom(RoomEntity roomEntity) {
-        return roomRepository.save(roomEntity);
+    public RoomEntity createRoom(CreateRoomCommand createRoomCommand) {
+        return roomRepository.save(RoomMapper.INSTANCE.createRoomCommandToRoomEntity(createRoomCommand));
     }
 
     @Override

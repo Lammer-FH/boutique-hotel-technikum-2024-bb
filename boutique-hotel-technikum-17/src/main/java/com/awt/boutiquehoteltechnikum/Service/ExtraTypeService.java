@@ -1,6 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateExtraTypeCommand;
 import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
+import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Repository.ExtraTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,8 @@ public class ExtraTypeService implements com.awt.boutiquehoteltechnikum.Interfac
     private ExtraTypeRepository extraTypeRepository;
 
     @Override
-    public ExtraTypeEntity createExtraType(ExtraTypeEntity extraTypeEntity) {
+    public ExtraTypeEntity createExtraType(CreateExtraTypeCommand createExtraTypeCommand) {
+        ExtraTypeEntity extraTypeEntity = ExtraTypeMapper.INSTANCE.createExtraTypeCommandToExtraType(createExtraTypeCommand);
         return extraTypeRepository.save(extraTypeEntity);
     }
 

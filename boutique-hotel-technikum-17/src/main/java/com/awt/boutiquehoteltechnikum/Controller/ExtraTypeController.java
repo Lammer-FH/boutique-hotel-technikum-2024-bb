@@ -2,6 +2,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.ExtraTypeRequestDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateExtraTypeCommand;
 import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
 import com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
@@ -19,8 +20,8 @@ public class ExtraTypeController {
 
     @PostMapping
     public ExtraTypeDTO createExtraType(@RequestBody ExtraTypeRequestDTO extraTypeDTO) {
-        ExtraTypeEntity extraTypeEntity = ExtraTypeMapper.INSTANCE.extraTypeRequestDTOtoExtraType(extraTypeDTO);
-        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(extraTypeEntity));
+        CreateExtraTypeCommand createExtraTypeCommand = ExtraTypeMapper.INSTANCE.extraTypeRequestDTOtoCreateExtraTypeCommand(extraTypeDTO);
+        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(createExtraTypeCommand));
     }
 
     @GetMapping("/{extraId}")
