@@ -26,7 +26,7 @@ public class BookingDTO {
     private int customerId;
 
     @JsonProperty("roomId")
-    private String roomId;
+    private int roomId;
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;

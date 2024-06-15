@@ -3,11 +3,13 @@ package com.awt.boutiquehoteltechnikum.Service;
 import com.awt.boutiquehoteltechnikum.DomainModels.CreateBookingCommand;
 import com.awt.boutiquehoteltechnikum.Entities.BookingEntity;
 import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Mapper.BookingMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
 import com.awt.boutiquehoteltechnikum.Repository.BookingRepository;
 //import javassist.NotFoundException;
 import com.awt.boutiquehoteltechnikum.Repository.CustomerRepository;
+import com.awt.boutiquehoteltechnikum.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,9 +23,10 @@ import java.util.Optional;
 public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface {
     @Autowired
     private BookingRepository bookingRepository; // If enough time: Make extra class which handles requests to the repository
-
     @Autowired
     private CustomerRepository customerRepository; // If enough time: Make extra class which handles requests to the repository
+    @Autowired
+    private RoomRepository roomRepository; // If enough time: Make extra class which handles requests to the repository
 
     @Override
     public BookingEntity createBooking(CreateBookingCommand createBookingCommand) throws Exception {
@@ -34,10 +37,13 @@ public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces
             CustomerEntity customer = customerRepository.findById(createBookingCommand.getCustomerId()).get();
             bookingEntity.setCustomerEntity(customer);
 
+            RoomEntity room = roomRepository.findById(createBookingCommand.getRoomId()).get();
+            bookingEntity.setRoomEntity(room);
+
             return bookingRepository.save(bookingEntity);
         }
         catch(NoSuchElementException e){
-            throw new Exception("CustomerId not found");
+            throw new Exception("Something not found");
         }
         catch(Exception e){
             throw e;
@@ -53,7 +59,7 @@ public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces
             existingBookingEntity.setTitle(bookingEntity.getTitle());
             existingBookingEntity.setAdditionalNotes(bookingEntity.getAdditionalNotes());
             existingBookingEntity.setCustomerEntity(bookingEntity.getCustomerEntity());
-            existingBookingEntity.setRoomId(bookingEntity.getRoomId());
+            existingBookingEntity.setRoomEntity(bookingEntity.getRoomEntity());
             existingBookingEntity.setCreatedAt(bookingEntity.getCreatedAt());
             existingBookingEntity.setBookingStart(bookingEntity.getBookingStart());
             existingBookingEntity.setBookingEnd(bookingEntity.getBookingEnd());

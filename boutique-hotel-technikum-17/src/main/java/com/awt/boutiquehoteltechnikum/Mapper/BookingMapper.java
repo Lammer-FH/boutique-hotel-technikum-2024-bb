@@ -18,6 +18,7 @@ public interface BookingMapper {
     BookingEntity createBookingCommandtoBookingEntity(CreateBookingCommand createBookingCommand);
 
     @Mapping(target = "customerId", source = "customerEntity.id")
+    @Mapping(target = "roomId", source = "roomEntity.id")
     BookingDTO bookingEntityToBookingDTO(BookingEntity bookingEntity);
 
 }

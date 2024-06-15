@@ -22,8 +22,9 @@ public class BookingEntity {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
-    @Column(name = "room_id")
-    private String roomId;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private RoomEntity roomEntity;
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
     @Column(name = "booking_start")
@@ -37,11 +38,11 @@ public class BookingEntity {
     @Column(name = "cancelled")
     private boolean cancelled = false;
 
-    public BookingEntity(String title, String additional_notes, CustomerEntity customer_entity, String room_id, String booking_start, String booking_end, boolean breakfast, double total_cost){
+    public BookingEntity(String title, String additional_notes, CustomerEntity customer_entity, RoomEntity room_entity, String booking_start, String booking_end, boolean breakfast, double total_cost){
         this.title = title;
         this.additionalNotes = additional_notes;
         this.customerEntity = customer_entity;
-        this.roomId = room_id;
+        this.roomEntity = room_entity;
         this.bookingStart = booking_start;
         this.bookingEnd = booking_end;
         this.breakfast = breakfast;

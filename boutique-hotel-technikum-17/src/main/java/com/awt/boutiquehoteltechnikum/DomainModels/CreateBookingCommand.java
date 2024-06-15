@@ -19,7 +19,7 @@ public class CreateBookingCommand {
 
     private int customerId;
 
-    private String roomId;
+    private int roomId;
 
     private LocalDate bookingStart;
 

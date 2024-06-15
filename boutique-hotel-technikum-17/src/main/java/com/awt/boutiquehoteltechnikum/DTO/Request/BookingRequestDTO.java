@@ -23,7 +23,7 @@ public class BookingRequestDTO {
     private int customerId;
 
     @JsonProperty("roomId")
-    private String roomId;
+    private int roomId;
 
     @JsonProperty("bookingStart")
     @JsonFormat(pattern = "yyyy-MM-dd")
