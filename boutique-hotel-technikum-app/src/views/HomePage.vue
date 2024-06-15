@@ -22,6 +22,8 @@
         <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
       </div>
 
+      <DatePicker></DatePicker>
+
 
     </ion-content>
   </ion-page>
@@ -29,6 +31,7 @@
 
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import DatePicker from "@/components/DatePicker.vue";
 </script>
 
 <style scoped>
