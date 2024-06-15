@@ -7,6 +7,7 @@ import com.awt.boutiquehoteltechnikum.DomainModels.CreateBookingCommand;
 import com.awt.boutiquehoteltechnikum.Interfaces.BookingServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.BookingMapper;
 import com.awt.boutiquehoteltechnikum.Entities.BookingEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class BookingController {
     @Autowired
     private BookingServiceInterface bookingService;
     @PostMapping
-    public BookingDTO addBooking(@RequestBody BookingRequestDTO bookingRequestDTO) throws Exception {
+    public BookingDTO addBooking(@Valid @RequestBody BookingRequestDTO bookingRequestDTO) throws Exception {
         CreateBookingCommand createBookingCommand = BookingMapper.INSTANCE.bookingRequestDTOtoCreateBookingCommand(bookingRequestDTO);
         return BookingMapper.INSTANCE.bookingEntityToBookingDTO(bookingService.createBooking(createBookingCommand));
     }

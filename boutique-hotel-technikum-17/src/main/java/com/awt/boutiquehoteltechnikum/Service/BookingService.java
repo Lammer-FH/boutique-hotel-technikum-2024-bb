@@ -42,9 +42,6 @@ public class BookingService implements com.awt.boutiquehoteltechnikum.Interfaces
 
             return bookingRepository.save(bookingEntity);
         }
-        catch(NoSuchElementException e){
-            throw new Exception("Something not found");
-        }
         catch(Exception e){
             throw e;
         }
