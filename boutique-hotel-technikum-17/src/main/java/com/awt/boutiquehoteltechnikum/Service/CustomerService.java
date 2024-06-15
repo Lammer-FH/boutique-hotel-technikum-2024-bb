@@ -1,6 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateCustomerCommand;
 import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
+import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
 import com.awt.boutiquehoteltechnikum.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +17,8 @@ public class CustomerService implements com.awt.boutiquehoteltechnikum.Interface
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerEntity createCustomer(CustomerEntity customerEntity) {
-        return customerRepository.save(customerEntity);
+    public CustomerEntity createCustomer(CreateCustomerCommand createCustomerCommand) {
+        return customerRepository.save(CustomerMapper.INSTANCE.customerRequestDTOtoCustomerEntity(createCustomerCommand));
     }
 
     @Override

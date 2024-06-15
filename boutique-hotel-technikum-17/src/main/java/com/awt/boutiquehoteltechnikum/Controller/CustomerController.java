@@ -2,6 +2,7 @@ package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.CustomerDTO;
 import com.awt.boutiquehoteltechnikum.DTO.Request.CustomerRequestDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateCustomerCommand;
 import com.awt.boutiquehoteltechnikum.Interfaces.CustomerServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.CustomerMapper;
 import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
@@ -16,8 +17,8 @@ public class CustomerController {
 
     @PostMapping
     public CustomerDTO createCustomer(@RequestBody CustomerRequestDTO customerDTO) {
-        CustomerEntity customerEntity = CustomerMapper.INSTANCE.customerRequestDTOtoCustomer(customerDTO);
-        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.createCustomer(customerEntity));
+        CreateCustomerCommand createCustomerCommand = CustomerMapper.INSTANCE.customerRequestDTOtoCreateCustomerCommand(customerDTO);
+        return CustomerMapper.INSTANCE.customerToCustomerDTO(customerService.createCustomer(createCustomerCommand));
     }
 
     @GetMapping("/{customerId}")
