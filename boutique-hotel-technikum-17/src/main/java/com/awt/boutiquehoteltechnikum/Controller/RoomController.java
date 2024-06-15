@@ -7,6 +7,7 @@ import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
 import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class RoomController {
     private RoomServiceInterface roomService;
 
     @PostMapping
-    public RoomDTO createRoom(@RequestBody RoomRequestDTO roomDTO) {
+    public RoomDTO createRoom(@Valid @RequestBody RoomRequestDTO roomDTO) {
         CreateRoomCommand createRoomCommand = RoomMapper.INSTANCE.roomReqestDTOtoCreateRoomCommand(roomDTO);
         return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(createRoomCommand));
     }
@@ -38,7 +39,7 @@ public class RoomController {
     }
 
     @PutMapping
-    public RoomDTO updateRoom(@RequestBody RoomDTO roomDTO) {
+    public RoomDTO updateRoom(@Valid @RequestBody RoomDTO roomDTO) {
         RoomEntity roomEntity = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
         return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.updateRoom(roomEntity));
     }

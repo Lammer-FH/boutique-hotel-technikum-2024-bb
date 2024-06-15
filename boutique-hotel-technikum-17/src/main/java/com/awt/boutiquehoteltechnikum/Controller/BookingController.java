@@ -28,7 +28,7 @@ public class BookingController {
     }
 
     @PutMapping
-    public BookingDTO updateBooking(@RequestBody BookingDTO bookingDto) {
+    public BookingDTO updateBooking(@Valid @RequestBody BookingDTO bookingDto) {
         BookingEntity bookingEntity = BookingMapper.INSTANCE.bookingDTOtoBookingEntity(bookingDto);
         return BookingMapper.INSTANCE.bookingEntityToBookingDTO(bookingService.updateBooking(bookingEntity));
     }

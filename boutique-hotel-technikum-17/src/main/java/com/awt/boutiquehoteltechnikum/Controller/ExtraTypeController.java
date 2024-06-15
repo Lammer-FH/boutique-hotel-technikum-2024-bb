@@ -6,6 +6,7 @@ import com.awt.boutiquehoteltechnikum.DomainModels.CreateExtraTypeCommand;
 import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
 import com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class ExtraTypeController {
     private ExtraTypeServiceInterface extraTypeService;
 
     @PostMapping
-    public ExtraTypeDTO createExtraType(@RequestBody ExtraTypeRequestDTO extraTypeDTO) {
+    public ExtraTypeDTO createExtraType(@Valid @RequestBody ExtraTypeRequestDTO extraTypeDTO) {
         CreateExtraTypeCommand createExtraTypeCommand = ExtraTypeMapper.INSTANCE.extraTypeRequestDTOtoCreateExtraTypeCommand(extraTypeDTO);
         return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(createExtraTypeCommand));
     }
@@ -37,7 +38,7 @@ public class ExtraTypeController {
     }
 
     @PutMapping
-    public ExtraTypeDTO updateExtraType(@RequestBody ExtraTypeDTO extraTypeDTO) {
+    public ExtraTypeDTO updateExtraType(@Valid @RequestBody ExtraTypeDTO extraTypeDTO) {
         ExtraTypeEntity extraTypeEntity = ExtraTypeMapper.INSTANCE.extraTypeDTOtoExtraType(extraTypeDTO);
         return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.updateExtraType(extraTypeEntity));
     }

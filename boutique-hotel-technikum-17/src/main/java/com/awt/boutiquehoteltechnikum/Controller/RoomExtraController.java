@@ -8,6 +8,7 @@ import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
 import com.awt.boutiquehoteltechnikum.Entities.RoomExtraEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class RoomExtraController {
     private RoomExtraServiceInterface roomExtraService;
 
     @PostMapping
-    public RoomExtraDTO createRoomExtra(@RequestBody RoomExtraRequestDTO roomExtraDTO) {
+    public RoomExtraDTO createRoomExtra(@Valid @RequestBody RoomExtraRequestDTO roomExtraDTO) {
         CreateRoomExtraCommand roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraRequesteDTOtoCreateRoomExtraCommand(roomExtraDTO);
         return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtraEntity));
     }
@@ -31,7 +32,7 @@ public class RoomExtraController {
     }
 
     @PutMapping
-    public RoomExtraDTO updateRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {
+    public RoomExtraDTO updateRoomExtra(@Valid @RequestBody RoomExtraDTO roomExtraDTO) {
         RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
         return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtraEntity));
     }
