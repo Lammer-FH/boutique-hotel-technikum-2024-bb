@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8100")
 @RequestMapping("/api/hotel/v1/extra_types")
 public class ExtraTypeController {
     @Autowired

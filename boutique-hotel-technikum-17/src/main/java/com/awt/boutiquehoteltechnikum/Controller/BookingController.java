@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8100")
 @RequestMapping("api/hotel/v1/booking")
 public class BookingController {
     @Autowired

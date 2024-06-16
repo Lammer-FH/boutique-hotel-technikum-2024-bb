@@ -17,17 +17,54 @@
         </ion-toolbar>
       </ion-header>
 
+
+      <div id="container">
+        <strong>Ready to create an app?</strong>
+        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <!--<button @click="fetchCustomerData">CustomerButton</button>
+        <button @click="createCustomer">CreateCustomerButton</button>
+        <button @click="updateCustomer">Update Customer Button</button>
+        <button @click="fetchAllRooms">Fetch all Rooms Button</button>-->
+        <button @click="fetchRoomById">Fetch Room Button</button>
+      </div>
       <SearchOverviewPage></SearchOverviewPage>
-
-
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"
+// Example how to use store
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import DatePicker from "@/components/DatePicker.vue";
 import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
+import { useCustomerStore } from '@/stores/customer'
+import {ref} from "vue";
+import {useRoomsStore} from "@/stores/room";
+
+      const customer = useCustomerStore();
+      const rooms = useRoomsStore();
+      const form = ref({
+      name: 'aa',
+      surname: 'bb',
+      email: 'cc@gmail.com',
+      phoneNumber: 'ccc',
+      address: 'dd'
+      });
+      function fetchCustomerData()  {
+          customer.readState(1)
+      }
+      function createCustomer()  {
+          customer.createCustomer("testName","testSurname","4986","testaddress","test@gmail.com")
+      }
+      function updateCustomer()  {
+          customer.updateCustomer(1,"testName","testSurname","4986","testaddress","test@gmail.com")
+      }
+      function fetchAllRooms(){
+          rooms.fetchRooms()
+          }
+      function fetchRoomById(){
+        rooms.fetchRoomById(1)
+      }
 </script>
 
 <style scoped>

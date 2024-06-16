@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8100")
 @RequestMapping("/api/hotel/v1/room_extras")
 public class RoomExtraController {
     @Autowired
