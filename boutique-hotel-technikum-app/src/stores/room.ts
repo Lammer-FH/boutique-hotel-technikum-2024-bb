@@ -3,7 +3,7 @@ import { useUserStore } from './user'
 import axios from "axios";
 
 interface RoomState {
-    id: string,
+    id: number,
     title: string,
     description: string,
     price: number,
