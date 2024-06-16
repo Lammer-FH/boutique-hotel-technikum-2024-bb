@@ -17,12 +17,7 @@
         </ion-toolbar>
       </ion-header>
 
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
-
-      <DatePicker></DatePicker>
+      <SearchOverviewPage></SearchOverviewPage>
 
 
     </ion-content>
@@ -32,6 +27,7 @@
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import DatePicker from "@/components/DatePicker.vue";
+import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
 </script>
 
 <style scoped>
