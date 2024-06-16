@@ -38,6 +38,7 @@ export const useCustomerStore = defineStore({
                 this.email = customer.email;
                 this.phoneNumber = customer.phoneNumber;
                 this.address = customer.address;
+                return customer
             } catch (error) {
                 console.error('Error fetching customer data:', error);
             }
@@ -59,6 +60,7 @@ export const useCustomerStore = defineStore({
                 this.email = customer.email;
                 this.phoneNumber = customer.phoneNumber;
                 this.address = customer.address;
+                return customer;
             } catch (error) {
                 console.error('Error creating customer data:', error);
             }
@@ -81,6 +83,7 @@ export const useCustomerStore = defineStore({
                 this.email = customer.email;
                 this.phoneNumber = customer.phoneNumber;
                 this.address = customer.address;
+                return customer;
             } catch (error) {
                 console.error('Error updating customer data:', error);
             }

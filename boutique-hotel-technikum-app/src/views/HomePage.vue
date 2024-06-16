@@ -21,18 +21,14 @@
       <div id="container">
         <strong>Ready to create an app?</strong>
         <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-        <!--<button @click="fetchCustomerData">CustomerButton</button>
-        <button @click="createCustomer">CreateCustomerButton</button>
-        <button @click="updateCustomer">Update Customer Button</button>
-        <button @click="fetchAllRooms">Fetch all Rooms Button</button>-->
-        <button @click="fetchRoomById">Fetch Room Button</button>
+        <button @click="getRoomExtrasForRoom">Create Booking Button</button>
       </div>
       <SearchOverviewPage></SearchOverviewPage>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts"
+<script setup lang="ts">
 // Example how to use store
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import DatePicker from "@/components/DatePicker.vue";
@@ -40,9 +36,15 @@ import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
 import { useCustomerStore } from '@/stores/customer'
 import {ref} from "vue";
 import {useRoomsStore} from "@/stores/room";
+import {useBookingStore} from "@/stores/booking";
+import {useExtraTypeStore} from "@/stores/extraType";
+import {useRoomExtraStore} from "@/stores/roomExtras";
 
       const customer = useCustomerStore();
       const rooms = useRoomsStore();
+      const bookings = useBookingStore();
+      const extraType = useExtraTypeStore();
+      const roomExtra = useRoomExtraStore();
       const form = ref({
       name: 'aa',
       surname: 'bb',
@@ -64,6 +66,15 @@ import {useRoomsStore} from "@/stores/room";
           }
       function fetchRoomById(){
         rooms.fetchRoomById(1)
+      }
+      function createBooking(){
+          bookings.createBooking("ttl","a",1,2,"2024-07-30","2024-08-30",true,40)
+      }
+      function getExtraType(){
+          extraType.getExtraType(1)
+      }
+      function getRoomExtrasForRoom(){
+          roomExtra.fetchRoomExtrasForRoom(3)
       }
 </script>
 
