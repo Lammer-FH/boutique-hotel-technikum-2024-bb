@@ -2,8 +2,12 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Header</ion-title>
       </ion-toolbar>
+
+      <router-link to="/">Go Home</router-link>
+      <router-link to="/123">Go Also Home</router-link>
+      <router-link to="/3">Profile?</router-link>
     </ion-header>
 
     <ion-content :fullscreen="true">
@@ -12,6 +16,7 @@
           <ion-title size="large">Blank</ion-title>
         </ion-toolbar>
       </ion-header>
+
 
       <div id="container">
         <strong>Ready to create an app?</strong>
@@ -22,12 +27,16 @@
         <button @click="fetchAllRooms">Fetch all Rooms Button</button>-->
         <button @click="fetchRoomById">Fetch Room Button</button>
       </div>
+      <SearchOverviewPage></SearchOverviewPage>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"
 // Example how to use store
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import DatePicker from "@/components/DatePicker.vue";
+import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
 import { useCustomerStore } from '@/stores/customer'
 import {ref} from "vue";
 import {useRoomsStore} from "@/stores/room";
