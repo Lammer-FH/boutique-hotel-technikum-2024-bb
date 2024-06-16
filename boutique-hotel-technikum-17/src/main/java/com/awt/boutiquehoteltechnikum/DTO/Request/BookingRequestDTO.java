@@ -1,4 +1,4 @@
-package com.awt.boutiquehoteltechnikum.DTO;
+package com.awt.boutiquehoteltechnikum.DTO.Request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,17 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
-
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 
 @Builder
 @Jacksonized
 @Value
-public class BookingDTO {
-    @JsonProperty("id")
-    @NotNull
-    private int id;
+public class BookingRequestDTO {
 
     @JsonProperty("title")
     @NotNull
@@ -34,18 +29,14 @@ public class BookingDTO {
     @NotNull
     private int roomId;
 
-    @JsonProperty("createdAt")
-    @NotNull
-    private OffsetDateTime createdAt;
-
     @JsonProperty("bookingStart")
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingStart;
 
     @JsonProperty("bookingEnd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingEnd;
 
     @JsonProperty("breakfast")
@@ -55,8 +46,4 @@ public class BookingDTO {
     @JsonProperty("totalCost")
     @NotNull
     private double totalCost;
-
-    @JsonProperty("cancelled")
-    @NotNull
-    private boolean cancelled;
 }

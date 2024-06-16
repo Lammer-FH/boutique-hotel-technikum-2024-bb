@@ -5,12 +5,12 @@ export default {
   props: ["roomObject", "roomIndex"],
   data() {
     return {
-      room: this.roomObject
+      roomEntity: this.roomObject
     }
   },
   methods: {
     toggleId() {
-      this.$emit("room-index", this.roomIndex)
+      this.$emit("roomEntity-index", this.roomIndex)
     },
     selectRoom() {
       this.$emit("selectroom-index", this.roomIndex)
@@ -21,11 +21,11 @@ export default {
 
 <template>
   <div class="flex justify-between py-2 px-2 items-center cursor-pointer"
-       :class="{'bg-green-600': this.room.selected}"
+       :class="{'bg-green-600': this.roomEntity.selected}"
         @click="toggleId">
-    <p>Id: {{room.id}}</p>
-    <p>Number of beds: {{ room.beds}}</p>
-    <p>Clicked: {{room.clicked}}</p>
-    <button class="bg-green-300 py-1 px-1 rounded " @click="selectRoom">select room</button>
+    <p>Id: {{roomEntity.id}}</p>
+    <p>Number of beds: {{ roomEntity.beds}}</p>
+    <p>Clicked: {{roomEntity.clicked}}</p>
+    <button class="bg-green-300 py-1 px-1 rounded " @click="selectRoom">select roomEntity</button>
   </div>
 </template>

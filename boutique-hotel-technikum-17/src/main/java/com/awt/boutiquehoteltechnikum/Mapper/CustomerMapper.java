@@ -1,9 +1,10 @@
 package com.awt.boutiquehoteltechnikum.Mapper;
 
-import com.awt.boutiquehoteltechnikum.DTO.BookingDTO;
 import com.awt.boutiquehoteltechnikum.DTO.CustomerDTO;
-import com.awt.boutiquehoteltechnikum.Model.Booking;
-import com.awt.boutiquehoteltechnikum.Model.Customer;
+import com.awt.boutiquehoteltechnikum.DTO.Request.CustomerRequestDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateBookingCommand;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateCustomerCommand;
+import com.awt.boutiquehoteltechnikum.Entities.CustomerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -11,7 +12,12 @@ import org.mapstruct.factory.Mappers;
 public interface CustomerMapper {
 
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
-    Customer customerDTOtoCustomer(CustomerDTO customerDTO);
-    CustomerDTO customerToCustomerDTO(Customer customer);
+    CustomerEntity customerDTOtoCustomer(CustomerDTO customerDTO);
+    CustomerEntity customerRequestDTOtoCustomer(CustomerRequestDTO customerDTO);
+    CustomerDTO customerToCustomerDTO(CustomerEntity customerEntity);
+
+    CreateCustomerCommand customerRequestDTOtoCreateCustomerCommand(CustomerRequestDTO customerRequestDTO);
+    CustomerEntity customerRequestDTOtoCustomerEntity(CreateCustomerCommand createCustomerCommand);
+    CustomerEntity createBookingCommandtoCustomerEntity(CreateBookingCommand createBookingCommand);
 
 }

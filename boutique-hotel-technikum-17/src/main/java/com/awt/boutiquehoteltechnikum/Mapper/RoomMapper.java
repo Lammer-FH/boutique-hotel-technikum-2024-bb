@@ -1,7 +1,9 @@
 package com.awt.boutiquehoteltechnikum.Mapper;
 
+import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
-import com.awt.boutiquehoteltechnikum.Model.Room;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -9,7 +11,10 @@ import org.mapstruct.factory.Mappers;
 public interface RoomMapper {
 
     RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
-    Room roomDTOtoRoom(RoomDTO roomDTO);
-    RoomDTO roomtoRoomDTO(Room room);
+    RoomEntity roomDTOtoRoom(RoomDTO roomDTO);
+    RoomEntity roomReqestDTOtoRoom(RoomRequestDTO roomDTO);
+    CreateRoomCommand roomReqestDTOtoCreateRoomCommand(RoomRequestDTO roomDTO);
+    RoomEntity createRoomCommandToRoomEntity(CreateRoomCommand roomCommand);
+    RoomDTO roomtoRoomDTO(RoomEntity roomEntity);
 
 }

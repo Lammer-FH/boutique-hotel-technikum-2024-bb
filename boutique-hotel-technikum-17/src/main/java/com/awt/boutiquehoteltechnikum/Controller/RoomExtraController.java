@@ -1,27 +1,29 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
+import com.awt.boutiquehoteltechnikum.DTO.Request.RoomExtraRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomExtraDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomExtraCommand;
+import com.awt.boutiquehoteltechnikum.Interfaces.RoomExtraServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomExtraMapper;
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
-import com.awt.boutiquehoteltechnikum.Model.RoomExtra;
-import com.awt.boutiquehoteltechnikum.Service.RoomExtraService;
+import com.awt.boutiquehoteltechnikum.Entities.RoomExtraEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/room_extras")
+@RequestMapping("/api/hotel/v1/room_extras")
 public class RoomExtraController {
     @Autowired
-    private RoomExtraService roomExtraService;
+    private RoomExtraServiceInterface roomExtraService;
 
     @PostMapping
-    public RoomExtraDTO createRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {
-        RoomExtra roomExtra = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraService.createRoomExtra(roomExtra));
+    public RoomExtraDTO createRoomExtra(@Valid @RequestBody RoomExtraRequestDTO roomExtraDTO) {
+        CreateRoomExtraCommand roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraRequesteDTOtoCreateRoomExtraCommand(roomExtraDTO);
+        return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.createRoomExtra(roomExtraEntity));
     }
 
     @GetMapping("/{roomId}")
@@ -30,8 +32,8 @@ public class RoomExtraController {
     }
 
     @PutMapping
-    public RoomExtraDTO updateRoomExtra(@RequestBody RoomExtraDTO roomExtraDTO) {
-        RoomExtra roomExtra = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
-        return RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraService.updateRoomExtra(roomExtra));
+    public RoomExtraDTO updateRoomExtra(@Valid @RequestBody RoomExtraDTO roomExtraDTO) {
+        RoomExtraEntity roomExtraEntity = RoomExtraMapper.INSTANCE.roomExtraDTOtoRoomExtra(roomExtraDTO);
+        return RoomExtraMapper.INSTANCE.roomExtraEntitytoRoomExtraDTO(roomExtraService.updateRoomExtra(roomExtraEntity));
     }
 }

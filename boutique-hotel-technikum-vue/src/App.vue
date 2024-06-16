@@ -12,7 +12,7 @@
     <div class="mt-4">
       <p>Name: </p>
       <input type="text" class="py-2 w-2/3 text-green-600" v-model="customerName"/>
-      <button class="bg-green-300 py-1 px-1 rounded " @click="bookRoom(customerName)">book room</button>
+      <button class="bg-green-300 py-1 px-1 rounded " @click="bookRoom(customerName)">book roomEntity</button>
     </div>
 
 
@@ -20,8 +20,8 @@
     <p>Verfügbare Zimmer: {{ zimmerListe.length}}</p>
     <p v-if="selectedRooms.length > 0">Selected Zimmer: {{ selectedRooms.length}}</p>
     <p v-else>Keine Zimmer Selected</p>
-    <div v-for="(room, index) in zimmerListe" :key="room.id">
-      <RoomDetails :roomObject="room" :roomIndex="index" @room-index="toggleId" @selectroom-index="selectRoom"></RoomDetails>
+    <div v-for="(roomEntity, index) in zimmerListe" :key="roomEntity.id">
+      <RoomDetails :roomObject="roomEntity" :roomIndex="index" @roomEntity-index="toggleId" @selectroom-index="selectRoom"></RoomDetails>
     </div>
   </div>
 </template>
@@ -62,13 +62,13 @@ export default {
       if(this.customerName.trim() === ""){
         return;
       }
-      console.log("room booked for customer " + customerName);
+      console.log("roomEntity booked for customerEntity " + customerName);
     }
   },
   computed: {
     selectedRooms() {
-      const selectedRooms = this.zimmerListe.filter( (room) => {
-        return room.selected;
+      const selectedRooms = this.zimmerListe.filter( (roomEntity) => {
+        return roomEntity.selected;
       });
       return selectedRooms;
     }

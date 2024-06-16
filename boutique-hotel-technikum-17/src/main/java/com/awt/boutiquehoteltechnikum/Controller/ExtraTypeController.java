@@ -1,9 +1,12 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
 import com.awt.boutiquehoteltechnikum.DTO.ExtraTypeDTO;
+import com.awt.boutiquehoteltechnikum.DTO.Request.ExtraTypeRequestDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateExtraTypeCommand;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
+import com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
-import com.awt.boutiquehoteltechnikum.Service.ExtraTypeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,15 +14,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/extra_types")
+@RequestMapping("/api/hotel/v1/extra_types")
 public class ExtraTypeController {
     @Autowired
-    private ExtraTypeService extraTypeService;
+    private ExtraTypeServiceInterface extraTypeService;
 
     @PostMapping
-    public ExtraTypeDTO createExtraType(@RequestBody ExtraTypeDTO extraTypeDTO) {
-        ExtraType extraType = ExtraTypeMapper.INSTANCE.extraTypeDTOtoExtraType(extraTypeDTO);
-        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(extraType));
+    public ExtraTypeDTO createExtraType(@Valid @RequestBody ExtraTypeRequestDTO extraTypeDTO) {
+        CreateExtraTypeCommand createExtraTypeCommand = ExtraTypeMapper.INSTANCE.extraTypeRequestDTOtoCreateExtraTypeCommand(extraTypeDTO);
+        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.createExtraType(createExtraTypeCommand));
     }
 
     @GetMapping("/{extraId}")
@@ -35,8 +38,8 @@ public class ExtraTypeController {
     }
 
     @PutMapping
-    public ExtraTypeDTO updateExtraType(@RequestBody ExtraTypeDTO extraTypeDTO) {
-        ExtraType extraType = ExtraTypeMapper.INSTANCE.extraTypeDTOtoExtraType(extraTypeDTO);
-        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.updateExtraType(extraType));
+    public ExtraTypeDTO updateExtraType(@Valid @RequestBody ExtraTypeDTO extraTypeDTO) {
+        ExtraTypeEntity extraTypeEntity = ExtraTypeMapper.INSTANCE.extraTypeDTOtoExtraType(extraTypeDTO);
+        return ExtraTypeMapper.INSTANCE.extraTypeToExtraTypeDTO(extraTypeService.updateExtraType(extraTypeEntity));
     }
 }

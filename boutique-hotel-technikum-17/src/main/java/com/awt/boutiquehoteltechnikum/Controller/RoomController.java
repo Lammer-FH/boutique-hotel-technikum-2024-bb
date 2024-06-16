@@ -1,10 +1,13 @@
 package com.awt.boutiquehoteltechnikum.Controller;
 
 
+import com.awt.boutiquehoteltechnikum.DTO.Request.RoomRequestDTO;
 import com.awt.boutiquehoteltechnikum.DTO.RoomDTO;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
+import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
-import com.awt.boutiquehoteltechnikum.Model.Room;
-import com.awt.boutiquehoteltechnikum.Service.RoomService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +15,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/hotel/v1/rooms")
 public class RoomController {
     @Autowired
-    private RoomService roomService;
+    private RoomServiceInterface roomService;
 
     @PostMapping
-    public RoomDTO createRoom(@RequestBody RoomDTO roomDTO) {
-        Room room = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
-        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(room));
+    public RoomDTO createRoom(@Valid @RequestBody RoomRequestDTO roomDTO) {
+        CreateRoomCommand createRoomCommand = RoomMapper.INSTANCE.roomReqestDTOtoCreateRoomCommand(roomDTO);
+        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.createRoom(createRoomCommand));
     }
 
     @GetMapping("/{roomId}")
@@ -36,8 +39,8 @@ public class RoomController {
     }
 
     @PutMapping
-    public RoomDTO updateRoom(@RequestBody RoomDTO roomDTO) {
-        Room room = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
-        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.updateRoom(room));
+    public RoomDTO updateRoom(@Valid @RequestBody RoomDTO roomDTO) {
+        RoomEntity roomEntity = RoomMapper.INSTANCE.roomDTOtoRoom(roomDTO);
+        return RoomMapper.INSTANCE.roomtoRoomDTO(roomService.updateRoom(roomEntity));
     }
 }

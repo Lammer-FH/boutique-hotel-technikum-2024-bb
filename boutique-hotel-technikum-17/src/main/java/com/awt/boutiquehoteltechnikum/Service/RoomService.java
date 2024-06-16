@@ -1,9 +1,10 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Model.Room;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
+import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
+import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
 import com.awt.boutiquehoteltechnikum.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,38 +13,42 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RoomService {
+public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface {
     @Autowired
     private RoomRepository roomRepository;
 
-    public Room createRoom(Room room) {
-        return roomRepository.save(room);
+    @Override
+    public RoomEntity createRoom(CreateRoomCommand createRoomCommand) {
+        return roomRepository.save(RoomMapper.INSTANCE.createRoomCommandToRoomEntity(createRoomCommand));
     }
 
-    public Room updateRoom(Room room)  {
-        Optional<Room> optionalRoom = roomRepository.findById(room.getId());
+    @Override
+    public RoomEntity updateRoom(RoomEntity roomEntity)  {
+        Optional<RoomEntity> optionalRoom = roomRepository.findById(roomEntity.getId());
         if (optionalRoom.isPresent()) {
-            Room existingRoom = optionalRoom.get();
-            existingRoom.setTitle(room.getTitle());
-            existingRoom.setDescription(room.getDescription());
-            existingRoom.setPrice(room.getPrice());
-            existingRoom.setRoomType(room.getRoomType());
-            existingRoom.setBedType(room.getBedType());
-            existingRoom.setBedCount(room.getBedCount());
-            existingRoom.setImage(room.getImage());
-            return roomRepository.save(existingRoom);
+            RoomEntity existingRoomEntity = optionalRoom.get();
+            existingRoomEntity.setTitle(roomEntity.getTitle());
+            existingRoomEntity.setDescription(roomEntity.getDescription());
+            existingRoomEntity.setPrice(roomEntity.getPrice());
+            existingRoomEntity.setRoomType(roomEntity.getRoomType());
+            existingRoomEntity.setBedType(roomEntity.getBedType());
+            existingRoomEntity.setBedCount(roomEntity.getBedCount());
+            existingRoomEntity.setImage(roomEntity.getImage());
+            return roomRepository.save(existingRoomEntity);
         }
         throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "roomId not found"
         );
     }
 
-    public Room getRoomById(int id) {
+    @Override
+    public RoomEntity getRoomById(int id) {
         return roomRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"roomId not found"));
     }
 
-    public List<Room> getAllRooms() {
-        return (List<Room>) roomRepository.findAll();
+    @Override
+    public List<RoomEntity> getAllRooms() {
+        return (List<RoomEntity>) roomRepository.findAll();
     }
 }

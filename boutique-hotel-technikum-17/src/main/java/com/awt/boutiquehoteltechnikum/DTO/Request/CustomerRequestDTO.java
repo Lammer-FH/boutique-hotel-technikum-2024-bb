@@ -1,6 +1,7 @@
-package com.awt.boutiquehoteltechnikum.DTO;
+package com.awt.boutiquehoteltechnikum.DTO.Request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
@@ -9,28 +10,25 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 @Value
-public class CustomerDTO {
-    @JsonProperty("id")
+public class CustomerRequestDTO {
     @NotNull
-    int id;
-
     @JsonProperty("name")
-    @NotNull
     String name;
 
-    @JsonProperty("surname")
     @NotNull
+    @JsonProperty("surname")
     String surname;
 
-    @JsonProperty("email")
     @NotNull
+    @Email
+    @JsonProperty("email")
     String email;
 
-    @JsonProperty("phonenumber")
     @NotNull
+    @JsonProperty("phonenumber")
     String phonenumber;
 
-    @JsonProperty("address")
     @NotNull
+    @JsonProperty("address")
     String address;
 }

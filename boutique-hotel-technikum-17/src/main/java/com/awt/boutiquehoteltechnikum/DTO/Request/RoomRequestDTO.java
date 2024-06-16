@@ -1,4 +1,4 @@
-package com.awt.boutiquehoteltechnikum.DTO;
+package com.awt.boutiquehoteltechnikum.DTO.Request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
@@ -9,11 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 @Value
-public class RoomDTO {
-    @JsonProperty("id")
-    @NotNull
-    int id;
-
+public class RoomRequestDTO {
     @JsonProperty("title")
     @NotNull
     String title;
