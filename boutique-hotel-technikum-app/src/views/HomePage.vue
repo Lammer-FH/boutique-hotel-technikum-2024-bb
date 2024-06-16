@@ -32,7 +32,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts"
+<script setup lang="ts">
 // Example how to use store
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import DatePicker from "@/components/DatePicker.vue";
