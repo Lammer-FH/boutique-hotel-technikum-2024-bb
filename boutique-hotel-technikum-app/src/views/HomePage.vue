@@ -2,8 +2,12 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Header</ion-title>
       </ion-toolbar>
+
+      <router-link to="/">Go Home</router-link>
+      <router-link to="/123">Go Also Home</router-link>
+      <router-link to="/3">Profile?</router-link>
     </ion-header>
 
     <ion-content :fullscreen="true">
@@ -13,16 +17,17 @@
         </ion-toolbar>
       </ion-header>
 
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <SearchOverviewPage></SearchOverviewPage>
+
+
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import DatePicker from "@/components/DatePicker.vue";
+import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
 </script>
 
 <style scoped>
