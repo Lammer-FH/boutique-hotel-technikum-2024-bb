@@ -8,7 +8,7 @@
     </ion-card-header>
 
       <ion-card-content>
-        <p>Beds: {{ room.beds}}</p>
+        <p>Beds: {{ room.bedCount}}</p>
         <div>[icons for extras]</div>
 
         <ion-button shape="round" @click="selectRoom">Select Room</ion-button>

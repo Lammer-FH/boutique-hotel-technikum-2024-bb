@@ -7,22 +7,27 @@
 
 <script lang="ts">
 import RoomCard from "@/components/RoomCard.vue";
+import {useRoomsStore} from "@/stores/room";
+import {onMounted, ref} from "vue";
 
 export default {
   name: 'RoomsList',
   components: {RoomCard},
+  setup() {
+      const roomStore = useRoomsStore();
+      const roomList = ref<[]>([]);
+
+      onMounted(async () => {
+          await roomStore.fetchRooms();
+          roomList.value = roomStore.rooms;
+      });
+      console.log(roomList.value)
+      return { roomList };
+  },
   data() {
     return {
       // todo get actual room list
-      roomList: [
-        {id: 1, beds: 4, selected: false, price: 12, title: "Single"},
-        {id: 2, beds: 2,  selected: false, price: 12, title: "Single"},
-        {id: 3, beds: 3,  selected: false, price: 12, title: "Single"},
-        {id: 4, beds: 4,  selected: false, price: 12, title: "Single"},
-        {id: 5, beds: 2,  selected: false, price: 12, title: "Single"},
-        {id: 6, beds: 4,  selected: false, price: 12, title: "Single"},
-        {id: 7, beds: 4,  selected: false, price: 12, title: "Single"},
-      ],
+      roomStore: useRoomsStore(),
     }
   }, methods: {
     selectRoom(index: number) {
