@@ -1,22 +1,13 @@
 <template>
-    <ion-page>
-        <ion-content :fullscreen="true" class="ion-padding">
-            <h1>Payment Details</h1>
-            <ion-card>
-                <ion-card-content>
-                    <BookingDetailsOverview
-                        :fromDate="fromDate"
-                        :toDate="toDate"
-                        :nights="nights"
-                        :guests="guests"
-                        :room="room"
-                        :total="total"
-                    />
-                </ion-card-content>
-            </ion-card>
-            <PersonalInformationForm/>
-        </ion-content>
-    </ion-page>
+    <BookingDetailsOverview
+        :fromDate="fromDate"
+        :toDate="toDate"
+        :nights="nights"
+        :guests="guests"
+        :room="room"
+        :total="total"
+    />
+    <PersonalInformationForm />
 </template>
 
 <script>
