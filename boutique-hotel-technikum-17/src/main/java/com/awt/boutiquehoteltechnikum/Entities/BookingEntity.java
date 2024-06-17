@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.Date;
 
 @Table(name="booking")
 @Entity
@@ -28,9 +29,9 @@ public class BookingEntity {
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
     @Column(name = "booking_start")
-    private String bookingStart;
+    private Date bookingStart;
     @Column(name = "booking_end")
-    private String bookingEnd;
+    private Date bookingEnd;
     @Column(name = "breakfast")
     private boolean breakfast;
     @Column(name = "total_cost")
@@ -38,7 +39,7 @@ public class BookingEntity {
     @Column(name = "cancelled")
     private boolean cancelled = false;
 
-    public BookingEntity(String title, String additional_notes, CustomerEntity customer_entity, RoomEntity room_entity, String booking_start, String booking_end, boolean breakfast, double total_cost){
+    public BookingEntity(String title, String additional_notes, CustomerEntity customer_entity, RoomEntity room_entity, Date booking_start, Date booking_end, boolean breakfast, double total_cost){
         this.title = title;
         this.additionalNotes = additional_notes;
         this.customerEntity = customer_entity;

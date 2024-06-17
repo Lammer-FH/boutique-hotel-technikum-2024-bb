@@ -1,21 +1,24 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
 import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
+import com.awt.boutiquehoteltechnikum.Entities.BookingEntity;
 import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
+import com.awt.boutiquehoteltechnikum.Repository.BookingRepository;
 import com.awt.boutiquehoteltechnikum.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface {
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @Override
     public RoomEntity createRoom(CreateRoomCommand createRoomCommand) {
@@ -50,5 +53,28 @@ public class RoomService implements com.awt.boutiquehoteltechnikum.Interfaces.Ro
     @Override
     public List<RoomEntity> getAllRooms() {
         return (List<RoomEntity>) roomRepository.findAll();
+    }
+
+    @Override
+    public List<RoomEntity> getAllRoomsInInterval(Date startDate,Date endDate) {
+        List<RoomEntity> allRooms = getAllRooms();
+        List<BookingEntity> bookingEntities = bookingRepository.findAllByDateRange(startDate,endDate);
+        List<Integer> roomIds = getAllRoomIds(bookingEntities);
+        List<RoomEntity> elementsToRemove = new ArrayList<>();
+        for (RoomEntity room: allRooms) {
+            if(roomIds.contains(room.getId())) {
+                elementsToRemove.add(room);
+            }
+        }
+        allRooms.removeAll(elementsToRemove);
+        return allRooms;
+    }
+
+    private List<Integer> getAllRoomIds(List<BookingEntity> bookingEntities) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        for (BookingEntity bookingEntity: bookingEntities) {
+            ids.add(bookingEntity.getRoomEntity().getId());
+        }
+        return ids;
     }
 }
