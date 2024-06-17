@@ -1,5 +1,5 @@
 <template>
-    <BookingDetailsOverveiw
+    <BookingDetailsOverview
         :fromDate="fromDate"
         :toDate="toDate"
         :nights="nights"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import BookingDetailsOverveiw from '@/components/organisms/BookingDetailsOverview.vue';
+import BookingDetailsOverview from '@/components/organisms/BookingDetailsOverview.vue';
 import PersonalInformationForm from '@/components/organisms/PersonalInformationForm.vue';
 
 export default {
