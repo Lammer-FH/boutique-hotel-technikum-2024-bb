@@ -7,11 +7,17 @@ import com.awt.boutiquehoteltechnikum.DomainModels.CreateRoomCommand;
 import com.awt.boutiquehoteltechnikum.Entities.RoomEntity;
 import com.awt.boutiquehoteltechnikum.Interfaces.RoomServiceInterface;
 import com.awt.boutiquehoteltechnikum.Mapper.RoomMapper;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Console;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,10 +39,16 @@ public class RoomController {
     }
 
     @GetMapping
-    public List<RoomDTO> getAllRooms() {
-        return roomService.getAllRooms().stream()
+    public List<RoomDTO> getAllRooms(@RequestParam(required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end) {
+        if(start == null || end == null){
+            return roomService.getAllRooms().stream()
+                    .map(room -> RoomMapper.INSTANCE.roomtoRoomDTO(room))
+                    .collect(Collectors.toList());
+        }
+        List<RoomDTO> roomDTOS= roomService.getAllRoomsInInterval(start,end).stream()
                 .map(room -> RoomMapper.INSTANCE.roomtoRoomDTO(room))
                 .collect(Collectors.toList());
+        return roomDTOS;
     }
 
     @PutMapping
