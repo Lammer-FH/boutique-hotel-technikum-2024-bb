@@ -8,7 +8,7 @@ import LandingPage from "../views/LandingPage.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/welcome'
   },
   {
     path: '/home',
@@ -18,20 +18,20 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/payment',
     name: 'Payment',
-    component: PaymentPage
+    component: PaymentPage,
+    meta: {title: 'Payment Details'}
   },
   {
-    path: '/booking-confirmation',
-    name: 'BookingConfirmation',
-    component: BookingConfirmationPage
-  },
-  {
-    path: '/landing',
-    name: 'Landing',
     path: '/welcome',
     name: 'Welcome',
-    component: LandingPage
-  }
+    component: LandingPage,
+    meta: {title: 'Welcome'}
+  },
+    {
+        path: '/booking-confirmation',
+        name: 'BookingConfirmation',
+        component: BookingConfirmationPage
+    }
 ]
 
 const router = createRouter({
