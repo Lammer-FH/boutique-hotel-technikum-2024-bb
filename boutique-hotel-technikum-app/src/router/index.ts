@@ -20,8 +20,8 @@ const routes: Array<RouteRecordRaw> = [
     component: PaymentPage
   },
   {
-    path: '/landing',
-    name: 'Landing',
+    path: '/welcome',
+    name: 'Welcome',
     component: LandingPage
   }
 ]
