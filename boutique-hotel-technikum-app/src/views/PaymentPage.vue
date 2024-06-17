@@ -24,7 +24,7 @@ import BookingDetailsOverview from '@/components/organisms/BookingDetailsOvervie
 import PersonalInformationForm from '@/components/organisms/PersonalInformationForm.vue';
 
 export default {
-    name: 'PaymetPage',
+    name: 'PaymentPage',
     components: {
         BookingDetailsOverview,
         PersonalInformationForm
