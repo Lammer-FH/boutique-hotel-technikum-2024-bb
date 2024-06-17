@@ -11,11 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/welcome'
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
-  },
-  {
     path: '/payment',
     name: 'Payment',
     component: PaymentPage,
