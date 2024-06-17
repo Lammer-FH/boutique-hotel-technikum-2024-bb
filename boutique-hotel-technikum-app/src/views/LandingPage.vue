@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import SearchForRoomsCard from "../components/SearchForRoomsCard.vue";
-import FooterSegment from '../components/organisms/FooterSegment.vue';
+import SearchForRoomsCard from '@/components/SearchForRoomsCard.vue';
+import FooterSegment from '@/components/FooterSegment.vue';
 
 const fullText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Additional details here. Continue the description of the text, providing more in-depth information. This area can be used to extend any type of content or information you wish to remain initially hidden.";
 const truncatedLength = 120;
