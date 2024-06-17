@@ -28,6 +28,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/landing',
     name: 'Landing',
+    path: '/welcome',
+    name: 'Welcome',
     component: LandingPage
   }
 ]
