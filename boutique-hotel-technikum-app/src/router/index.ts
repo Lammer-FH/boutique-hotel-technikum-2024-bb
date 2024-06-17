@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
 import PaymentPage from '../views/PaymentPage.vue'
 import BookingConfirmationPage from '../views/BookingConfirmationPage.vue'
+import LandingPage from "../views/LandingPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/booking-confirmation',
     name: 'BookingConfirmation',
     component: BookingConfirmationPage
+  },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: LandingPage
   }
 ]
 
