@@ -20,5 +20,32 @@ export default {
 </script>
 
 <style scoped>
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
+.footer-links ion-button {
+  --background: transparent;
+  color: #fff;
+}
+
+ion-footer {
+  background-color: #000;
+  color: #fff;
+}
+
+ion-toolbar {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+p {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
 </style>
