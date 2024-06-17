@@ -2,7 +2,6 @@
   <ion-footer>
     <ion-toolbar>
       <div class="footer-content">
-        <ion-icon name="information-circle-outline" size="large"></ion-icon>
         <div class="footer-links">
           <ion-button fill="clear" href="/about-us">About us</ion-button>
           <ion-button fill="clear" href="/contact">Contact</ion-button>
