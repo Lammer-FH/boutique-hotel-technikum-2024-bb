@@ -12,7 +12,7 @@
             <ion-icon class="right-padding" :src="icon"></ion-icon>
           </div>
         </span>
-        <ion-button size="small" shape="round" @click="selectRoom">Select Room</ion-button>
+        <ion-button size="small" shape="round" @click="goToRoomDetails">Details</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -25,6 +25,7 @@ import { IonIcon } from '@ionic/vue';
 import {useRoomExtraStore} from "@/stores/roomExtras";
 import {ref} from "vue";
 import {useExtraTypeStore} from "@/stores/extraType";
+import {useRouter} from "vue-router";
 
 export default {
   name: 'RoomCard',
@@ -44,10 +45,6 @@ export default {
       this.getIconLinks();
   },
   methods: {
-    selectRoom() {
-      console.log("select room triggered for room id " + this.roomObject.id)
-      this.$emit("selectroom", this.roomIndex)
-    },
     async getRoomExtras() {
       await this.roomExtraStore.fetchRoomExtrasForRoom(this.room.id);
       this.extraList = this.roomExtraStore.roomExtras;
@@ -68,6 +65,10 @@ export default {
     getIconPathForExtra(extra){
       console.log("in path extra = " + extra);
       return './icons/' + extra + ".svg";
+    },
+    goToRoomDetails() {
+      console.log("emit from roomcard");
+      this.$emit('goToDetails', this.room.id);
     }
 
   }

@@ -1,6 +1,13 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
+      id: {{id}}
+      from: {{startDate}}
+      to: {{endDate}}
       <ion-card>
         <div class="image-container">
           <img src="" alt="Room Image">
@@ -39,7 +46,15 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
 
+const route = useRoute();
+
+const id = route.query.id;
+const startDate = route.query.start;
+const endDate = route.query.end;
+watch(() => route.path, () => {});
 
 </script>
 
