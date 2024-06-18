@@ -1,6 +1,11 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
+      if: {{id}}
       <ion-card>
         <div class="image-container">
           <img src="" alt="Room Image">
@@ -39,7 +44,13 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
 
+const route = useRoute();
+
+const id = route.query.id;
+watch(() => route.path, () => {});
 
 </script>
 

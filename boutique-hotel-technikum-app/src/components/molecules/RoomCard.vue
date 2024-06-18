@@ -12,7 +12,7 @@
             <ion-icon class="right-padding" :src="icon"></ion-icon>
           </div>
         </span>
-        <ion-button size="small" shape="round" @click="selectRoom">Select Room</ion-button>
+        <ion-button size="small" shape="round" @click="selectRoom">Details</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -23,13 +23,25 @@
 import ImageAtom from "@/components/atoms/Image.vue";
 import { IonIcon } from '@ionic/vue';
 import {useRoomExtraStore} from "@/stores/roomExtras";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {useExtraTypeStore} from "@/stores/extraType";
+import {useRouter} from "vue-router";
 
 export default {
   name: 'RoomCard',
   components: {ImageAtom, IonIcon},
   props: ["roomObject", "roomIndex"],
+  setup() {
+    const router = useRouter();
+
+    async function goToDetails(id: number) {
+      await router.push({ name: 'Room', query: { id: id } });
+    }
+
+    return {
+      goToDetails
+    }
+  },
   data() {
     return {
       room: this.roomObject,
@@ -46,7 +58,7 @@ export default {
   methods: {
     selectRoom() {
       console.log("select room triggered for room id " + this.roomObject.id)
-      this.$emit("selectroom", this.roomIndex)
+      this.goToDetails(this.room.id);
     },
     async getRoomExtras() {
       await this.roomExtraStore.fetchRoomExtrasForRoom(this.room.id);

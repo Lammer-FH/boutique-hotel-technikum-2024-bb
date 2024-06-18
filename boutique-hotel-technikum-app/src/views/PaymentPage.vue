@@ -1,42 +1,58 @@
 <template>
-    <ion-page>
-        <ion-content :fullscreen="true" class="ion-padding">
-            <form>
-                <PaymentTemplate 
-                    :fromDate="fromDate"
-                    :toDate="toDate"
-                    :nights="nights"
-                    :guests="guests"
-                    :room="room"
-                    :total="total"
-                    :name="name"
-                    :surname="surname"
-                    :phoneNumber="phoneNumber"
-                    :address="address"
-                    :email="email"
-                    :confirmEmail="confirmEmail"
-                    :includeBreakfast="includeBreakfast"
-                    @update:name="updateName"
-                    @update:surname="updateSurname"
-                    @update:phoneNumber="updatePhoneNumber"
-                    @update:address="updateAddress"
-                    @update:email="updateEmail"
-                    @update:confirmEmail="updateConfirmEmail"
-                    @update:includeBreakfast="updateIncludeBreakfast"
-                />
-                <ion-button shape="round"  @click.prevent="saveBooking">
-                    Order
-                    <ion-icon slot="end" :icon="chevronForward "></ion-icon>
-                </ion-button>
-            </form>
-        </ion-content>
-    </ion-page>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <form>
+          <PaymentTemplate
+              :fromDate="fromDate"
+              :toDate="toDate"
+              :nights="nights"
+              :guests="guests"
+              :room="room"
+              :total="total"
+              :name="name"
+              :surname="surname"
+              :phoneNumber="phoneNumber"
+              :address="address"
+              :email="email"
+              :confirmEmail="confirmEmail"
+              :includeBreakfast="includeBreakfast"
+              @update:name="updateName"
+              @update:surname="updateSurname"
+              @update:phoneNumber="updatePhoneNumber"
+              @update:address="updateAddress"
+              @update:email="updateEmail"
+              @update:confirmEmail="updateConfirmEmail"
+              @update:includeBreakfast="updateIncludeBreakfast"
+          />
+          <ion-button shape="round"  @click.prevent="saveBooking">
+              Order
+              <ion-icon slot="end" :icon="chevronForward "></ion-icon>
+          </ion-button>
+      </form>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script>
 import PaymentTemplate from '@/components/PaymentTemplate.vue';
 import { useCustomerStore } from '@/stores/customer'
 import {useBookingStore} from "@/stores/booking";
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
+
+const router = useRoute();
+
+const routeToConfimationpage = () => {
+  router.push({ name: 'Search', query: { start: start, end: end } });
+};
+
+//const start = route.query.start;
+//const end = route.query.end;
+//watch(() => route.path, () => {});
 
 export default {
     name: 'PaymentPage',
@@ -74,6 +90,7 @@ export default {
             try {
                 let guest = await this.saveGuest();
                 this.createBooking(guest);
+                this.routeToConfimationpage();
             } catch (error) {
                 console.error("Error saving booking:", error);
             }
