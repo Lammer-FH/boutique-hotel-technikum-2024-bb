@@ -1,9 +1,9 @@
 <script lang="ts">
 
 export default {
-    name: 'RoomImage',
+    name: 'ImageAtom',
     props: {
-        fileName: {
+        filePath: {
             type: String,
             required: true
         }
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-    <img class="image-width" alt="Room Image" :src="`./images/rooms/${fileName}.jpg`" />
+    <img class="image-width" alt="Room Image" :src=filePath />
 
 </template>
 

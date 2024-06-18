@@ -1,6 +1,6 @@
 <template>
   <ion-card class="height style-children">
-    <RoomImage :fileName="room.id"></RoomImage>
+    <ImageAtom :filePath="`./images/rooms/${room.id}.jpg`"></ImageAtom>
     <ion-card-header >
       <ion-card-title>{{room.title}}</ion-card-title>
       <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
@@ -15,11 +15,11 @@
 </template>
 
 <script lang="ts">
-import RoomImage from "@/components/atoms/RoomImage.vue";
+import ImageAtom from "@/components/atoms/Image.vue";
 
 export default {
   name: 'RoomCard',
-  components: {RoomImage},
+  components: {ImageAtom},
   props: ["roomObject", "roomIndex"],
   data() {
     return {
