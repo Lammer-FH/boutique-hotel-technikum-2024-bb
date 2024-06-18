@@ -3,16 +3,12 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 import PaymentPage from '@/views/PaymentPage.vue';
 import LandingPage from '@/views/LandingPage.vue';
+import SearchRoomsPage from "@/views/SearchRoomsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/welcome'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
   },
   {
     path: '/payment',
@@ -25,7 +21,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Welcome',
     component: LandingPage,
     meta: {title: 'Welcome'}
-  }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: SearchRoomsPage,
+    meta: {title: 'Search'}
+  },
+
 ]
 
 const router = createRouter({
