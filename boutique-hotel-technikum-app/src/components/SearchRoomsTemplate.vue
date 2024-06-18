@@ -51,6 +51,8 @@ export default {
       else {
         console.log("fetchRoomsByDates");
         await this.roomStore.fetchRoomsByDates(start, end);
+        console.log(start),
+          console.log(end)
         this.roomList = this.roomStore.rooms;
       }
 

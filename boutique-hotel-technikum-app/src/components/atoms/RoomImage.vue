@@ -1,12 +1,20 @@
-<script setup lang="ts">
+<script lang="ts">
 
+export default {
+    name: 'RoomImage',
+    props: {
+        fileName: {
+            type: String,
+            required: true
+        }
+    },
+}
 </script>
 
 <template>
-  <img class="image-width" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <img class="image-width" alt="Room Image" :src="`./images/rooms/${fileName}.jpg`" />
 
 </template>
 
 <style scoped>
-
 </style>

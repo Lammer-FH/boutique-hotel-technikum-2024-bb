@@ -1,6 +1,6 @@
 <template>
   <ion-card class="height style-children">
-    <RoomImage></RoomImage>
+    <RoomImage :fileName="room.id"></RoomImage>
     <ion-card-header >
       <ion-card-title>{{room.title}}</ion-card-title>
       <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
@@ -9,7 +9,6 @@
       <ion-card-content>
         <p>Beds: {{ room.bedCount}}</p>
         <div>[icons for extras]</div>
-
         <ion-button shape="round" @click="selectRoom">Select Room</ion-button>
       </ion-card-content>
   </ion-card>
