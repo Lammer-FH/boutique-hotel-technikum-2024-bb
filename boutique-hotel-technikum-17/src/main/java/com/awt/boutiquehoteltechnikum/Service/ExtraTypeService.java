@@ -1,6 +1,8 @@
 package com.awt.boutiquehoteltechnikum.Service;
 
-import com.awt.boutiquehoteltechnikum.Model.ExtraType;
+import com.awt.boutiquehoteltechnikum.DomainModels.CreateExtraTypeCommand;
+import com.awt.boutiquehoteltechnikum.Entities.ExtraTypeEntity;
+import com.awt.boutiquehoteltechnikum.Mapper.ExtraTypeMapper;
 import com.awt.boutiquehoteltechnikum.Repository.ExtraTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,32 +13,37 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExtraTypeService {
+public class ExtraTypeService implements com.awt.boutiquehoteltechnikum.Interfaces.ExtraTypeServiceInterface {
     @Autowired
     private ExtraTypeRepository extraTypeRepository;
 
-    public ExtraType createExtraType(ExtraType extraType) {
-        return extraTypeRepository.save(extraType);
+    @Override
+    public ExtraTypeEntity createExtraType(CreateExtraTypeCommand createExtraTypeCommand) {
+        ExtraTypeEntity extraTypeEntity = ExtraTypeMapper.INSTANCE.createExtraTypeCommandToExtraType(createExtraTypeCommand);
+        return extraTypeRepository.save(extraTypeEntity);
     }
 
-    public ExtraType updateExtraType(ExtraType extraType)  {
-        Optional<ExtraType> optionalExtraType = extraTypeRepository.findById(extraType.getId());
+    @Override
+    public ExtraTypeEntity updateExtraType(ExtraTypeEntity extraTypeEntity)  {
+        Optional<ExtraTypeEntity> optionalExtraType = extraTypeRepository.findById(extraTypeEntity.getId());
         if (optionalExtraType.isPresent()) {
-            ExtraType existingExtraType = optionalExtraType.get();
-            existingExtraType.setTitle(extraType.getTitle());
-            existingExtraType.setDescription(extraType.getDescription());
-            return extraTypeRepository.save(existingExtraType);
+            ExtraTypeEntity existingExtraTypeEntity = optionalExtraType.get();
+            existingExtraTypeEntity.setTitle(extraTypeEntity.getTitle());
+            existingExtraTypeEntity.setDescription(extraTypeEntity.getDescription());
+            return extraTypeRepository.save(existingExtraTypeEntity);
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found not found");
     }
 
-    public ExtraType getExtraTypeById(int id) {
+    @Override
+    public ExtraTypeEntity getExtraTypeById(int id) {
 
         return extraTypeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"extraType not found"));
     }
 
-    public List<ExtraType> getAllExtraTypes() {
-        return (List<ExtraType>) extraTypeRepository.findAll();
+    @Override
+    public List<ExtraTypeEntity> getAllExtraTypes() {
+        return (List<ExtraTypeEntity>) extraTypeRepository.findAll();
     }
 }

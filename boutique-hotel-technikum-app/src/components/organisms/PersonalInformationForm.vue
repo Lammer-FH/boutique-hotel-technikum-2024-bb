@@ -1,41 +1,48 @@
 <template>
     <ion-label>Personal Information</ion-label>
-    <form @submit.prevent="submitForm">
-        <input-field label="Name" v-model="name"></input-field>
-        <input-field label="Surname" v-model="surname"></input-field>
-        <input-field label="Email" type="email" v-model="email"></input-field>
-        <input-field label="Confirm Email" type="email" v-model="confirmEmail"></input-field>
-        <breakfast-option v-model="includeBreakfast"></breakfast-option>
-        <ion-button shape="round" type="submit">
-            Order
-            <ion-icon slot="end" :icon="chevronForward "></ion-icon>
-        </ion-button>
-    </form>
+    <ion-list>
+        <ion-item>
+            <ion-input label="Name" :value="name" @ionInput="$emit('update:name', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Surname" :value="surname" @ionInput="$emit('update:surname', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Telephone phone" :value="phoneNumber" @ionInput="$emit('update:phoneNumber', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Address" :value="address" @ionInput="$emit('update:address', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Email" type="email" :value="email" @ionInput="$emit('update:email', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input label="Confirm Email" type="email" :value="confirmEmail" @ionInput="$emit('update:confirmEmail', $event.target.value)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <breakfast-option :value="includeBreakfast" @change="$emit('update:includeBreakfast', $event)"></breakfast-option>
+        </ion-item>
+    </ion-list>
 </template>
 
 <script>
-import { IonButton, IonIcon } from '@ionic/vue';
-import { chevronForward } from 'ionicons/icons';
-
 import InputField from '@/components/atoms/InputField.vue';
 import BreakfastOption from '@/components/molecules/BreakfastOption.vue';
 
 export default {
     name: 'PersonalInformationForm',
     components: {
-        IonButton,
-        IonIcon,
         InputField,
         BreakfastOption
     },
-    data() {
-        return {
-        name: '',
-        surname: '',
-        email: '',
-        confirmEmail: '',
-        includeBreakfast: 'yes'
-        };
+    props: {
+        name: String,
+        surname: String,
+        phoneNumber: String,
+        address: String,
+        email: String,
+        confirmEmail: String,
+        includeBreakfast: String
     },
     methods: {
         submitForm() {

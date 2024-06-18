@@ -1,8 +1,6 @@
-package com.awt.boutiquehoteltechnikum.Model;
+package com.awt.boutiquehoteltechnikum.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +8,10 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Room {
+@Table(name = "room")
+public class RoomEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "title")
@@ -29,7 +29,7 @@ public class Room {
     @Column(name = "image")
     private String image;
 
-    public Room(String title, String description, double price, String room_type, String bed_type, int bed_count, String image) {
+    public RoomEntity(String title, String description, double price, String room_type, String bed_type, int bed_count, String image) {
         this.title = title;
         this.description = description;
         this.price = price;
