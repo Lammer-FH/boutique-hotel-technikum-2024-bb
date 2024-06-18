@@ -1,6 +1,6 @@
 <template>
   <ion-card class="height style-children">
-    <ImageAtom :filePath="`./images/rooms/${room.id}.jpg`"></ImageAtom>
+    <ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>
     <ion-card-header >
       <ion-card-title>{{room.title}}</ion-card-title>
       <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
