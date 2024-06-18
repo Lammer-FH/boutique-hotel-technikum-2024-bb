@@ -1,26 +1,26 @@
 <template>
-  <ion-card class="height style-children">
-    <ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>
-    <ion-card-header >
-      <ion-card-title>{{room.title}}</ion-card-title>
-      <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
-    </ion-card-header>
-
-      <ion-card-content >
-        <p>Beds: {{ room.bedCount}}</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>
+      </ion-col>
+      <ion-col>
+        <h4 class="tiny-margin">{{room.title}}</h4>
+        <p class="tiny-margin">{{ room.description}}</p>
         <span class="style-children">
           <div v-if="iconPathList.length > 0" v-for="(icon, index) in iconPathList" :key="icon">
             <ion-icon class="right-padding" :src="icon"></ion-icon>
           </div>
         </span>
-        <ion-button shape="round" @click="selectRoom">Select Room</ion-button>
-      </ion-card-content>
-  </ion-card>
+        <ion-button size="small" shape="round" @click="selectRoom">Select Room</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </template>
 
 <script lang="ts">
 import ImageAtom from "@/components/atoms/Image.vue";
-import RoomImage from "@/components/atoms/RoomImage.vue";
 import { IonIcon } from '@ionic/vue';
 import {useRoomExtraStore} from "@/stores/roomExtras";
 import {ref} from "vue";
@@ -56,13 +56,13 @@ export default {
     },
     getIconLinks(){
       this.extraList.forEach((extra) => {
-        // Perform your "before each" action here
-        // For example, logging each item before getting its icon link
         console.log('Processing extra:', extra);
+        if(extra !== '')
+        {
+          const iconLink = this.getIconPathForExtra(extra.title);
+          this.iconPathList.push(iconLink.toString());
+        }
 
-        // Then get the icon link for each extra
-        const iconLink = this.getIconPathForExtra(extra.title);
-        this.iconPathList.push(iconLink.toString());
       });
     },
     getIconPathForExtra(extra){
@@ -93,10 +93,18 @@ span.style-columns {
   flex-direction: row;
 }
 img.image-width {
-  width: 30%;
+  width: 100%; /* Makes the image take up the full width of its container */
+  height: 7rem; /* Set a fixed height for all images */
+  object-fit: cover; /* Ensures images cover the area without stretching */
 }
 ion-icon.right-padding {
   padding-right: 0.25rem;
+}
+h3.tiny-margin {
+  margin: 0.25rem;
+}
+p.tiny-margin {
+  margin: 0.25rem;
 }
 </style>
 
