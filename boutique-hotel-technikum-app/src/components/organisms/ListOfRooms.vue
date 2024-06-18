@@ -1,6 +1,6 @@
 <template>
   <div v-if="paginatedRooms.length > 0" v-for="(room, index) in paginatedRooms" :key="room.id">
-    <RoomCard :roomObject="room" :roomIndex="index" @selectroom="selectRoom"></RoomCard>
+    <RoomCard :roomObject="room" :roomIndex="index" @goToDetails="goToDetails" ></RoomCard>
   </div>
   <p v-else>Keine Zimmer Verfügbar</p>
   <ion-button @click="prevPage" :disabled="currentPage <= 1">Previous</ion-button>
@@ -22,9 +22,9 @@ export default {
     }
   },
   methods: {
-    selectRoom(index: number) {
-      // todo maybe call view details? what about select then?
-      console.log("select room with id: " + this.roomList[index].id + " and go to detail view");
+    goToDetails(id) {
+      console.log("emit from listofrooms");
+      this.$emit('goToDetails', id);
     },
     nextPage() {
       if (this.currentPage * this.pageSize < this.roomList.length) {
