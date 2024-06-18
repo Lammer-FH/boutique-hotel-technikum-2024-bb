@@ -1,10 +1,36 @@
 <template>
     <div class="details">
-        <p>Dates: <strong>From: {{ fromDate }} To: {{ toDate }}</strong></p>
-        <p>Nights: <strong>{{ nights }}</strong></p>
-        <p>Guests: <strong>{{ guests }}</strong></p>
-        <p>Room: <strong>{{ room }}</strong></p>
-        <p>Total: <strong>{{ total }}</strong></p>
+        <ion-card>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="3">Dates:</ion-col>
+                    <ion-col>
+                        <ion-row>
+                            <strong>From: {{ fromDate }}</strong>
+                        </ion-row>
+                        <ion-row>
+                            <strong>To: {{ toDate }}</strong>
+                        </ion-row> 
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="3">Nights:</ion-col>
+                    <ion-col><strong>{{ nights }}</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="3">Guests:</ion-col>
+                    <ion-col><strong>{{ guests }}</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="3">Room:</ion-col>
+                    <ion-col><strong>{{ room }}</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="3">Total:</ion-col>
+                    <ion-col><strong>{{ total }}</strong></ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card>
     </div>
 </template>
 
@@ -25,5 +51,9 @@ export default {
 <style scoped>
     .details p {
         margin: 5px 0;
+    }
+    ion-card{
+        border: none;
+        margin-bottom: 40px;
     }
 </style>
