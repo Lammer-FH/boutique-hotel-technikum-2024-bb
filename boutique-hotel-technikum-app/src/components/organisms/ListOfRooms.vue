@@ -6,12 +6,12 @@
 </template>
 
 <script lang="ts">
-import RoomCard from "@/components/RoomCard.vue";
+import RoomCard from "@/components/molecules/RoomCard.vue";
 import {useRoomsStore} from "@/stores/room";
 import {onMounted, ref} from "vue";
 
 export default {
-  name: 'RoomsList',
+  name: 'ListOfRooms',
   components: {RoomCard},
   setup() {
       const roomStore = useRoomsStore();
@@ -31,19 +31,10 @@ export default {
     }
   }, methods: {
     selectRoom(index: number) {
-      this.roomList[index].selected=!this.roomList[index].selected;
       // todo maybe call view details? what about select then?
       console.log("select room with id: " + this.roomList[index].id + " and go to detail view");
     },
   },
-  computed: {
-    selectedRooms() {
-      const selectedRooms = this.roomList.filter( (room) => {
-        return room.selected;
-      });
-      return selectedRooms;
-    }
-  }
 }
 </script>
 
