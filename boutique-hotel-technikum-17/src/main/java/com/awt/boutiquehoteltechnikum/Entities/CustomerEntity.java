@@ -1,17 +1,17 @@
-package com.awt.boutiquehoteltechnikum.Model;
+package com.awt.boutiquehoteltechnikum.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+@Table(name="customer")
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Customer {
+public class CustomerEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
@@ -25,7 +25,7 @@ public class Customer {
     @Column(name = "address")
     private String address;
 
-    public Customer(String name, String surname, String email, String phonenumber, String address) {
+    public CustomerEntity(String name, String surname, String email, String phonenumber, String address) {
         this.name = name;
         this.surname = surname;
         this.email = email;
