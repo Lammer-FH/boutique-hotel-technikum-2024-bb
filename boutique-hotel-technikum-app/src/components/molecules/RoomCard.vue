@@ -39,7 +39,7 @@ export default {
 <style scoped>
 /* Add custom styling for the label */
 ion-card.height {
-  height: 25%;
+  height: 8rem;
 }
 
 ion-card.style-children {

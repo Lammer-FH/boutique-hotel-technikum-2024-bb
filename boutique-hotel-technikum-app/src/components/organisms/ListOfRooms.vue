@@ -7,8 +7,6 @@
 
 <script lang="ts">
 import RoomCard from "@/components/molecules/RoomCard.vue";
-import {useRoomsStore} from "@/stores/room";
-import {onMounted, ref} from "vue";
 
 export default {
   name: 'ListOfRooms',
