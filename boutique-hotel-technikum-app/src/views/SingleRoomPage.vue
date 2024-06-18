@@ -5,9 +5,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      id: {{id}}
-      from: {{startDate}}
-      to: {{endDate}}
       <ion-card>
         <div class="image-container">
           <img src="" alt="Room Image">
