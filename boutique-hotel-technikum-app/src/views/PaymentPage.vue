@@ -1,32 +1,36 @@
 <template>
-    <form>
-        <PaymentTemplate 
-            :fromDate="fromDate"
-            :toDate="toDate"
-            :nights="nights"
-            :guests="guests"
-            :room="room"
-            :total="total"
-            :name="name"
-            :surname="surname"
-            :phoneNumber="phoneNumber"
-            :address="address"
-            :email="email"
-            :confirmEmail="confirmEmail"
-            :includeBreakfast="includeBreakfast"
-            @update:name="updateName"
-            @update:surname="updateSurname"
-            @update:phoneNumber="updatePhoneNumber"
-            @update:address="updateAddress"
-            @update:email="updateEmail"
-            @update:confirmEmail="updateConfirmEmail"
-            @update:includeBreakfast="updateIncludeBreakfast"
-        />
-        <ion-button shape="round"  @click.prevent="saveBooking">
-            Order
-            <ion-icon slot="end" :icon="chevronForward "></ion-icon>
-        </ion-button>
-    </form>
+    <ion-page>
+        <ion-content :fullscreen="true" class="ion-padding">
+            <form>
+                <PaymentTemplate 
+                    :fromDate="fromDate"
+                    :toDate="toDate"
+                    :nights="nights"
+                    :guests="guests"
+                    :room="room"
+                    :total="total"
+                    :name="name"
+                    :surname="surname"
+                    :phoneNumber="phoneNumber"
+                    :address="address"
+                    :email="email"
+                    :confirmEmail="confirmEmail"
+                    :includeBreakfast="includeBreakfast"
+                    @update:name="updateName"
+                    @update:surname="updateSurname"
+                    @update:phoneNumber="updatePhoneNumber"
+                    @update:address="updateAddress"
+                    @update:email="updateEmail"
+                    @update:confirmEmail="updateConfirmEmail"
+                    @update:includeBreakfast="updateIncludeBreakfast"
+                />
+                <ion-button shape="round"  @click.prevent="saveBooking">
+                    Order
+                    <ion-icon slot="end" :icon="chevronForward "></ion-icon>
+                </ion-button>
+            </form>
+        </ion-content>
+    </ion-page>
 </template>
 
 <script>

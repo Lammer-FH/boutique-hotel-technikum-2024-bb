@@ -1,12 +1,12 @@
 <template>
     <ion-page>
         <ion-content :fullscreen="true" class="ion-padding">
-            <h1>Booking Confirmed</h1>
-            <p>We are pleased to inform you that your reservation request has been received and confirmed. Thank you!</p>
-            <h2>Booking Details</h2>
+            <h1 class="ion-text-center">Booking Confirmed</h1>
+            <p class="ion-text-center">We are pleased to inform you that your reservation request has been received and confirmed. Thank you!</p>
+            <h4>Booking Details</h4>
             <BookingDetailsConfirmed />
             <RoomCard/>
-            <h2>Personal Information</h2>
+            <h4>Personal Information</h4>
             <PersonalInformationCard />
             <Contact />
         </ion-content>
