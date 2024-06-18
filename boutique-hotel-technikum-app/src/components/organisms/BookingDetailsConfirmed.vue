@@ -1,6 +1,7 @@
 <template>
     <ion-card>
         <ion-card-content>
+            <BookingDetail label="Room"></BookingDetail>
             <BookingDetail label="Booking-Number">1234</BookingDetail>
             <BookingDetail label="Status">Confirmed</BookingDetail>
             <BookingDetail label="Check-in">July 06, 2024</BookingDetail>
