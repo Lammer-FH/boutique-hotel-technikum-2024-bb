@@ -50,7 +50,7 @@ export const useRoomsStore = defineStore({
         async fetchRoomsByDates(startDate: string, endDate: string) {
             try {
                 this.rooms=[]
-                const response = await axios.get<Array<RoomState>>(`${apiUrl}?${startDate}&${endDate}`);
+                const response = await axios.get<Array<RoomState>>(`${apiUrl}?start=${startDate}&end=${endDate}`);
                 const rooms = response.data
                 this.rooms = rooms
                 console.log(response.data)

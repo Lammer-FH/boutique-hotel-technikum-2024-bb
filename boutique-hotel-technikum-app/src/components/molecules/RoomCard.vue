@@ -1,6 +1,6 @@
 <template>
   <ion-card class="height style-children">
-    <RoomImage></RoomImage>
+    <ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>
     <ion-card-header >
       <ion-card-title>{{room.title}}</ion-card-title>
       <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import ImageAtom from "@/components/atoms/Image.vue";
 import RoomImage from "@/components/atoms/RoomImage.vue";
 import { IonIcon } from '@ionic/vue';
 import {useRoomExtraStore} from "@/stores/roomExtras";
@@ -27,7 +28,7 @@ import {useExtraTypeStore} from "@/stores/extraType";
 
 export default {
   name: 'RoomCard',
-  components: {RoomImage, IonIcon},
+  components: {ImageAtom, IonIcon},
   props: ["roomObject", "roomIndex"],
   data() {
     return {
