@@ -8,7 +8,13 @@
 
       <ion-card-content>
         <p>Beds: {{ room.bedCount}}</p>
-        <div>[icons for extras]</div>
+        <ion-icon src="./icons/bathtub.svg"></ion-icon>
+        <ion-icon src="./icons/hairdryer.svg"></ion-icon>
+        <ion-icon src="./icons/balcony.svg"></ion-icon>
+        <ion-icon src="./icons/coffeemachine.svg"></ion-icon>
+        <ion-icon src="./icons/watercooker.svg"></ion-icon>
+        <ion-icon src="./icons/wifi.svg"></ion-icon>
+
 
         <ion-button shape="round" @click="selectRoom">Select Room</ion-button>
       </ion-card-content>
@@ -17,10 +23,11 @@
 
 <script lang="ts">
 import RoomImage from "@/components/atoms/RoomImage.vue";
+import { IonIcon } from '@ionic/vue';
 
 export default {
   name: 'RoomCard',
-  components: {RoomImage},
+  components: {RoomImage, IonIcon},
   props: ["roomObject", "roomIndex"],
   data() {
     return {
