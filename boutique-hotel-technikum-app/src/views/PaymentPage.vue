@@ -30,34 +30,33 @@
           />
           <ion-button shape="round"  @click.prevent="saveBooking">
               Order
-              <ion-icon slot="end" :icon="chevronForward "></ion-icon>
+              <ion-icon slot="end" :icon="chevronForward() "></ion-icon>
           </ion-button>
       </form>
     </ion-content>
   </ion-page>
 </template>
 
-<script>
+<script lang="ts">
 import PaymentTemplate from '@/components/PaymentTemplate.vue';
 import { useCustomerStore } from '@/stores/customer'
 import {useBookingStore} from "@/stores/booking";
-import { useRoute } from 'vue-router';
-import { watch } from 'vue';
-
-const router = useRoute();
-
-const routeToConfimationpage = () => {
-  router.push({ name: 'Search', query: { start: start, end: end } });
-};
-
-//const start = route.query.start;
-//const end = route.query.end;
-//watch(() => route.path, () => {});
+import {useRouter} from 'vue-router';
+import {chevronForward} from "ionicons/icons";
 
 export default {
     name: 'PaymentPage',
-    components: {
-        PaymentTemplate
+    components: {PaymentTemplate },
+    setup() {
+      const router = useRouter();
+
+      async function routeToConfimationpage(id: number) {
+        await router.push({ name: 'Booking Confirmation', query: { id: id} });
+      }
+
+      return {
+        routeToConfimationpage
+      }
     },
     data: () => {
         return {
@@ -79,6 +78,9 @@ export default {
         }
     },
     methods: {
+      chevronForward() {
+        return chevronForward
+      },
         updateName(value) { this.name = value; },
         updateSurname(value) { this.surname = value; },
         updatePhoneNumber(value) { this.phoneNumber = value; },
