@@ -1,7 +1,6 @@
 <template>
   <ion-card class="height style-children">
-    <img class="image-width" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-
+    <RoomImage></RoomImage>
     <ion-card-header >
       <ion-card-title>{{room.title}}</ion-card-title>
       <ion-card-subtitle>{{room.price}}/Night</ion-card-subtitle>
@@ -17,8 +16,11 @@
 </template>
 
 <script lang="ts">
+import RoomImage from "@/components/atoms/RoomImage.vue";
+
 export default {
   name: 'RoomCard',
+  components: {RoomImage},
   props: ["roomObject", "roomIndex"],
   data() {
     return {

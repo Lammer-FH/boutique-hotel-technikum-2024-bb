@@ -31,8 +31,8 @@
 <script setup lang="ts">
 // Example how to use store
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import DatePicker from "@/components/DatePicker.vue";
-import SearchOverviewPage from "@/views/SearchOverviewPage.vue";
+import DatePicker from "@/components/atoms/DatePicker.vue";
+import SearchOverviewPage from "@/views/SearchRoomsPage.vue";
 import { useCustomerStore } from '@/stores/customer'
 import {ref} from "vue";
 import {useRoomsStore} from "@/stores/room";
