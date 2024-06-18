@@ -16,24 +16,13 @@
 <script lang="ts">
 import DatePicker from "@/components/atoms/DatePicker.vue";
 
+
+
 export default {
   name: 'SearchForRoomsCard',
   components: {DatePicker},
-  data() {
-    return {
-      searchModel: {
-        startDateModel: {
-          label: 'Pick Start Date:',
-          date: ''
-        },
-        endDateModel: {
-          label: 'Pick End Date:',
-          date: ''
-        }
-      }
-
-    }
-  }, methods: {
+  props: ["searchModel"],
+  methods: {
     // todo click event search
     searchForRooms(){
       if(this.searchModel.startDateModel.date > this.searchModel.endDateModel.date){

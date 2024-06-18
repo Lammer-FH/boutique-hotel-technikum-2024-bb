@@ -2,6 +2,9 @@
 import { ref, computed } from 'vue';
 import FooterSegment from '@/components/FooterSegment.vue';
 import SearchForRoomsCard from "@/components/organisms/SearchForRoomsCard.vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const fullText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Additional details here. Continue the description of the text, providing more in-depth information. This area can be used to extend any type of content or information you wish to remain initially hidden.";
 const truncatedLength = 120;
@@ -14,6 +17,24 @@ const displayedText = computed(() => {
 const toggleMoreText = () => {
   showMoreText.value = true;
 };
+
+const searcForRooms = (start: string, end: string) => {
+  console.log("routing!");
+  router.push({ name: 'Search', query: { start: start, end: end } });
+};
+
+const searchModel = {
+  startDateModel: {
+    label: 'Pick Start Date:',
+    date: ''
+  },
+  endDateModel: {
+    label: 'Pick End Date:',
+    date: ''
+  }
+}
+
+
 </script>
 
 <template>
@@ -24,7 +45,7 @@ const toggleMoreText = () => {
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <SearchForRoomsCard></SearchForRoomsCard>
+      <SearchForRoomsCard @search-for-rooms="searcForRooms" :search-model="searchModel"></SearchForRoomsCard>
       <ion-card>
         <div class="image-container">
           <img src="" alt="Descriptive Text of Image">

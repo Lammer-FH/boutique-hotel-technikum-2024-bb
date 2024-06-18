@@ -1,5 +1,5 @@
 <template>
-  <SearchForRoomsCard @search-for-rooms="searcForRooms"></SearchForRoomsCard>
+  <SearchForRoomsCard @search-for-rooms="searcForRooms" :search-model="searchModel"></SearchForRoomsCard>
   <ListOfRooms :room-list="roomList"></ListOfRooms>
 </template>
 
@@ -15,9 +15,33 @@ export default {
   data() {
     return {
       roomStore: useRoomsStore(),
-      roomList: ref<any[]>([])
+      roomList: ref<any[]>([]),
+      searchModel: {
+        startDateModel: {
+          label: 'Pick Start Date:',
+          date: this.start || ''
+        },
+        endDateModel: {
+          label: 'Pick End Date:',
+          date: this.end || ''
+        }
+      }
     }
-  }, methods: {
+  },
+  props: {
+    start: String,
+    end: String
+  },
+  mounted() {
+    if(this.start && this.end) {
+      this.searcForRooms(this.start, this.end);
+    }
+    else {
+      this.searcForRooms('', '')
+    }
+
+  },
+  methods: {
     async searcForRooms(start: string, end: string) {
       if(start === '' || end === ''){
         console.log("fetchrooms");
