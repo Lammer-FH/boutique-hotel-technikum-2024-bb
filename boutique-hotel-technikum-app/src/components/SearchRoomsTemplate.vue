@@ -1,5 +1,5 @@
 <template>
-  <SearchForRoomsCard></SearchForRoomsCard>
+  <SearchForRoomsCard @search-for-rooms="searcForRooms"></SearchForRoomsCard>
   <ListOfRooms :room-list="roomList"></ListOfRooms>
 </template>
 
@@ -12,23 +12,26 @@ import ListOfRooms from "@/components/organisms/ListOfRooms.vue";
 
 export default {
   components: {ListOfRooms, SearchForRoomsCard, RoomCard},
-  setup() {
-    const roomStore = useRoomsStore();
-    const roomList = ref<[]>([]);
-
-    onMounted(async () => {
-      await roomStore.fetchRooms();
-      roomList.value = roomStore.rooms;
-    });
-    console.log(roomList.value)
-    return { roomList };
-  },
   data() {
     return {
-      // todo get actual room list
       roomStore: useRoomsStore(),
+      roomList: ref<any[]>([])
     }
-  }
+  }, methods: {
+    async searcForRooms(start: string, end: string) {
+      if(start === '' || end === ''){
+        console.log("fetchrooms");
+        await this.roomStore.fetchRooms();
+        this.roomList = this.roomStore.rooms;
+      }
+      else {
+        console.log("fetchRoomsByDates");
+        await this.roomStore.fetchRoomsByDates(start, end);
+        this.roomList = this.roomStore.rooms;
+      }
+
+    },
+  },
 }
 </script>
 
