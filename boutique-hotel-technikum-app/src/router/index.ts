@@ -4,7 +4,6 @@ import HomePage from '@/views/HomePage.vue';
 import PaymentPage from '@/views/PaymentPage.vue';
 import LandingPage from '@/views/LandingPage.vue';
 import SearchRoomsPage from "@/views/SearchRoomsPage.vue";
-import SingleRoomPage from "@/views/SingleRoomPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,12 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     component: SearchRoomsPage,
     meta: {title: 'Search'}
   },
-  {
-    path: '/room',
-    name: 'Room',
-    component: SingleRoomPage,
-    meta: {title: 'Room Details'}
-  }
+
 ]
 
 const router = createRouter({

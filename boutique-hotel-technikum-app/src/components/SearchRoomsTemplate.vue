@@ -1,5 +1,5 @@
 <template>
-  <SearchForRoomsCard @search-for-rooms="searchForRooms" :search-model="searchModel"></SearchForRoomsCard>
+  <SearchForRoomsCard @search-for-rooms="searcForRooms" :search-model="searchModel"></SearchForRoomsCard>
   <ListOfRooms :room-list="roomList"></ListOfRooms>
 </template>
 
@@ -34,15 +34,15 @@ export default {
   },
   mounted() {
     if(this.start && this.end) {
-      this.searchForRooms(this.start, this.end);
+      this.searcForRooms(this.start, this.end);
     }
     else {
-      this.searchForRooms('', '')
+      this.searcForRooms('', '')
     }
 
   },
   methods: {
-    async searchForRooms(start: string, end: string) {
+    async searcForRooms(start: string, end: string) {
       if(start === '' || end === ''){
         console.log("fetchrooms");
         await this.roomStore.fetchRooms();
