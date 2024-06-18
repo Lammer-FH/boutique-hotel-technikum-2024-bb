@@ -66,7 +66,7 @@ export const useBookingStore = defineStore({
                 this.cancelled = booking.cancelled;
                 return booking
             } catch (error) {
-                console.error('Error creating customer data:', error);
+                console.error('Error creating booking data:', error);
             }
         },
     },
