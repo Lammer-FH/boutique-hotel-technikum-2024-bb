@@ -5,6 +5,7 @@ import PaymentPage from '@/views/PaymentPage.vue';
 import LandingPage from '@/views/LandingPage.vue';
 import SearchRoomsPage from "@/views/SearchRoomsPage.vue";
 import SingleRoomPage from "@/views/SingleRoomPage.vue";
+import BookingConfirmationPage from '@/views/BookingConfirmationPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Payment',
     component: PaymentPage,
     meta: {title: 'Payment Details'}
+  },
+  {
+    path: '/booking-confirmation',
+    name: 'BookingConfirmation',
+    component: BookingConfirmationPage,
+    meta: {title: 'Booking Confirmation'}
   },
   {
     path: '/welcome',
