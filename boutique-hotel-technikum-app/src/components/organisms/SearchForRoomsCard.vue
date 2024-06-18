@@ -36,18 +36,13 @@ export default {
   }, methods: {
     // todo click event search
     searchForRooms(){
-      if(this.searchModel.startDateModel.date === '' || this.searchModel.endDateModel.date === ''){
-        // todo error
-        console.log("no dates defined!")
-      }
-      else if(this.searchModel.startDateModel.date > this.searchModel.endDateModel.date){
+      if(this.searchModel.startDateModel.date > this.searchModel.endDateModel.date){
         // todo error
         console.log("end date before start date not possible!")
       }
       else {
-        // todo do a search
-        // todo datumsformast richtig?????
-        console.log("search for room for guest from " + this.searchModel.startDateModel.date + " until " + this.searchModel.endDateModel.date);
+        console.log("search for rooms for start: " +  this.searchModel.startDateModel.date + " and end: " + this.searchModel.endDateModel.date);
+        this.$emit("search-for-rooms", this.searchModel.startDateModel.date, this.searchModel.endDateModel.date);
       }
     }
   },
