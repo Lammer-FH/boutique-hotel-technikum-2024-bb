@@ -18,7 +18,7 @@ const toggleMoreText = () => {
   showMoreText.value = true;
 };
 
-const searcForRooms = (start: string, end: string) => {
+const searchForRooms = (start: string, end: string) => {
   console.log("routing!");
   router.push({ name: 'Search', query: { start: start, end: end } });
 };
@@ -39,13 +39,8 @@ const searchModel = {
 
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Welcome to Boutique-Technikum</ion-title>
-      </ion-toolbar>
-    </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <SearchForRoomsCard @search-for-rooms="searcForRooms" :search-model="searchModel"></SearchForRoomsCard>
+      <SearchForRoomsCard @search-for-rooms="searchForRooms" :search-model="searchModel"></SearchForRoomsCard>
       <ion-card>
         <div class="image-container">
           <img src="" alt="Descriptive Text of Image">
