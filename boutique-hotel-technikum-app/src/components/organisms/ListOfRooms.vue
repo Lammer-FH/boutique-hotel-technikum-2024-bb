@@ -13,23 +13,10 @@ import {onMounted, ref} from "vue";
 export default {
   name: 'ListOfRooms',
   components: {RoomCard},
-  setup() {
-      const roomStore = useRoomsStore();
-      const roomList = ref<[]>([]);
-
-      onMounted(async () => {
-          await roomStore.fetchRooms();
-          roomList.value = roomStore.rooms;
-      });
-      console.log(roomList.value)
-      return { roomList };
-  },
+  props: ["roomList"],
   data() {
-    return {
-      // todo get actual room list
-      roomStore: useRoomsStore(),
-    }
-  }, methods: {
+  },
+  methods: {
     selectRoom(index: number) {
       // todo maybe call view details? what about select then?
       console.log("select room with id: " + this.roomList[index].id + " and go to detail view");
