@@ -4,7 +4,7 @@
             <h1 class="ion-text-center">Booking Confirmed</h1>
             <p class="ion-text-center">We are pleased to inform you that your reservation request has been received and confirmed. Thank you!</p>
             <h4>Booking Details</h4>
-            <BookingDetailsConfirmed />
+            <BookingDetailsConfirmed :title="title"/>
             <RoomCard :roomObject="room" />
             <h4>Personal Information</h4>
             <PersonalInformationCard />
@@ -28,7 +28,8 @@ export default {
         FooterSegment
     },
     props: {
-        room: {}
-    }
+        title: String,
+        roomObject: {}
+    },
 };
 </script>

@@ -14,16 +14,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="3">Nights:</ion-col>
-                    <ion-col><strong>{{ nights }}</strong></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="3">Guests:</ion-col>
-                    <ion-col><strong>{{ guests }}</strong></ion-col>
-                </ion-row>
-                <ion-row>
                     <ion-col size="3">Room:</ion-col>
                     <ion-col><strong>{{ room }}</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="3">Nights:</ion-col>
+                    <ion-col><strong>{{ nights }}</strong></ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col size="3">Total:</ion-col>
@@ -40,8 +36,7 @@ export default {
     props: {
         fromDate: String,
         toDate: String,
-        nights: Number,
-        guests: String,
+        nights: String,
         room: String,
         total: String
     }
