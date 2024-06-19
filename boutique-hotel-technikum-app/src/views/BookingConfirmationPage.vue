@@ -5,14 +5,13 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-      <BookingConfirmationTemplate :title="title" :roomObject="room"/>
+      <BookingConfirmationTemplate :roomId="roomId" :title="title"/>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 import BookingConfirmationTemplate from '@/components/BookingConfirmationTemplate.vue';
-import {useRoomsStore} from "@/stores/room";
 import { useRoute } from 'vue-router';
 import { watch } from 'vue';
 
@@ -37,21 +36,6 @@ export default {
         roomId
       }
   },
-  data: () => {
-    return{
-      roomStore: useRoomsStore(),
-      room: {},
-    }
-  },
-  async mounted() {
-    await this.getRoom()
-  },
-  methods: {
-    async getRoom() {
-      console.log("fetch room");
-      this.room = await this.roomStore.fetchRoomById(this.roomId);
-      console.log(room)
-    },
-  },
+
 };
 </script>

@@ -2,7 +2,6 @@
   <ion-page>
 
     <RoomDetailsCard v-if="roomObject.length > 0" :room="roomObject[0]" :start="startDate" :end="endDate" />
-    room id: {{ roomId}}
   </ion-page>
 </template>
 

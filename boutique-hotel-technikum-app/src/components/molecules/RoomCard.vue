@@ -43,6 +43,8 @@ export default {
   async mounted() {
       await this.getRoomExtras();
       this.getIconLinks();
+      console.log("in room card with rooM:")
+      console.log(this.room)
   },
   methods: {
     async getRoomExtras() {
