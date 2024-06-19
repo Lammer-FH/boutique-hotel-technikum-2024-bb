@@ -13,8 +13,9 @@
 <script>
 import BookingConfirmationTemplate from '@/components/BookingConfirmationTemplate.vue';
 import {useRoomsStore} from "@/stores/room";
-import { useRoute } from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import { watch } from 'vue';
+
 
 export default {
   name: 'BookingConfirmationPage',
