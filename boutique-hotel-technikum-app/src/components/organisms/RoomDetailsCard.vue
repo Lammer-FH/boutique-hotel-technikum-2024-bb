@@ -3,22 +3,22 @@
     <!--<ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>-->
     <ion-card-content>
       <TextLabel text="DATES"/>
-      <TextLabel text="`From: ${formatDate(startDate)} To: ${formatDate(endDate)}`"/>
+      <TextLabel :text="`From: ${formatDate(start)} To: ${formatDate(end)}`"/>
       <TextLabel text="DETAILS"/>
-      <TextLabel :text="room.description"/>
+      <TextLabel :text="roomStore.rooms[0].description"/>
       <TextLabel text="EXTRAS"/>
       <span class="style-children">
         <div v-if="iconPathList.length > 0" v-for="(icon, index) in iconPathList" :key="icon">
             <ion-icon class="right-padding" :src="icon"></ion-icon>
         </div>
-      </span>-->
+      </span>
       <ion-card-header>
         <ion-card-title>Price Summary</ion-card-title>
       </ion-card-header>
       <TextLabel :text="`Nights: ${getNights()}`"/>
       <TextLabel :text="`Price per Night: €${roomStore.rooms[0].price}`"/>
       <TextLabel :text="`Total Price: €${getTotalPrice().toFixed(2)}`"/>
-      <ion-button expand="block" @click="onConfirmPayment">Payment Details</ion-button>
+      <ion-button :disabled="isDisabled" expand="block" @click="onConfirmPayment">Payment Details</ion-button>
     </ion-card-content>
   </ion-card>
 </template>
@@ -31,11 +31,23 @@ import TextLabel from "@/components/atoms/Label.vue";
 import {useExtraTypeStore} from "@/stores/extraType";
 import {ref} from "vue";
 import {useRoomsStore} from "@/stores/room";
+import {useRouter} from "vue-router";
 
 export default {
   name: 'RoomDetailsCard',
   components: {TextLabel, IonIcon },
   props: ["room", "start", "end"],
+  setup() {
+    const router = useRouter();
+
+    async function goToPayment(id: number, start: string, end: string) {
+      await router.push({ name: 'Payment', query: { id: id, start: start, end: end } });
+    }
+
+    return {
+      goToPayment
+    }
+  },
   data() {
     return {
       roomObject: this.room,
@@ -43,7 +55,8 @@ export default {
       roomExtraStore: useRoomExtraStore(),
       extraTypeStore: useExtraTypeStore(),
       extraList: ref<any[]>([]),
-      iconPathList: ['']
+      iconPathList: [''],
+      isDisabled: !this.start || !this.end,
     }
   },
   async mounted() {
@@ -81,7 +94,7 @@ export default {
       return this.getNights() * this.room.price;
     },
     onConfirmPayment() {
-      this.$emit('confirmPayment');
+      this.goToPayment(id, this.start, this.end);
     },
     formatDate(date: string) {
       return new Date(date).toLocaleDateString();
@@ -103,5 +116,12 @@ ion-button {
 }
 p {
   margin: 8px 0;
+}
+span.style-children {
+  display: flex;
+  flex-direction: row;
+}
+ion-icon.right-padding {
+  padding-right: 0.25rem;
 }
 </style>
