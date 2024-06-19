@@ -6,7 +6,6 @@
             <BookingDetail label="Email">boutique-usa@gmail.com</BookingDetail>
             <BookingDetail label="Address">Höchstädtpl. 6, 1200 Wien</BookingDetail>
         </ion-card-content>
-        <img alt="Location" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-card>
 </template>
 

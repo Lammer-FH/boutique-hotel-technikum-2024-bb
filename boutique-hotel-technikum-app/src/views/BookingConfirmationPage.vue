@@ -48,7 +48,6 @@ export default {
     async getRoom() {
       console.log("fetch room");
       this.room = await this.roomStore.fetchRoomById(this.roomId);
-      console.log(room)
     },
   },
   async mounted() {
