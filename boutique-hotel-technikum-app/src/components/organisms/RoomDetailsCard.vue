@@ -5,7 +5,7 @@
       <TextLabel text="DATES"/>
       <TextLabel :text="`From: ${formatDate(start)} To: ${formatDate(end)}`"/>
       <TextLabel text="DETAILS"/>
-      <TextLabel :text="roomStore.rooms[0].description"/>
+      <TextLabel :text="roomObject.description"/>
       <TextLabel text="EXTRAS"/>
       <span class="style-children">
         <div v-if="iconPathList.length > 0" v-for="(icon, index) in iconPathList" :key="icon">
@@ -16,7 +16,7 @@
         <ion-card-title>Price Summary</ion-card-title>
       </ion-card-header>
       <TextLabel :text="`Nights: ${getNights()}`"/>
-      <TextLabel :text="`Price per Night: €${roomStore.rooms[0].price}`"/>
+      <TextLabel :text="`Price per Night: €${roomObject.price}`"/>
       <TextLabel :text="`Total Price: €${getTotalPrice().toFixed(2)}`"/>
       <ion-button :disabled="isDisabled" expand="block" @click="onConfirmPayment">Payment Details</ion-button>
     </ion-card-content>
@@ -94,7 +94,7 @@ export default {
       return this.getNights() * this.room.price;
     },
     onConfirmPayment() {
-      this.goToPayment(id, this.start, this.end);
+      this.goToPayment(this.room.id, this.start, this.end);
     },
     formatDate(date: string) {
       return new Date(date).toLocaleDateString();
