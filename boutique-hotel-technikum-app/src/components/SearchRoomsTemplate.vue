@@ -1,17 +1,29 @@
 <template>
   <SearchForRoomsCard @search-for-rooms="searchForRooms" :search-model="searchModel"></SearchForRoomsCard>
-  <ListOfRooms :room-list="roomList"></ListOfRooms>
+  <ListOfRooms :room-list="roomList" @goToDetails="goToRoomDetails"></ListOfRooms>
 </template>
 
 <script lang="ts">
-import RoomCard from "@/components/molecules/RoomCard.vue";
 import {useRoomsStore} from "@/stores/room";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import SearchForRoomsCard from "@/components/organisms/SearchForRoomsCard.vue";
 import ListOfRooms from "@/components/organisms/ListOfRooms.vue";
+import {useRouter} from "vue-router";
 
 export default {
-  components: {ListOfRooms, SearchForRoomsCard, RoomCard},
+  components: {ListOfRooms, SearchForRoomsCard},
+  setup() {
+    const router = useRouter();
+
+    async function goToDetails(id: number, start: string, end: string) {
+      console.log("routing to " + id)
+      await router.push({ name: 'Room', query: { id: id, start: start, end: end } });
+    }
+
+    return {
+      goToDetails
+    }
+  },
   data() {
     return {
       roomStore: useRoomsStore(),
@@ -57,6 +69,10 @@ export default {
       }
 
     },
+    goToRoomDetails(id: number){
+      console.log("go to router");
+      this.goToDetails(id, this.searchModel.startDateModel.date, this.searchModel.endDateModel.date);
+    }
   },
 }
 </script>

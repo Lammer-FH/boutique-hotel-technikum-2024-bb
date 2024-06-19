@@ -7,12 +7,9 @@ const route = useRoute();
 
 const start = route.query.start;
 const end = route.query.end;
-watch(() => route.path, () => {
-  // Reset your component's state here
-});
+watch(() => route.path, () => {});
 
 </script>
-
 
 <template>
   <ion-page>
