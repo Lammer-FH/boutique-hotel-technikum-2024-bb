@@ -1,11 +1,12 @@
 <template>
   <ion-card class="room-details-card">
-    <!--<ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>-->
+    <header-title :title="`${roomStore.rooms[0].title}`"></header-title>
+    <ImageAtom :filePath="`./images/rooms/${roomStore.rooms[0].image}.jpg`"></ImageAtom>
     <ion-card-content>
       <TextLabel text="DATES"/>
-      <TextLabel text="`From: ${formatDate(startDate)} To: ${formatDate(endDate)}`"/>
+      <TextLabel :text="`From: ${this.room.start} To: ${formatDate(end)}`"/>
       <TextLabel text="DETAILS"/>
-      <TextLabel :text="room.description"/>
+      <TextLabel :text="roomStore.rooms[0].description"/>
       <TextLabel text="EXTRAS"/>
       <span class="style-children">
         <div v-if="iconPathList.length > 0" v-for="(icon, index) in iconPathList" :key="icon">
@@ -31,10 +32,12 @@ import TextLabel from "@/components/atoms/Label.vue";
 import {useExtraTypeStore} from "@/stores/extraType";
 import {ref} from "vue";
 import {useRoomsStore} from "@/stores/room";
+import ImageAtom from "@/components/atoms/Image.vue";
+import HeaderTitle from "@/components/atoms/HeaderTitle.vue";
 
 export default {
   name: 'RoomDetailsCard',
-  components: {TextLabel, IonIcon },
+  components: {HeaderTitle, ImageAtom, TextLabel, IonIcon },
   props: ["room", "start", "end"],
   data() {
     return {
