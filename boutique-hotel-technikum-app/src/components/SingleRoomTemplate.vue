@@ -15,19 +15,17 @@ export default {
     return {
       roomStore: useRoomsStore(),
       roomObject: ref<any[]>([]),
-      startDate: this.start,
-      endDate: this.end
     }
   },
   props: {
     roomId: Number,
-    start: String,
-    end: String
+    startDate: String,
+    endDate: String
   },
-  mounted() {
+  async mounted() {
     if (this.roomId) {
       console.log(`Attempting to fetch details for room ID: ${this.roomId}`);
-      this.fetchRoomById(this.roomId);
+      await this.fetchRoomById(this.roomId);
     } else {
       console.error("No room ID provided, cannot fetch room details.");
     }
@@ -39,7 +37,7 @@ export default {
         return;
       }
       console.log(`Fetching room details for ID: ${roomId}`);
-      this.roomObject.push(this.roomStore.fetchRoomById(roomId));
+      this.roomObject.push(await this.roomStore.fetchRoomById(roomId));
     }
   }
 }
