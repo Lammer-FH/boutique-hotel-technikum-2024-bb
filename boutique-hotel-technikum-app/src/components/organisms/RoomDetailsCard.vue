@@ -16,7 +16,7 @@
         <ion-card-title>Price Summary</ion-card-title>
       </ion-card-header>
       <TextLabel :text="`Nights: ${getNights()}`"/>
-      <TextLabel :text="`Price per Night: €${room.price.toFixed(2)}`"/>
+      <TextLabel :text="`Price per Night: €${roomStore.rooms[0].price}`"/>
       <TextLabel :text="`Total Price: €${getTotalPrice().toFixed(2)}`"/>
       <ion-button expand="block" @click="onConfirmPayment">Payment Details</ion-button>
     </ion-card-content>
@@ -30,6 +30,7 @@ import { differenceInCalendarDays, parseISO } from 'date-fns';
 import TextLabel from "@/components/atoms/Label.vue";
 import {useExtraTypeStore} from "@/stores/extraType";
 import {ref} from "vue";
+import {useRoomsStore} from "@/stores/room";
 
 export default {
   name: 'RoomDetailsCard',
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       roomObject: this.room,
+      roomStore: useRoomsStore(),
       roomExtraStore: useRoomExtraStore(),
       extraTypeStore: useExtraTypeStore(),
       extraList: ref<any[]>([]),
@@ -71,8 +73,8 @@ export default {
       return './icons/' + extra + ".svg";
     },
     getNights() {
-      const start = parseISO(this.start);
-      const end = parseISO(this.end);
+      const start = this.start;//parseISO(this.start);
+      const end = this.end;//parseISO(this.end);
       return Math.max(differenceInCalendarDays(end, start), 0);
     },
     getTotalPrice() {
