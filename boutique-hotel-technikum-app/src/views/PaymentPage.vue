@@ -41,6 +41,7 @@ import PaymentTemplate from '@/components/PaymentTemplate.vue';
 import { useCustomerStore } from '@/stores/customer'
 import {useBookingStore} from "@/stores/booking";
 import {useRoomsStore} from "@/stores/room";
+import {ref} from "vue";
 
 export default {
     name: 'PaymentPage',
@@ -68,7 +69,7 @@ export default {
             showAlert: false,
             alertHeader: '',
             alertMessage: '',
-            alertButton: ['OK']
+            alertButton: ['OK'],
         }
     },
     methods: {
@@ -88,9 +89,16 @@ export default {
                 if (this.email !== this.confirmEmail) {
                     throw new Error('Emails do not match.');
                 }
+                let rooms = this.searchForRooms();
+                let available = this.checkRoomAvailability(rooms, 1) // TO-DO: get room id
 
-                let guest = await this.saveGuest();
-                this.createBooking(guest);
+                if(available){
+                    let guest = await this.saveGuest();
+                    this.createBooking(guest);
+                }
+                else{
+                    throw new Error('Room is not available.');
+                }
             } catch (error) {
                 this.showError(error.message);
                 console.error("Error saving booking:", error);
@@ -111,6 +119,17 @@ export default {
             this.alertMessage = message;
             this.showAlert = true;
         },
+        async searchForRooms() {
+            console.log("fetchRoomsByDates");
+            await this.roomStore.fetchRoomsByDates(this.fromDate, this.toDate);
+            return this.roomStore.rooms;
+        },
+        checkRoomAvailability(rooms, roomId){
+            for(let room in rooms){
+                if(room.id == roomId) return true;
+            }
+            return false;
+        }
     }
 };
 </script>
