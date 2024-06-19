@@ -101,7 +101,7 @@ img.image-width {
 ion-icon.right-padding {
   padding-right: 0.25rem;
 }
-h3.tiny-margin {
+h4.tiny-margin {
   margin: 0.25rem;
 }
 p.tiny-margin {
