@@ -13,6 +13,7 @@
 <script>
 import BookingConfirmationTemplate from '@/components/BookingConfirmationTemplate.vue';
 import {useRoomsStore} from "@/stores/room";
+import { useCustomerStore } from '@/stores/customer'
 import { useRoute } from 'vue-router';
 import { watch } from 'vue';
 
@@ -30,6 +31,7 @@ export default {
   data: () => {
     return{
       roomStore: useRoomsStore(),
+      customer: useCustomerStore(),
       room: {},
       roomId: 1
     }
@@ -41,6 +43,10 @@ export default {
       this.room = this.roomStore.room;
       console.log(room)
     },
+    getGuest(){
+      let guest = this.customer.customer.id;
+      console.log(guest)
+    }
   },
 };
 </script>

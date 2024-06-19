@@ -74,7 +74,10 @@ export default {
       }
 
       return {
-        routeToConfimationpage
+        routeToConfimationpage,
+        roomId,
+        startDate,
+        endDate
       }
     },
     data: () => {
@@ -82,8 +85,8 @@ export default {
             customer: useCustomerStore(),
             bookings: useBookingStore(),
             roomStore: useRoomsStore(),
-            fromDate: "2024-07-06",
-            toDate: "2024-07-07",
+            fromDate: "",
+            toDate: "",
             nights: 1,
             guests: "1 Student",
             room: "1 Basic Single Bedroom",
@@ -121,8 +124,8 @@ export default {
                 if (this.email !== this.confirmEmail) {
                     throw new Error('Emails do not match.');
                 }
-                let rooms = this.searchForRooms();t
-                let available = this.checkRoomAvailability(rooms, 1) // TO-DO: get room id
+                let rooms = await this.searchForRooms();
+                let available = this.checkRoomAvailability(rooms,this.roomId)
 
                 if(available){
                     let guest = await this.saveGuest();
@@ -154,14 +157,17 @@ export default {
         },
         async searchForRooms() {
             console.log("fetchRoomsByDates");
-            await this.roomStore.fetchRoomsByDates(this.fromDate, this.toDate);
-            return this.roomStore.rooms;
+            let rooms = await this.roomStore.fetchRoomsByDates(this.fromDate, this.toDate);
+            return rooms;
         },
         checkRoomAvailability(rooms, roomId){
-            for(let room in rooms){
-                if(room.id == roomId) return true;
-            }
-            return false;
+            let available = false;
+            rooms.forEach((room) => {
+                if(room.id === roomId) {
+                    available = true;
+                }
+            })
+            return available;
         }
     }
 };
