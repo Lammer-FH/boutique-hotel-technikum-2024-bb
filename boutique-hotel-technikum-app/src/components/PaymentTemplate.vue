@@ -2,9 +2,8 @@
     <BookingDetailsOverview
         :fromDate="fromDate"
         :toDate="toDate"
-        :nights="nights"
-        :guests="guests"
         :room="room"
+        :nights="nights"
         :total="total" />
     <PersonalInformationForm 
         :name="name"
@@ -36,9 +35,8 @@ export default {
     props: {
         fromDate: String,
         toDate: String,
-        nights: Number,
-        guests: String,
         room: String,
+        nights: String,
         total: String,
         name: String,
         surname: String,

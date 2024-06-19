@@ -5,7 +5,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-      <BookingConfirmationTemplate :room="room" />
+      <BookingConfirmationTemplate :title="title" :roomObject="room"/>
     </ion-content>
   </ion-page>
 </template>
@@ -13,40 +13,45 @@
 <script>
 import BookingConfirmationTemplate from '@/components/BookingConfirmationTemplate.vue';
 import {useRoomsStore} from "@/stores/room";
-import { useCustomerStore } from '@/stores/customer'
 import { useRoute } from 'vue-router';
 import { watch } from 'vue';
-
-const route = useRoute();
-
-//const start = route.query.start;
-//const end = route.query.end;
-//watch(() => route.path, () => {});
 
 export default {
   name: 'BookingConfirmationPage',
   components: {
     BookingConfirmationTemplate
   },
+  setup(){
+    const route = useRoute();
+
+    const roomId = route.query.id;
+    const start = route.query.start;
+    const end = route.query.end;
+    const title = route.query.title;
+    watch(() => route.path, () => {});
+
+    return {
+        start,
+        end,
+        title,
+        roomId
+      }
+  },
   data: () => {
     return{
       roomStore: useRoomsStore(),
-      customer: useCustomerStore(),
       room: {},
-      roomId: 1
     }
+  },
+  async mounted() {
+    await this.getRoom()
   },
   methods: {
     async getRoom() {
       console.log("fetch room");
-      await this.roomStore.fetchRoomById(roomId);
-      this.room = this.roomStore.room;
+      this.room = await this.roomStore.fetchRoomById(this.roomId);
       console.log(room)
     },
-    getGuest(){
-      let guest = this.customer.customer.id;
-      console.log(guest)
-    }
   },
 };
 </script>

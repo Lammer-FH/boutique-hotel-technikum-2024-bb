@@ -1,24 +1,35 @@
 <template>
     <ion-card>
         <ion-card-content>
-            <BookingDetail label="Room"></BookingDetail>
-            <BookingDetail label="Booking-Number">1234</BookingDetail>
-            <BookingDetail label="Status">Confirmed</BookingDetail>
-            <BookingDetail label="Check-in">July 06, 2024</BookingDetail>
-            <BookingDetail label="Check-out">July 07, 2024</BookingDetail>
-            <BookingDetail label="Total">0,00€</BookingDetail>
-            <BookingDetail label="Breakfast">Included</BookingDetail>
+            <BookingDetail label="Room">{{ title }}</BookingDetail>
+            <BookingDetail label="Booking-Number">{{ this.bookings.id }}</BookingDetail>
+            <BookingDetail label="Status" v-if="this.bookings.cancelled">Cancelled</BookingDetail>
+            <BookingDetail label="Status" v-else>Confirmed</BookingDetail>
+            <BookingDetail label="Check-in">{{ this.bookings.bookingStart }}</BookingDetail>
+            <BookingDetail label="Check-out">{{ this.bookings.bookingEnd }}</BookingDetail>
+            <BookingDetail label="Total">{{ this.bookings.totalCost }}</BookingDetail>
+            <BookingDetail label="Breakfast" v-if="this.bookings.breakfast">Included</BookingDetail>
+            <BookingDetail label="Breakfast" v-else>Not Included</BookingDetail>
         </ion-card-content>
     </ion-card>
 </template>
 
 <script>
-import BookingDetail from '../molecules/BookingDetail.vue';
+import BookingDetail from '../molecules/BookingDetail.vue'; 
+import {useBookingStore} from "@/stores/booking";
 
 export default {
     name: 'BookingDetailsConfirmed',
     components: {
         BookingDetail
+    },
+    data: () =>{
+        return{
+            bookings: useBookingStore()
+        }
+    },
+    props: {
+        title: String
     }
 };
 </script>

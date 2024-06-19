@@ -7,12 +7,11 @@
       <ion-content >
       <form @submit.prevent="saveBooking">
           <PaymentTemplate 
-              :fromDate="fromDate"
-              :toDate="toDate"
+              :fromDate="startDate"
+              :toDate="endDate"
+              :room="roomTitle"
               :nights="nights"
-              :guests="guests"
-              :room="room"
-              :total="total"
+              :total="totalPrice"
               :name="name"
               :surname="surname"
               :phoneNumber="phoneNumber"
@@ -65,19 +64,25 @@ export default {
       const route = useRoute();
 
       const roomId = route.query.id;
+      const roomTitle = route.query.title;
       const startDate = route.query.start;
       const endDate = route.query.end;
+      const nights = route.query.nights;
+      const totalPrice = route.query.totalPrice;
       watch(() => route.path, () => {});
 
       async function routeToConfimationpage() {
-        await router.push({ name: 'Booking Confirmation', query: { id: roomId, start: startDate, end: endDate} });
+        await router.push({ name: 'Booking Confirmation', query: { id: roomId, start: startDate, end: endDate, title: roomTitle} });
       }
 
       return {
         routeToConfimationpage,
         roomId,
         startDate,
-        endDate
+        endDate,
+        roomTitle,
+        nights,
+        totalPrice
       }
     },
     data: () => {
@@ -87,17 +92,16 @@ export default {
             roomStore: useRoomsStore(),
             fromDate: "",
             toDate: "",
-            nights: 1,
-            guests: "1 Student",
-            room: "1 Basic Single Bedroom",
-            total: "40,00",
+            room: "",
+            nights: "",
+            total: "",
             name: '',
             surname: '',
             phoneNumber: '',
             address: '',
             email: '',
             confirmEmail: '',
-            includeBreakfast: 'yes',
+            includeBreakfast: '',
             showAlert: false,
             alertHeader: '',
             alertMessage: '',
@@ -146,8 +150,8 @@ export default {
         },
         async createBooking(guest){
             let breakfastOption = this.includeBreakfast == 'yes' ? true : false
-            let totalCost = parseFloat(this.total)
-            let booking = await this.bookings.createBooking(this.room,"notes",guest.id,1,this.fromDate,this.toDate,breakfastOption,totalCost)
+            let totalCost = parseFloat(this.totalPrice)
+            let booking = await this.bookings.createBooking(this.room,"notes",guest.id,1,this.startDate,this.endDate,breakfastOption,totalCost)
             console.log(booking);
         },
         showError(message) {
@@ -157,11 +161,13 @@ export default {
         },
         async searchForRooms() {
             console.log("fetchRoomsByDates");
-            let rooms = await this.roomStore.fetchRoomsByDates(this.fromDate, this.toDate);
+            console.log(this.startDate);
+            console.log(this.endDate);
+            let rooms = await this.roomStore.fetchRoomsByDates(this.startDate, this.endDate);
             return rooms;
         },
         checkRoomAvailability(rooms, roomId){
-            let available = false;
+            let available = true;
             rooms.forEach((room) => {
                 if(room.id === roomId) {
                     available = true;

@@ -1,9 +1,9 @@
 <template>
     <ion-card>
         <ion-card-content>
-            <BookingDetail label="Full name" :value="customer.name"></BookingDetail>
-            <BookingDetail label="E-Mail" :value="customer.email"></BookingDetail>
-            <BookingDetail label="Telephone phone" :value="customer.phoneNumber"></BookingDetail>
+            <BookingDetail label="Full name">{{ this.customer.name }}</BookingDetail>
+            <BookingDetail label="E-Mail">{{ this.customer.name }}</BookingDetail>
+            <BookingDetail label="Telephone phone">{{ this.customer.phoneNumber }}</BookingDetail>
         </ion-card-content>
     </ion-card>
 </template>
@@ -19,8 +19,7 @@ export default {
     },
     data: () =>{
         return{
-            customerStore: useCustomerStore(),
-            customer: this.customerStore.customer
+            customer: useCustomerStore(),
         }
     }
 };
