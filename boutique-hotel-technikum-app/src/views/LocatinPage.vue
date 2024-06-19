@@ -1,54 +1,45 @@
-<script setup lang="ts">
-
-import {IonPage} from "@ionic/vue";
-</script>
-
 <template>
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <!-- Customize your header if needed -->
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <div class="contact-info">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-        <ion-list>
-          <ion-item>
-            <ion-icon name="location-outline"></ion-icon>
-            <ion-label>123 Main Street, City</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="mail-outline"></ion-icon>
-            <ion-label>info@hoteltechnikum.com</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="call-outline"></ion-icon>
-            <ion-label>+1 123-456-7890</ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
+    <ion-content class="ion-padding">
+      <h2 class="title">Welcome to Hotel Technikum</h2>
+      <h3>Our Ideal Location</h3>
+      <p class="description">
+        Hotel Technikum is strategically situated in the heart of our bustling city. Whether you're here for business or leisure, our prime location ensures convenience and accessibility.
+      </p>
+      <p class="description">
+        <b>City Center:</b> We're just steps away from major attractions, shopping districts, and cultural landmarks. Explore the vibrant streets, dine at local eateries, or catch a show at the nearby theaters.
+      </p>
+      <p class="description">
+        <b>Transport Links:</b> Our hotel is easily accessible from the airport, train station, and major highways. Guests can seamlessly reach us via public transportation or private car.
+      </p>
+      <p class="description">
+        <b>Scenic Views:</b> Enjoy panoramic views of the city skyline from our upper floors. Whether it's sunrise over the rooftops or the glittering lights at night, our location offers a visual treat.
+      </p>
+      <p class="description">
+        Come experience the perfect blend of comfort, convenience, and urban charm at Hotel Technikum. We look forward to welcoming you!
+      </p>
     </ion-content>
   </ion-page>
 </template>
 
 <style scoped>
-.contact-info {
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
-}
-
-h2 {
+/* Customize your styles here */
+.title {
   font-size: 24px;
   color: #333;
   margin-bottom: 10px;
 }
 
-ion-list {
-  --ion-item-background: transparent;
-  --ion-item-text-color: #555;
-  --ion-item-detail-color: #888;
+.description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
 }
-
 </style>
+<script setup lang="ts">
+</script>

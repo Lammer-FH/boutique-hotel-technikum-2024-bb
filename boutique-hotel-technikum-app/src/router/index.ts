@@ -7,6 +7,7 @@ import SingleRoomPage from "@/views/SingleRoomPage.vue";
 import BookingConfirmationPage from "@/views/BookingConfirmationPage.vue";
 import ContactPage from "@/views/ContactPage.vue";
 import AboutUsPage from "@/views/AboutUsPage.vue";
+import LocatinPage from "@/views/LocatinPage.vue";
 
 
 
@@ -62,6 +63,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'About Us',
     component: AboutUsPage,
     meta: {title: 'About Us'}
+  },
+  {
+    path: '/location',
+    name: 'Location',
+    component: LocatinPage,
+    meta: {title: 'Location'}
   },
 ]
 
