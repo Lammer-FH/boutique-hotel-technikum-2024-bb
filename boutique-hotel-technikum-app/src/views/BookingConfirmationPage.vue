@@ -5,9 +5,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-
-      <BookingConfirmationTemplate :room="room" />
-
+      <BookingConfirmationTemplate :title="title" :roomObject="room"/>
     </ion-content>
   </ion-page>
 </template>
@@ -24,39 +22,36 @@ export default {
   components: {
     BookingConfirmationTemplate
   },
-  setup() {
-    const router = useRouter();
+  setup(){
     const route = useRoute();
 
     const roomId = route.query.id;
-    const startDate = route.query.start;
-    const endDate = route.query.end;
+    const start = route.query.start;
+    const end = route.query.end;
+    const title = route.query.title;
     watch(() => route.path, () => {});
 
-    async function routeToConfimationpage() {
-      await router.push({ name: 'Booking Confirmation', query: { id: roomId, start: startDate, end: endDate} });
-    }
-
     return {
-      routeToConfimationpage,
-      roomId,
-      startDate,
-      endDate
-    }
+        start,
+        end,
+        title,
+        roomId
+      }
   },
   data: () => {
     return{
       roomStore: useRoomsStore(),
-      room: {}
+      room: {},
     }
   },
   methods: {
     async getRoom() {
       console.log("fetch room");
-      await this.roomStore.fetchRoomById(roomId);
-      this.room = this.roomStore.room;
-      console.log(room)
+      this.room = await this.roomStore.fetchRoomById(this.roomId);
     },
+  },
+  async mounted() {
+    await this.getRoom()
   },
 };
 </script>

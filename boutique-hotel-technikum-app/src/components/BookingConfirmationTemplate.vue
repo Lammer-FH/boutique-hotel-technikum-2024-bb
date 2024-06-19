@@ -4,10 +4,11 @@
             <h1 class="ion-text-center">Booking Confirmed</h1>
             <p class="ion-text-center">We are pleased to inform you that your reservation request has been received and confirmed. Thank you!</p>
             <h4>Booking Details</h4>
-            <BookingDetailsConfirmed />
-            <RoomCard :roomObject="room" />
+            <BookingDetailsConfirmed :title="title"/>
+            <RoomCard :roomObject="roomObject" />
             <h4>Personal Information</h4>
             <PersonalInformationCard />
+            <Contact />
             <FooterSegment />
         </ion-content>
     </ion-page>
@@ -18,6 +19,7 @@ import BookingDetailsConfirmed from '@/components/organisms/BookingDetailsConfir
 import RoomCard from './molecules/RoomCard.vue';
 import PersonalInformationCard from '@/components/organisms/PersonalInformationCard.vue';
 import FooterSegment from './FooterSegment.vue';
+import Contact from './organisms/Contact.vue';
 
 export default {
     name:"BookingConfirmationTemplate",
@@ -25,10 +27,12 @@ export default {
         BookingDetailsConfirmed,
         RoomCard,
         PersonalInformationCard,
-        FooterSegment
+        FooterSegment,
+        Contact
     },
     props: {
-        room: {}
-    }
+        title: String,
+        roomObject: {}
+    },
 };
 </script>

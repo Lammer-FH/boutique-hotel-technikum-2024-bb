@@ -43,8 +43,8 @@ export default {
   setup() {
     const router = useRouter();
 
-    async function goToPayment(id: number, start: string, end: string) {
-      await router.push({ name: 'Payment', query: { id: id, start: start, end: end } });
+    async function goToPayment(id: number, title: string, nights: number, totalPrice: number, start: string, end: string) {
+      await router.push({ name: 'Payment', query: { id: id, title: title, nights: nights, totalPrice: totalPrice, start: start, end: end } });
     }
 
     return {
@@ -97,7 +97,7 @@ export default {
       return this.getNights() * this.room.price;
     },
     onConfirmPayment() {
-      this.goToPayment(this.room.id, this.start, this.end);
+      this.goToPayment(this.room.id, this.room.title, this.getNights(), this.getTotalPrice(), this.start, this.end);
     },
     formatDate(date: string) {
       return new Date(date).toLocaleDateString();
