@@ -1,18 +1,17 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
 import PaymentPage from '@/views/PaymentPage.vue';
 import LandingPage from '@/views/LandingPage.vue';
+import SearchRoomsPage from "@/views/SearchRoomsPage.vue";
+import SingleRoomPage from "@/views/SingleRoomPage.vue";
+import BookingConfirmationPage from "@/views/BookingConfirmationPage.vue";
+
+
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/welcome'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
   },
   {
     path: '/payment',
@@ -21,11 +20,35 @@ const routes: Array<RouteRecordRaw> = [
     meta: {title: 'Payment Details'}
   },
   {
+    path: '/booking-confirmation',
+    name: 'BookingConfirmation',
+    component: BookingConfirmationPage,
+    meta: {title: 'Booking Confirmation'}
+  },
+  {
     path: '/welcome',
     name: 'Welcome',
     component: LandingPage,
     meta: {title: 'Welcome'}
-  }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: SearchRoomsPage,
+    meta: {title: 'Search'}
+  },
+  {
+    path: '/room',
+    name: 'Room',
+    component: SingleRoomPage,
+    meta: {title: 'Room Details'}
+  },
+    {
+        path: '/booking',
+        name: 'Booking Confirmation',
+        component: BookingConfirmationPage,
+        meta: {title: 'Booking Confirmation'}
+    },
 ]
 
 const router = createRouter({

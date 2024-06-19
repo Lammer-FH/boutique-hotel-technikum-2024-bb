@@ -1,5 +1,4 @@
-import { defineStore, acceptHMRUpdate } from 'pinia'
-import { useUserStore } from './user'
+import { defineStore } from 'pinia'
 import axios from "axios";
 
 interface RoomExtraState {

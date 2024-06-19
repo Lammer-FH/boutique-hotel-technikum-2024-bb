@@ -1,5 +1,5 @@
 <template>
-  <ion-footer>
+  <ion-footer class="footer">
     <ion-toolbar>
       <div class="footer-content">
         <div class="footer-links">
@@ -47,5 +47,12 @@ ion-toolbar {
 p {
   font-size: 0.8rem;
   margin-top: 10px;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure it's above other elements if needed */
 }
 </style>

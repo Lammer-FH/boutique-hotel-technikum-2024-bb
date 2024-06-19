@@ -1,52 +1,71 @@
 <template>
-    <form @submit.prevent="saveBooking">
-        <PaymentTemplate 
-            :fromDate="fromDate"
-            :toDate="toDate"
-            :nights="nights"
-            :guests="guests"
-            :room="room"
-            :total="total"
-            :name="name"
-            :surname="surname"
-            :phoneNumber="phoneNumber"
-            :address="address"
-            :email="email"
-            :confirmEmail="confirmEmail"
-            :includeBreakfast="includeBreakfast"
-            @update:name="updateName"
-            @update:surname="updateSurname"
-            @update:phoneNumber="updatePhoneNumber"
-            @update:address="updateAddress"
-            @update:email="updateEmail"
-            @update:confirmEmail="updateConfirmEmail"
-            @update:includeBreakfast="updateIncludeBreakfast"
-        />
-        <ion-button shape="round" type="submit" >
-            Order
-            <ion-icon slot="end" :icon="chevronForward "></ion-icon>
-        </ion-button>
-        <ion-alert 
-            :is-open="showAlert"
-            :header="alertHeader"
-            :message="alertMessage"
-            :buttons="alertButton"
-            @didDismiss="showAlert = false">
-        </ion-alert>
-    </form>
+  <ion-page>
+      <ion-header>
+        <ion-toolbar>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content >
+      <form @submit.prevent="saveBooking">
+          <PaymentTemplate 
+              :fromDate="fromDate"
+              :toDate="toDate"
+              :nights="nights"
+              :guests="guests"
+              :room="room"
+              :total="total"
+              :name="name"
+              :surname="surname"
+              :phoneNumber="phoneNumber"
+              :address="address"
+              :email="email"
+              :confirmEmail="confirmEmail"
+              :includeBreakfast="includeBreakfast"
+              @update:name="updateName"
+              @update:surname="updateSurname"
+              @update:phoneNumber="updatePhoneNumber"
+              @update:address="updateAddress"
+              @update:email="updateEmail"
+              @update:confirmEmail="updateConfirmEmail"
+              @update:includeBreakfast="updateIncludeBreakfast"
+          />
+          <ion-button shape="round" type="submit" >
+              Order
+              <ion-icon slot="end" :icon="chevronForward "></ion-icon>
+          </ion-button>
+          <ion-alert 
+              :is-open="showAlert"
+              :header="alertHeader"
+              :message="alertMessage"
+              :buttons="alertButton"
+              @didDismiss="showAlert = false">
+          </ion-alert>
+      </form>
+    </ion-content>
+  </ion-page>
 </template>
 
-<script>
+<script lang="ts">
 import PaymentTemplate from '@/components/PaymentTemplate.vue';
 import { useCustomerStore } from '@/stores/customer'
 import {useBookingStore} from "@/stores/booking";
 import {useRoomsStore} from "@/stores/room";
-import {ref} from "vue";
+import {useRouter} from 'vue-router';
+import {chevronForward} from "ionicons/icons";
+
 
 export default {
     name: 'PaymentPage',
-    components: {
-        PaymentTemplate
+    components: {PaymentTemplate },
+    setup() {
+      const router = useRouter();
+
+      async function routeToConfimationpage(id: number) {
+        await router.push({ name: 'Booking Confirmation', query: { id: id} });
+      }
+
+      return {
+        routeToConfimationpage
+      }
     },
     data: () => {
         return {
@@ -73,6 +92,9 @@ export default {
         }
     },
     methods: {
+      chevronForward() {
+        return chevronForward
+      },
         updateName(value) { this.name = value; },
         updateSurname(value) { this.surname = value; },
         updatePhoneNumber(value) { this.phoneNumber = value; },
@@ -95,6 +117,7 @@ export default {
                 if(available){
                     let guest = await this.saveGuest();
                     this.createBooking(guest);
+                    this.routeToConfimationpage();
                 }
                 else{
                     throw new Error('Room is not available.');

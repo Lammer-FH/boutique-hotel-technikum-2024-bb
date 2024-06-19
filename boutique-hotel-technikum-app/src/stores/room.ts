@@ -1,5 +1,4 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { useUserStore } from './user'
 import axios from "axios";
 
 interface RoomState {
@@ -44,6 +43,19 @@ export const useRoomsStore = defineStore({
                 console.log(room)
 
                 return room
+            } catch (error) {
+                console.error('Error fetching customer data:', error);
+            }
+        },
+        async fetchRoomsByDates(startDate: string, endDate: string) {
+            try {
+                this.rooms=[]
+                const response = await axios.get<Array<RoomState>>(`${apiUrl}?start=${startDate}&end=${endDate}`);
+                const rooms = response.data
+                this.rooms = rooms
+                console.log(response.data)
+
+                return response.data
             } catch (error) {
                 console.error('Error fetching customer data:', error);
             }
