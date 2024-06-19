@@ -1,12 +1,12 @@
 <template>
   <ion-card class="room-details-card">
-    <header-title :title="`${roomStore.rooms[0].title}`"></header-title>
-    <ImageAtom :filePath="`./images/rooms/${roomStore.rooms[0].image}.jpg`"></ImageAtom>
+    <header-title :title="`${room.title}`"></header-title>
+    <ImageAtom :filePath="`./images/rooms/${room.image}.jpg`"></ImageAtom>
     <ion-card-content>
       <TextLabel text="DATES"/>
       <TextLabel :text="`From: ${formatDate(start)} To: ${formatDate(end)}`"/>
       <TextLabel text="DETAILS"/>
-      <TextLabel :text="roomObject.description"/>
+      <TextLabel :text="room.description"/>
       <TextLabel text="EXTRAS"/>
       <span class="style-children">
         <div v-if="iconPathList.length > 0" v-for="(icon, index) in iconPathList" :key="icon">
@@ -17,7 +17,7 @@
         <ion-card-title>Price Summary</ion-card-title>
       </ion-card-header>
       <TextLabel :text="`Nights: ${getNights()}`"/>
-      <TextLabel :text="`Price per Night: €${roomObject.price}`"/>
+      <TextLabel :text="`Price per Night: €${room.price}`"/>
       <TextLabel :text="`Total Price: €${getTotalPrice().toFixed(2)}`"/>
       <ion-button :disabled="isDisabled" expand="block" @click="onConfirmPayment">Payment Details</ion-button>
     </ion-card-content>

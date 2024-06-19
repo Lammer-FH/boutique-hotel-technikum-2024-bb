@@ -28,7 +28,7 @@
               @update:confirmEmail="updateConfirmEmail"
               @update:includeBreakfast="updateIncludeBreakfast"
           />
-          <ion-button shape="round" type="submit" >
+          <ion-button shape="round" type="submit">
               Order
               <ion-icon slot="end" :icon="chevronForward "></ion-icon>
           </ion-button>
@@ -51,6 +51,10 @@ import {useBookingStore} from "@/stores/booking";
 import {useRoomsStore} from "@/stores/room";
 import {useRouter} from 'vue-router';
 import {chevronForward} from "ionicons/icons";
+import { watch } from 'vue';
+import { useRoute } from 'vue-router';
+
+
 
 
 export default {
@@ -58,9 +62,15 @@ export default {
     components: {PaymentTemplate },
     setup() {
       const router = useRouter();
+      const route = useRoute();
 
-      async function routeToConfimationpage(id: number) {
-        await router.push({ name: 'Booking Confirmation', query: { id: id} });
+      const roomId = route.query.id;
+      const startDate = route.query.start;
+      const endDate = route.query.end;
+      watch(() => route.path, () => {});
+
+      async function routeToConfimationpage() {
+        await router.push({ name: 'Booking Confirmation', query: { id: roomId, start: startDate, end: endDate} });
       }
 
       return {
@@ -111,13 +121,13 @@ export default {
                 if (this.email !== this.confirmEmail) {
                     throw new Error('Emails do not match.');
                 }
-                let rooms = this.searchForRooms();
+                let rooms = this.searchForRooms();t
                 let available = this.checkRoomAvailability(rooms, 1) // TO-DO: get room id
 
                 if(available){
                     let guest = await this.saveGuest();
                     this.createBooking(guest);
-                    this.routeToConfimationpage();
+                    await this.routeToConfimationpage();
                 }
                 else{
                     throw new Error('Room is not available.');

@@ -1,6 +1,8 @@
 <template>
   <ion-page>
+
     <RoomDetailsCard v-if="roomObject.length > 0" :room="roomObject[0]" :start="startDate" :end="endDate" />
+    room id: {{ roomId}}
   </ion-page>
 </template>
 
@@ -17,11 +19,7 @@ export default {
       roomObject: ref<any[]>([]),
     }
   },
-  props: {
-    roomId: Number,
-    startDate: String,
-    endDate: String
-  },
+  props: ['roomId', 'startDate', 'endDate'],
   async mounted() {
     if (this.roomId) {
       console.log(`Attempting to fetch details for room ID: ${this.roomId}`);
@@ -37,8 +35,11 @@ export default {
         return;
       }
       console.log(`Fetching room details for ID: ${roomId}`);
+      if (this.roomObject.length > 0) {
+        this.roomObject.splice(0);
+      }
       this.roomObject.push(await this.roomStore.fetchRoomById(roomId));
-    }
+    },
   }
 }
 </script>

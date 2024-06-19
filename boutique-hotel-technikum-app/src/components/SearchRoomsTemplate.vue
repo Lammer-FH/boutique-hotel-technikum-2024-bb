@@ -16,6 +16,7 @@ export default {
     const router = useRouter();
 
     async function goToDetails(id: number, start: string, end: string) {
+      console.log("routing to " + id)
       await router.push({ name: 'Room', query: { id: id, start: start, end: end } });
     }
 
