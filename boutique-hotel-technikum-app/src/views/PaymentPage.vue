@@ -167,9 +167,9 @@ export default {
             return rooms;
         },
         checkRoomAvailability(rooms, roomId){
-            let available = true;
+            let available = false;
             rooms.forEach((room) => {
-                if(room.id === roomId) {
+                if(room.id == roomId) {
                     available = true;
                 }
             })

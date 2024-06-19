@@ -43,15 +43,15 @@ export default {
       room: {},
     }
   },
-  async mounted() {
-    await this.getRoom()
-  },
   methods: {
     async getRoom() {
       console.log("fetch room");
       this.room = await this.roomStore.fetchRoomById(this.roomId);
       console.log(room)
     },
+  },
+  async mounted() {
+    await this.getRoom()
   },
 };
 </script>
