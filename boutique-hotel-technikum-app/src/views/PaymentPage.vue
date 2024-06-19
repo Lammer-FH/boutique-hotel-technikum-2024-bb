@@ -39,6 +39,9 @@
               :buttons="alertButton"
               @didDismiss="showAlert = false">
           </ion-alert>
+        <ion-button shape="round" v-on:click="routeToConfimationpage">
+          ROUTE ROUTE ROUTE
+        </ion-button>
       </form>
     </ion-content>
   </ion-page>
