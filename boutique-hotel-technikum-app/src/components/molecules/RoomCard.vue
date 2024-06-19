@@ -41,6 +41,7 @@ export default {
     }
   },
   async mounted() {
+      console.log(this.room);
       await this.getRoomExtras();
       this.getIconLinks();
   },

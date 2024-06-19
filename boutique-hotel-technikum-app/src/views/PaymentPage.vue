@@ -29,7 +29,6 @@
           />
           <ion-button shape="round" type="submit">
               Order
-              <ion-icon slot="end" :icon="chevronForward "></ion-icon>
           </ion-button>
           <ion-alert 
               :is-open="showAlert"
@@ -38,9 +37,6 @@
               :buttons="alertButton"
               @didDismiss="showAlert = false">
           </ion-alert>
-        <ion-button shape="round" v-on:click="routeToConfimationpage">
-          ROUTE ROUTE ROUTE
-        </ion-button>
       </form>
     </ion-content>
   </ion-page>
